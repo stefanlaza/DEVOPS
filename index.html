@@ -78,6 +78,8 @@ footer{text-align:center;padding:3rem 2rem;font-size:0.7rem;color:var(--muted);b
     <a href="#cisco">Network</a>
     <a href="#etl">ETL</a>
     <a href="#batch">Batch</a>
+    <a href="#microservices">Microservices</a>
+    <a href="#monolith">Monolith</a>
     <a href="#services">Services</a>
     <a href="#contact">Contact</a>
   </div>
@@ -526,6 +528,344 @@ footer{text-align:center;padding:3rem 2rem;font-size:0.7rem;color:var(--muted);b
       <circle r="3.5" fill="#34d399" filter="url(#g4)"><animateMotion dur="1s" repeatCount="indefinite" begin="4s"><mpath href="#b-p9"/></animateMotion></circle>
       <circle r="2.5" fill="#f87171" filter="url(#g4)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3s"><mpath href="#b-p10"/></animateMotion></circle>
       <circle r="2.5" fill="#f87171" filter="url(#g4)"><animateMotion dur="2s" repeatCount="indefinite" begin="2s"><mpath href="#b-p11"/></animateMotion></circle>
+    </svg>
+  </div>
+</section>
+
+<!-- ══════════ 5. JAVA MICROSERVICES → K8S VIA JENKINS ══════════ -->
+<section id="microservices">
+  <div class="tag reveal" style="color:var(--cyan)">Microservices</div>
+  <h2 class="reveal">Java Microservices to Kubernetes</h2>
+  <p class="sub reveal">Developers push to Git, Jenkins builds each Spring Boot service with Maven, runs unit/integration tests, builds Docker images, pushes to Harbor registry, and deploys to Kubernetes with rolling updates. Each service has its own PostgreSQL schema.</p>
+
+  <div class="diagram reveal">
+    <span class="diagram-title" style="color:var(--cyan)">Jenkins — Microservices CI/CD to K8s</span>
+    <svg viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="g5" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+
+      <!-- Phase headers -->
+      <rect x="25" y="20" width="100" height="22" rx="6" fill="rgba(129,140,248,0.08)" stroke="rgba(129,140,248,0.2)" stroke-width="1"/>
+      <text x="75" y="35" text-anchor="middle" fill="#818cf8" font-size="7" font-weight="700" letter-spacing="0.1em">SOURCE</text>
+
+      <rect x="170" y="20" width="100" height="22" rx="6" fill="rgba(251,146,60,0.08)" stroke="rgba(251,146,60,0.2)" stroke-width="1"/>
+      <text x="220" y="35" text-anchor="middle" fill="#fb923c" font-size="7" font-weight="700" letter-spacing="0.1em">BUILD</text>
+
+      <rect x="315" y="20" width="100" height="22" rx="6" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.2)" stroke-width="1"/>
+      <text x="365" y="35" text-anchor="middle" fill="#a78bfa" font-size="7" font-weight="700" letter-spacing="0.1em">TEST</text>
+
+      <rect x="460" y="20" width="100" height="22" rx="6" fill="rgba(74,158,255,0.08)" stroke="rgba(74,158,255,0.2)" stroke-width="1"/>
+      <text x="510" y="35" text-anchor="middle" fill="#4a9eff" font-size="7" font-weight="700" letter-spacing="0.1em">PACKAGE</text>
+
+      <rect x="610" y="20" width="100" height="22" rx="6" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
+      <text x="660" y="35" text-anchor="middle" fill="#34d399" font-size="7" font-weight="700" letter-spacing="0.1em">DEPLOY</text>
+
+      <rect x="770" y="20" width="140" height="22" rx="6" fill="rgba(34,211,238,0.08)" stroke="rgba(34,211,238,0.2)" stroke-width="1"/>
+      <text x="840" y="35" text-anchor="middle" fill="#22d3ee" font-size="7" font-weight="700" letter-spacing="0.1em">KUBERNETES</text>
+
+      <!-- ── PIPELINE ROW 1: user-service ── -->
+      <text x="40" y="78" fill="rgba(255,255,255,0.25)" font-size="8" font-weight="700" letter-spacing="0.06em">user-service</text>
+
+      <rect x="30" y="88" width="90" height="48" rx="10" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5"/>
+      <text x="75" y="112" text-anchor="middle" fill="#818cf8" font-size="9" font-weight="700">Git Push</text>
+      <text x="75" y="126" text-anchor="middle" fill="#6e6e80" font-size="6.5">Webhook</text>
+
+      <rect x="170" y="88" width="100" height="48" rx="10" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5"/>
+      <text x="220" y="112" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">Jenkins</text>
+      <text x="220" y="126" text-anchor="middle" fill="#6e6e80" font-size="6.5">mvn clean package</text>
+
+      <rect x="320" y="88" width="90" height="48" rx="10" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <text x="365" y="112" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="700">Tests</text>
+      <text x="365" y="126" text-anchor="middle" fill="#6e6e80" font-size="6.5">JUnit + Mockito</text>
+
+      <rect x="460" y="88" width="100" height="48" rx="10" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="510" y="112" text-anchor="middle" fill="#4a9eff" font-size="9" font-weight="700">Docker</text>
+      <text x="510" y="126" text-anchor="middle" fill="#6e6e80" font-size="6.5">Build + Push</text>
+
+      <rect x="615" y="88" width="90" height="48" rx="10" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
+      <text x="660" y="112" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700">Helm</text>
+      <text x="660" y="126" text-anchor="middle" fill="#6e6e80" font-size="6.5">upgrade --install</text>
+
+      <!-- ── PIPELINE ROW 2: order-service ── -->
+      <text x="40" y="168" fill="rgba(255,255,255,0.25)" font-size="8" font-weight="700" letter-spacing="0.06em">order-service</text>
+
+      <rect x="30" y="178" width="90" height="48" rx="10" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5"/>
+      <text x="75" y="202" text-anchor="middle" fill="#818cf8" font-size="9" font-weight="700">Git Push</text>
+      <text x="75" y="216" text-anchor="middle" fill="#6e6e80" font-size="6.5">Webhook</text>
+
+      <rect x="170" y="178" width="100" height="48" rx="10" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5"/>
+      <text x="220" y="202" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">Jenkins</text>
+      <text x="220" y="216" text-anchor="middle" fill="#6e6e80" font-size="6.5">mvn clean package</text>
+
+      <rect x="320" y="178" width="90" height="48" rx="10" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <text x="365" y="202" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="700">Tests</text>
+      <text x="365" y="216" text-anchor="middle" fill="#6e6e80" font-size="6.5">JUnit + Testcontainers</text>
+
+      <rect x="460" y="178" width="100" height="48" rx="10" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="510" y="202" text-anchor="middle" fill="#4a9eff" font-size="9" font-weight="700">Docker</text>
+      <text x="510" y="216" text-anchor="middle" fill="#6e6e80" font-size="6.5">Build + Push</text>
+
+      <rect x="615" y="178" width="90" height="48" rx="10" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
+      <text x="660" y="202" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700">Helm</text>
+      <text x="660" y="216" text-anchor="middle" fill="#6e6e80" font-size="6.5">upgrade --install</text>
+
+      <!-- ── PIPELINE ROW 3: payment-service ── -->
+      <text x="40" y="258" fill="rgba(255,255,255,0.25)" font-size="8" font-weight="700" letter-spacing="0.06em">payment-service</text>
+
+      <rect x="30" y="268" width="90" height="48" rx="10" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5"/>
+      <text x="75" y="292" text-anchor="middle" fill="#818cf8" font-size="9" font-weight="700">Git Push</text>
+      <text x="75" y="306" text-anchor="middle" fill="#6e6e80" font-size="6.5">Webhook</text>
+
+      <rect x="170" y="268" width="100" height="48" rx="10" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5"/>
+      <text x="220" y="292" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">Jenkins</text>
+      <text x="220" y="306" text-anchor="middle" fill="#6e6e80" font-size="6.5">mvn clean package</text>
+
+      <rect x="320" y="268" width="90" height="48" rx="10" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <text x="365" y="292" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="700">Tests</text>
+      <text x="365" y="306" text-anchor="middle" fill="#6e6e80" font-size="6.5">JUnit + WireMock</text>
+
+      <rect x="460" y="268" width="100" height="48" rx="10" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="510" y="292" text-anchor="middle" fill="#4a9eff" font-size="9" font-weight="700">Docker</text>
+      <text x="510" y="306" text-anchor="middle" fill="#6e6e80" font-size="6.5">Build + Push</text>
+
+      <rect x="615" y="268" width="90" height="48" rx="10" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
+      <text x="660" y="292" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700">Helm</text>
+      <text x="660" y="306" text-anchor="middle" fill="#6e6e80" font-size="6.5">upgrade --install</text>
+
+      <!-- ── KUBERNETES CLUSTER ── -->
+      <rect x="760" y="60" width="175" height="280" rx="16" fill="rgba(34,211,238,0.03)" stroke="rgba(34,211,238,0.15)" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="775" y="80" fill="rgba(34,211,238,0.4)" font-size="7" font-weight="700" letter-spacing="0.08em">K8S CLUSTER</text>
+
+      <!-- K8s pods -->
+      <rect x="780" y="92" width="135" height="40" rx="8" fill="#111118" stroke="rgba(34,211,238,0.25)" stroke-width="1"/>
+      <text x="847" y="112" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">user-svc (3 pods)</text>
+      <text x="847" y="124" text-anchor="middle" fill="#6e6e80" font-size="6">Deployment + HPA</text>
+
+      <rect x="780" y="145" width="135" height="40" rx="8" fill="#111118" stroke="rgba(34,211,238,0.25)" stroke-width="1"/>
+      <text x="847" y="165" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">order-svc (3 pods)</text>
+      <text x="847" y="177" text-anchor="middle" fill="#6e6e80" font-size="6">Deployment + HPA</text>
+
+      <rect x="780" y="198" width="135" height="40" rx="8" fill="#111118" stroke="rgba(34,211,238,0.25)" stroke-width="1"/>
+      <text x="847" y="218" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">payment-svc (2 pods)</text>
+      <text x="847" y="230" text-anchor="middle" fill="#6e6e80" font-size="6">Deployment + HPA</text>
+
+      <!-- Ingress -->
+      <rect x="780" y="252" width="135" height="34" rx="8" fill="#111118" stroke="rgba(52,211,153,0.25)" stroke-width="1"/>
+      <text x="847" y="272" text-anchor="middle" fill="#34d399" font-size="8" font-weight="600">NGINX Ingress</text>
+      <text x="847" y="282" text-anchor="middle" fill="#6e6e80" font-size="6">/api/* routing</text>
+
+      <!-- Config -->
+      <rect x="780" y="298" width="135" height="30" rx="8" fill="#111118" stroke="rgba(255,153,0,0.2)" stroke-width="1"/>
+      <text x="847" y="317" text-anchor="middle" fill="#ff9900" font-size="7" font-weight="600">ConfigMaps + Secrets</text>
+
+      <!-- ── PostgreSQL cluster ── -->
+      <rect x="340" y="390" width="130" height="54" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <text x="405" y="418" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">PostgreSQL</text>
+      <text x="405" y="434" text-anchor="middle" fill="#6e6e80" font-size="7">user_db / order_db / pay_db</text>
+
+      <!-- Harbor Registry -->
+      <rect x="480" y="390" width="110" height="54" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="535" y="418" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">Harbor</text>
+      <text x="535" y="434" text-anchor="middle" fill="#6e6e80" font-size="7">Docker Registry</text>
+
+      <!-- SonarQube -->
+      <rect x="170" y="390" width="110" height="54" rx="12" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1"/>
+      <text x="225" y="418" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">SonarQube</text>
+      <text x="225" y="434" text-anchor="middle" fill="#6e6e80" font-size="7">Code Quality Gate</text>
+
+      <!-- Grafana + Prometheus -->
+      <rect x="780" y="390" width="135" height="54" rx="12" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1"/>
+      <text x="847" y="418" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">Prometheus + Grafana</text>
+      <text x="847" y="434" text-anchor="middle" fill="#6e6e80" font-size="7">Metrics + Dashboards</text>
+
+      <!-- ── Connection paths: Row 1 ── -->
+      <path d="M120,112 L170,112" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-a1"/>
+      <path d="M270,112 L320,112" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-a2"/>
+      <path d="M410,112 L460,112" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-a3"/>
+      <path d="M560,112 L615,112" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-a4"/>
+      <path d="M705,112 L780,112" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-a5"/>
+
+      <!-- ── Connection paths: Row 2 ── -->
+      <path d="M120,202 L170,202" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-b1"/>
+      <path d="M270,202 L320,202" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-b2"/>
+      <path d="M410,202 L460,202" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-b3"/>
+      <path d="M560,202 L615,202" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-b4"/>
+      <path d="M705,202 L780,165" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-b5"/>
+
+      <!-- ── Connection paths: Row 3 ── -->
+      <path d="M120,292 L170,292" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-c1"/>
+      <path d="M270,292 L320,292" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-c2"/>
+      <path d="M410,292 L460,292" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-c3"/>
+      <path d="M560,292 L615,292" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-c4"/>
+      <path d="M705,292 L780,218" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-c5"/>
+
+      <!-- Docker to Harbor -->
+      <path d="M510,136 C510,350 535,370 535,390" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="ms-harbor"/>
+      <!-- Jenkins to Sonar -->
+      <path d="M220,136 L225,390" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="ms-sonar"/>
+      <!-- K8s to PostgreSQL -->
+      <path d="M847,340 C847,370 500,420 470,420" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="ms-db"/>
+      <!-- K8s to monitoring -->
+      <path d="M847,340 L847,390" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="ms-mon"/>
+
+      <!-- ── Animated packets Row 1 ── -->
+      <circle r="3.5" fill="#818cf8" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite"><mpath href="#ms-a1"/></animateMotion></circle>
+      <circle r="3.5" fill="#fb923c" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite" begin="0.5s"><mpath href="#ms-a2"/></animateMotion></circle>
+      <circle r="3" fill="#a78bfa" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite" begin="1s"><mpath href="#ms-a3"/></animateMotion></circle>
+      <circle r="3.5" fill="#4a9eff" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite" begin="1.5s"><mpath href="#ms-a4"/></animateMotion></circle>
+      <circle r="3.5" fill="#34d399" filter="url(#g5)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="2s"><mpath href="#ms-a5"/></animateMotion></circle>
+
+      <!-- ── Animated packets Row 2 ── -->
+      <circle r="3.5" fill="#818cf8" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite" begin="0.8s"><mpath href="#ms-b1"/></animateMotion></circle>
+      <circle r="3.5" fill="#fb923c" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite" begin="1.3s"><mpath href="#ms-b2"/></animateMotion></circle>
+      <circle r="3" fill="#a78bfa" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite" begin="1.8s"><mpath href="#ms-b3"/></animateMotion></circle>
+      <circle r="3.5" fill="#4a9eff" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite" begin="2.3s"><mpath href="#ms-b4"/></animateMotion></circle>
+      <circle r="3.5" fill="#34d399" filter="url(#g5)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="2.8s"><mpath href="#ms-b5"/></animateMotion></circle>
+
+      <!-- ── Animated packets Row 3 ── -->
+      <circle r="3.5" fill="#818cf8" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite" begin="1.5s"><mpath href="#ms-c1"/></animateMotion></circle>
+      <circle r="3.5" fill="#fb923c" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite" begin="2s"><mpath href="#ms-c2"/></animateMotion></circle>
+      <circle r="3" fill="#a78bfa" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite" begin="2.5s"><mpath href="#ms-c3"/></animateMotion></circle>
+      <circle r="3.5" fill="#4a9eff" filter="url(#g5)"><animateMotion dur="1s" repeatCount="indefinite" begin="3s"><mpath href="#ms-c4"/></animateMotion></circle>
+      <circle r="3.5" fill="#34d399" filter="url(#g5)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="3.5s"><mpath href="#ms-c5"/></animateMotion></circle>
+
+      <!-- ── Side paths packets ── -->
+      <circle r="2.5" fill="#4a9eff" filter="url(#g5)"><animateMotion dur="3s" repeatCount="indefinite" begin="2s"><mpath href="#ms-harbor"/></animateMotion></circle>
+      <circle r="2.5" fill="#f87171" filter="url(#g5)"><animateMotion dur="2.5s" repeatCount="indefinite" begin="1s"><mpath href="#ms-sonar"/></animateMotion></circle>
+      <circle r="2.5" fill="#a78bfa" filter="url(#g5)"><animateMotion dur="3s" repeatCount="indefinite" begin="3s"><mpath href="#ms-db"/></animateMotion></circle>
+      <circle r="2.5" fill="#f87171" filter="url(#g5)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="4s"><mpath href="#ms-mon"/></animateMotion></circle>
+    </svg>
+  </div>
+</section>
+
+<!-- ══════════ 6. JAVA MONOLITH → JENKINS → EC2/TOMCAT ══════════ -->
+<section id="monolith" class="alt-bg">
+  <div class="tag reveal" style="color:var(--orange)">Monolith</div>
+  <h2 class="reveal">Java Monolith Deployment</h2>
+  <p class="sub reveal">Single Spring Boot WAR deployed to Tomcat on EC2 behind an ALB. Jenkins builds with Maven, runs full test suite, packages WAR, uploads to S3 artifact store, and deploys via Ansible to a rolling EC2 target group with health checks.</p>
+
+  <div class="diagram reveal">
+    <span class="diagram-title" style="color:var(--orange)">Jenkins — Monolith CI/CD to EC2/Tomcat</span>
+    <svg viewBox="0 0 960 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="g6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+
+      <!-- Single pipeline flow — top row -->
+      <rect x="30" y="80" width="100" height="56" rx="12" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5"/>
+      <text x="80" y="106" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700">Git Push</text>
+      <text x="80" y="122" text-anchor="middle" fill="#6e6e80" font-size="7">monolith repo</text>
+
+      <rect x="175" y="80" width="110" height="56" rx="12" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5"/>
+      <text x="230" y="106" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">Jenkins</text>
+      <text x="230" y="122" text-anchor="middle" fill="#6e6e80" font-size="7">mvn clean package</text>
+
+      <rect x="330" y="80" width="100" height="56" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <text x="380" y="106" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Tests</text>
+      <text x="380" y="122" text-anchor="middle" fill="#6e6e80" font-size="7">JUnit + Selenium</text>
+
+      <rect x="475" y="80" width="110" height="56" rx="12" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
+      <text x="530" y="106" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">S3 Artifact</text>
+      <text x="530" y="122" text-anchor="middle" fill="#6e6e80" font-size="7">app-v2.1.war</text>
+
+      <rect x="630" y="80" width="110" height="56" rx="12" fill="#111118" stroke="rgba(255,153,0,0.3)" stroke-width="1.5"/>
+      <text x="685" y="106" text-anchor="middle" fill="#ff9900" font-size="10" font-weight="700">Ansible</text>
+      <text x="685" y="122" text-anchor="middle" fill="#6e6e80" font-size="7">Rolling Deploy</text>
+
+      <!-- EC2 Target Group -->
+      <rect x="700" y="190" width="230" height="190" rx="16" fill="rgba(74,158,255,0.03)" stroke="rgba(74,158,255,0.12)" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="720" y="210" fill="rgba(74,158,255,0.4)" font-size="7" font-weight="700" letter-spacing="0.08em">EC2 TARGET GROUP</text>
+
+      <!-- ALB -->
+      <rect x="560" y="220" width="100" height="50" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="610" y="246" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">ALB</text>
+      <text x="610" y="259" text-anchor="middle" fill="#6e6e80" font-size="7">Health Checks</text>
+
+      <!-- EC2 + Tomcat instances -->
+      <rect x="720" y="225" width="90" height="50" rx="10" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5"/>
+      <text x="765" y="250" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">EC2 + Tomcat</text>
+      <text x="765" y="264" text-anchor="middle" fill="#6e6e80" font-size="6.5">Instance 1</text>
+
+      <rect x="825" y="225" width="90" height="50" rx="10" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5"/>
+      <text x="870" y="250" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">EC2 + Tomcat</text>
+      <text x="870" y="264" text-anchor="middle" fill="#6e6e80" font-size="6.5">Instance 2</text>
+
+      <rect x="720" y="295" width="90" height="50" rx="10" fill="#111118" stroke="rgba(251,146,60,0.25)" stroke-width="1"/>
+      <text x="765" y="320" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="600">EC2 + Tomcat</text>
+      <text x="765" y="334" text-anchor="middle" fill="#6e6e80" font-size="6.5">Instance 3</text>
+
+      <rect x="825" y="295" width="90" height="50" rx="10" fill="#111118" stroke="rgba(251,146,60,0.25)" stroke-width="1"/>
+      <text x="870" y="320" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="600">EC2 + Tomcat</text>
+      <text x="870" y="334" text-anchor="middle" fill="#6e6e80" font-size="6.5">Instance 4</text>
+
+      <!-- PostgreSQL -->
+      <rect x="340" y="310" width="120" height="56" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <text x="400" y="338" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">PostgreSQL</text>
+      <text x="400" y="354" text-anchor="middle" fill="#6e6e80" font-size="7">RDS Multi-AZ</text>
+
+      <!-- SonarQube -->
+      <rect x="175" y="195" width="110" height="46" rx="10" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1"/>
+      <text x="230" y="218" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">SonarQube</text>
+      <text x="230" y="232" text-anchor="middle" fill="#6e6e80" font-size="7">Quality Gate</text>
+
+      <!-- Nexus -->
+      <rect x="330" y="195" width="100" height="46" rx="10" fill="#111118" stroke="rgba(34,211,238,0.25)" stroke-width="1"/>
+      <text x="380" y="218" text-anchor="middle" fill="#22d3ee" font-size="9" font-weight="600">Nexus</text>
+      <text x="380" y="232" text-anchor="middle" fill="#6e6e80" font-size="7">Maven Repo</text>
+
+      <!-- CloudWatch -->
+      <rect x="560" y="310" width="100" height="46" rx="10" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1"/>
+      <text x="610" y="333" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">CloudWatch</text>
+      <text x="610" y="346" text-anchor="middle" fill="#6e6e80" font-size="7">Logs + Alarms</text>
+
+      <!-- Pipeline paths -->
+      <path d="M130,108 L175,108" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p1"/>
+      <path d="M285,108 L330,108" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p2"/>
+      <path d="M430,108 L475,108" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p3"/>
+      <path d="M585,108 L630,108" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p4"/>
+
+      <!-- Ansible to EC2s -->
+      <path d="M685,136 C685,180 765,200 765,225" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p5"/>
+      <path d="M685,136 C700,180 870,200 870,225" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p6"/>
+      <path d="M685,136 C685,220 765,270 765,295" stroke="rgba(255,255,255,0.05)" stroke-width="1" id="mo-p7"/>
+      <path d="M685,136 C700,220 870,270 870,295" stroke="rgba(255,255,255,0.05)" stroke-width="1" id="mo-p8"/>
+
+      <!-- ALB to EC2s -->
+      <path d="M660,245 L720,250" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p9"/>
+      <path d="M660,245 L720,320" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p10"/>
+
+      <!-- EC2 to PostgreSQL -->
+      <path d="M720,275 C600,300 480,320 460,335" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="mo-db"/>
+
+      <!-- Jenkins to SonarQube -->
+      <path d="M230,136 L230,195" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="mo-sonar"/>
+      <!-- Tests to Nexus -->
+      <path d="M380,136 L380,195" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="mo-nexus"/>
+      <!-- EC2 to CloudWatch -->
+      <path d="M720,345 C680,345 650,340 660,333" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="mo-cw"/>
+
+      <!-- Animated packets -->
+      <circle r="4" fill="#818cf8" filter="url(#g6)"><animateMotion dur="1s" repeatCount="indefinite"><mpath href="#mo-p1"/></animateMotion></circle>
+      <circle r="4" fill="#fb923c" filter="url(#g6)"><animateMotion dur="1s" repeatCount="indefinite" begin="0.5s"><mpath href="#mo-p2"/></animateMotion></circle>
+      <circle r="3.5" fill="#a78bfa" filter="url(#g6)"><animateMotion dur="1s" repeatCount="indefinite" begin="1s"><mpath href="#mo-p3"/></animateMotion></circle>
+      <circle r="4" fill="#34d399" filter="url(#g6)"><animateMotion dur="1s" repeatCount="indefinite" begin="1.5s"><mpath href="#mo-p4"/></animateMotion></circle>
+
+      <!-- Ansible deploy packets -->
+      <circle r="3.5" fill="#ff9900" filter="url(#g6)"><animateMotion dur="2s" repeatCount="indefinite" begin="2s"><mpath href="#mo-p5"/></animateMotion></circle>
+      <circle r="3.5" fill="#ff9900" filter="url(#g6)"><animateMotion dur="2s" repeatCount="indefinite" begin="2.5s"><mpath href="#mo-p6"/></animateMotion></circle>
+      <circle r="3" fill="#ff9900" filter="url(#g6)"><animateMotion dur="2.5s" repeatCount="indefinite" begin="3s"><mpath href="#mo-p7"/></animateMotion></circle>
+      <circle r="3" fill="#ff9900" filter="url(#g6)"><animateMotion dur="2.5s" repeatCount="indefinite" begin="3.5s"><mpath href="#mo-p8"/></animateMotion></circle>
+
+      <!-- ALB traffic -->
+      <circle r="3" fill="#4a9eff" filter="url(#g6)"><animateMotion dur="1s" repeatCount="indefinite" begin="0.3s"><mpath href="#mo-p9"/></animateMotion></circle>
+      <circle r="3" fill="#4a9eff" filter="url(#g6)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="1s"><mpath href="#mo-p10"/></animateMotion></circle>
+
+      <!-- Side paths -->
+      <circle r="2.5" fill="#a78bfa" filter="url(#g6)"><animateMotion dur="2.5s" repeatCount="indefinite" begin="3s"><mpath href="#mo-db"/></animateMotion></circle>
+      <circle r="2.5" fill="#f87171" filter="url(#g6)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="1s"><mpath href="#mo-sonar"/></animateMotion></circle>
+      <circle r="2.5" fill="#22d3ee" filter="url(#g6)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="1.5s"><mpath href="#mo-nexus"/></animateMotion></circle>
+      <circle r="2.5" fill="#f87171" filter="url(#g6)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="4s"><mpath href="#mo-cw"/></animateMotion></circle>
     </svg>
   </div>
 </section>
