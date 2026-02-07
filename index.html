@@ -5,324 +5,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stefan Laza — DevOps Engineer</title>
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#050507;--surface:#0a0a10;--card:#111118;
+  --border:rgba(255,255,255,0.06);--text:#f0f0f5;--muted:#6e6e80;
+  --aws:#ff9900;--blue:#4a9eff;--purple:#a78bfa;--green:#34d399;
+  --orange:#fb923c;--red:#f87171;--cyan:#22d3ee;--indigo:#818cf8;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-:root {
-  --bg: #050507;
-  --surface: #0d0d12;
-  --card: #111118;
-  --border: rgba(255,255,255,0.06);
-  --text: #f0f0f5;
-  --muted: #6e6e80;
-  --blue: #4a9eff;
-  --purple: #a78bfa;
-  --green: #34d399;
-  --orange: #fb923c;
-  --red: #f87171;
-  --cyan: #22d3ee;
-  --glow-blue: rgba(74,158,255,0.15);
-  --glow-purple: rgba(167,139,250,0.15);
-  --glow-green: rgba(52,211,153,0.15);
-}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(5,5,7,0.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-name{font-weight:600;font-size:0.9rem;letter-spacing:-0.01em}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.78rem;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
 
-html { scroll-behavior: smooth; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+/* SECTIONS */
+section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7rem 2rem 5rem;position:relative}
+.alt-bg{background:var(--surface)}
+.tag{font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;padding:0.35rem 0.9rem;border-radius:100px;border:1px solid var(--border);margin-bottom:1.5rem}
+h1{font-size:clamp(2.5rem,7vw,5rem);font-weight:700;letter-spacing:-0.04em;text-align:center;line-height:1.05;background:linear-gradient(135deg,#fff 0%,#888 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+h2{font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:600;letter-spacing:-0.03em;text-align:center;line-height:1.1;margin-bottom:0.5rem}
+.sub{font-size:clamp(0.9rem,1.6vw,1.1rem);color:var(--muted);text-align:center;max-width:560px;margin-top:1rem}
 
-/* ===== NAV ===== */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1rem 2rem;
-  background: rgba(5,5,7,0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-name { font-weight: 600; font-size: 0.9rem; letter-spacing: -0.01em; }
-.nav-links { display: flex; gap: 1.5rem; }
-.nav-links a {
-  color: var(--muted); text-decoration: none; font-size: 0.8rem;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--text); }
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-/* ===== SECTIONS ===== */
-section {
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 7rem 2rem 5rem;
-  position: relative;
-}
+/* DIAGRAM SHARED */
+.diagram{width:min(94vw,960px);margin:2.5rem auto 0;border-radius:20px;background:var(--card);border:1px solid var(--border);overflow:hidden;position:relative}
+.diagram svg{width:100%;height:auto;display:block}
+.diagram-title{position:absolute;top:16px;left:20px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);z-index:2}
 
-.tag {
-  font-size: 0.7rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.14em;
-  padding: 0.35rem 0.9rem;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  margin-bottom: 1.5rem;
-}
+/* Shared glow filter */
+.glow-filter feGaussianBlur{stdDeviation:4}
 
-h1 {
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  font-weight: 700; letter-spacing: -0.04em;
-  text-align: center; line-height: 1.05;
-  background: linear-gradient(135deg, #fff 0%, #888 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+/* SERVICES GRID */
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;max-width:960px;width:100%;background:var(--border);border-radius:20px;overflow:hidden;margin-top:2.5rem}
+.svc{background:var(--card);padding:2rem;transition:background 0.3s}
+.svc:hover{background:#16161e}
+.svc-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.svc-icon svg{width:22px;height:22px;stroke-width:1.8}
+.svc h3{font-size:0.95rem;font-weight:600;margin-bottom:0.4rem}
+.svc p{font-size:0.78rem;color:var(--muted);line-height:1.5}
+.svc-tag{display:inline-block;font-size:0.58rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;padding:0.2rem 0.5rem;border-radius:4px;margin-top:0.8rem}
 
-h2 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 600; letter-spacing: -0.03em;
-  text-align: center; line-height: 1.1;
-  margin-bottom: 0.5rem;
-}
+/* CONTACT */
+.contact-links{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;justify-content:center}
+.contact-links a{display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.5rem;border-radius:100px;font-size:0.85rem;font-weight:500;text-decoration:none;color:var(--text);border:1px solid var(--border);transition:border-color 0.2s,background 0.2s}
+.contact-links a:hover{border-color:rgba(255,255,255,0.2);background:var(--card)}
+.contact-links a svg{width:18px;height:18px}
+footer{text-align:center;padding:3rem 2rem;font-size:0.7rem;color:var(--muted);border-top:1px solid var(--border)}
 
-.sub {
-  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-  color: var(--muted); text-align: center;
-  max-width: 540px; margin-top: 1rem;
+/* RESPONSIVE */
+@media(max-width:700px){
+  nav{padding:0.8rem 1rem}.nav-links{gap:0.8rem}.nav-links a{font-size:0.7rem}
+  section{padding:5rem 1rem 3rem}
+  .services{grid-template-columns:1fr}
+  .diagram{border-radius:12px}
 }
-
-/* ===== REVEAL ===== */
-.reveal {
-  opacity: 0; transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ===== 3D SCENE CONTAINER ===== */
-.scene {
-  width: min(92vw, 860px);
-  height: 440px;
-  margin: 2.5rem 0;
-  position: relative;
-  perspective: 1200px;
-}
-
-.iso-plane {
-  width: 100%; height: 100%;
-  position: relative;
-  transform: rotateX(55deg) rotateZ(-45deg);
-  transform-style: preserve-3d;
-}
-
-/* ===== 3D SERVER NODES ===== */
-.node {
-  position: absolute;
-  width: 80px; height: 80px;
-  transform-style: preserve-3d;
-}
-
-.node-top {
-  position: absolute; width: 80px; height: 80px;
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 4px;
-  transform: translateZ(30px);
-  box-shadow: 0 0 30px rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.node-side-r {
-  position: absolute; width: 80px; height: 30px;
-  bottom: -15px; right: -15px;
-  transform: rotateX(-90deg) translateZ(40px);
-  border-radius: 0 0 8px 8px;
-  opacity: 0.6;
-}
-.node-side-l {
-  position: absolute; width: 30px; height: 80px;
-  bottom: -15px; left: -15px;
-  transform: rotateY(90deg) translateZ(40px);
-  border-radius: 0 8px 8px 0;
-  opacity: 0.5;
-}
-.node-label {
-  position: absolute;
-  transform: rotateZ(45deg) rotateX(-55deg) translateZ(50px);
-  font-size: 0.65rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  white-space: nowrap; text-align: center;
-  width: 100px; left: -10px; top: -28px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-}
-.node-top svg { width: 28px; height: 28px; stroke: #fff; fill: none; stroke-width: 1.8; }
-.node-top .mini { font-size: 0.5rem; color: rgba(255,255,255,0.7); font-weight: 600; letter-spacing: 0.05em; }
-
-/* Node colors */
-.n-aws .node-top { background: linear-gradient(135deg, #ff9900, #e68a00); }
-.n-aws .node-side-r, .n-aws .node-side-l { background: #b36b00; }
-.n-server .node-top { background: linear-gradient(135deg, var(--blue), #2d7ad6); }
-.n-server .node-side-r, .n-server .node-side-l { background: #1d5a9e; }
-.n-db .node-top { background: linear-gradient(135deg, var(--purple), #8b6fdf); }
-.n-db .node-side-r, .n-db .node-side-l { background: #6b4fbf; }
-.n-etl .node-top { background: linear-gradient(135deg, var(--green), #1faa7a); }
-.n-etl .node-side-r, .n-etl .node-side-l { background: #17805c; }
-.n-cron .node-top { background: linear-gradient(135deg, var(--orange), #e07820); }
-.n-cron .node-side-r, .n-cron .node-side-l { background: #b06018; }
-.n-ci .node-top { background: linear-gradient(135deg, var(--cyan), #0ea5c0); }
-.n-ci .node-side-r, .n-ci .node-side-l { background: #0b7f95; }
-.n-monitor .node-top { background: linear-gradient(135deg, var(--red), #e04040); }
-.n-monitor .node-side-r, .n-monitor .node-side-l { background: #b03030; }
-.n-net .node-top { background: linear-gradient(135deg, #818cf8, #6366f1); }
-.n-net .node-side-r, .n-net .node-side-l { background: #4f46e5; }
-
-/* ===== SVG PATHS + PACKETS ===== */
-.paths-layer {
-  position: absolute; inset: 0;
-  transform: translateZ(28px);
-  pointer-events: none;
-}
-.paths-layer svg { width: 100%; height: 100%; }
-.conn-line {
-  fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 2;
-}
-.packet {
-  r: 5; fill: var(--blue);
-  filter: drop-shadow(0 0 6px var(--blue));
-}
-.packet-green { fill: var(--green); filter: drop-shadow(0 0 6px var(--green)); }
-.packet-orange { fill: var(--orange); filter: drop-shadow(0 0 6px var(--orange)); }
-.packet-purple { fill: var(--purple); filter: drop-shadow(0 0 6px var(--purple)); }
-.packet-cyan { fill: var(--cyan); filter: drop-shadow(0 0 6px var(--cyan)); }
-.packet-red { fill: var(--red); filter: drop-shadow(0 0 6px var(--red)); }
-
-/* ===== FLAT 2D NETWORK SCENE (hero) ===== */
-.network-canvas {
-  width: min(92vw, 900px);
-  height: 400px;
-  position: relative;
-  margin: 2rem 0;
-}
-.network-canvas svg { width: 100%; height: 100%; }
-
-.net-node {
-  cursor: default;
-  transition: filter 0.3s;
-}
-.net-node:hover { filter: brightness(1.3); }
-
-/* ===== SERVICES GRID ===== */
-.services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1px;
-  max-width: 960px; width: 100%;
-  background: var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 2.5rem;
-}
-.svc {
-  background: var(--card);
-  padding: 2rem;
-  transition: background 0.3s;
-  position: relative;
-}
-.svc:hover { background: #16161e; }
-.svc-icon {
-  width: 44px; height: 44px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1rem;
-}
-.svc-icon svg { width: 22px; height: 22px; stroke-width: 1.8; }
-.svc h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
-.svc p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
-.svc-tag {
-  display: inline-block;
-  font-size: 0.6rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  margin-top: 0.8rem;
-}
-
-/* ===== PROJECT CARDS ===== */
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  max-width: 960px; width: 100%;
-  margin-top: 2.5rem;
-}
-.proj {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s, border-color 0.3s;
-}
-.proj:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.12); }
-.proj-num {
-  font-size: 4rem; font-weight: 800;
-  position: absolute; top: -10px; right: 16px;
-  opacity: 0.04;
-  line-height: 1;
-}
-.proj h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
-.proj p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
-.proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
-.proj-tags span {
-  font-size: 0.6rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  padding: 0.25rem 0.6rem; border-radius: 6px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  color: var(--muted);
-}
-
-/* ===== CONTACT ===== */
-.contact-links {
-  display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;
-  justify-content: center;
-}
-.contact-links a {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.7rem 1.5rem; border-radius: 100px;
-  font-size: 0.85rem; font-weight: 500;
-  text-decoration: none; color: var(--text);
-  border: 1px solid var(--border);
-  transition: border-color 0.2s, background 0.2s;
-}
-.contact-links a:hover { border-color: rgba(255,255,255,0.2); background: var(--card); }
-.contact-links a svg { width: 18px; height: 18px; }
-
-footer {
-  text-align: center; padding: 3rem 2rem;
-  font-size: 0.7rem; color: var(--muted);
-  border-top: 1px solid var(--border);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 700px) {
-  .scene { height: 320px; }
-  .network-canvas { height: 300px; }
-  nav { padding: 0.8rem 1.2rem; }
-  .nav-links { gap: 1rem; }
-  .nav-links a { font-size: 0.72rem; }
-  section { padding: 5rem 1.2rem 3rem; }
-  .services { grid-template-columns: 1fr; }
-  .projects { grid-template-columns: 1fr; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
 </style>
 </head>
 <body>
@@ -330,300 +74,523 @@ footer {
 <nav>
   <span class="nav-name">Stefan Laza</span>
   <div class="nav-links">
+    <a href="#aws">AWS</a>
+    <a href="#cisco">Network</a>
+    <a href="#etl">ETL</a>
+    <a href="#batch">Batch</a>
     <a href="#services">Services</a>
-    <a href="#network">Architecture</a>
-    <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- ===== HERO ===== -->
+<!-- ══════════ HERO ══════════ -->
 <section id="hero">
-  <div class="tag reveal" style="color: var(--green);">Available for hire</div>
+  <div class="tag reveal" style="color:var(--green)">Available for hire</div>
   <h1 class="reveal">DevOps<br>Engineer.</h1>
-  <p class="sub reveal">I build, automate, and monitor cloud infrastructure. AWS, CI/CD pipelines, ETL jobs, cron scheduling, and network architecture — end to end.</p>
+  <p class="sub reveal">I design cloud architectures, automate pipelines, and keep production running. Real infrastructure — visualized.</p>
+</section>
 
-  <!-- Hero network animation — flat 2D with animated packets -->
-  <div class="network-canvas reveal">
-    <svg viewBox="0 0 900 400" fill="none">
-      <!-- Connection lines -->
-      <line x1="150" y1="200" x2="350" y2="100" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
-      <line x1="150" y1="200" x2="350" y2="200" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
-      <line x1="150" y1="200" x2="350" y2="300" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
-      <line x1="350" y1="100" x2="550" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
-      <line x1="350" y1="200" x2="550" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
-      <line x1="350" y1="200" x2="550" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
-      <line x1="350" y1="300" x2="550" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
-      <line x1="550" y1="150" x2="750" y2="200" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
-      <line x1="550" y1="280" x2="750" y2="200" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+<!-- ══════════ 1. AWS 3-TIER ARCHITECTURE ══════════ -->
+<section id="aws" class="alt-bg">
+  <div class="tag reveal" style="color:var(--aws)">Amazon Web Services</div>
+  <h2 class="reveal">AWS 3-Tier Architecture</h2>
+  <p class="sub reveal">Users hit CloudFront CDN, requests route through ALB into private EC2 instances across availability zones, backed by RDS Multi-AZ and ElastiCache, with S3 for static assets.</p>
 
-      <!-- Animated packets -->
-      <circle r="4" fill="#4a9eff" filter="url(#glow-b)">
-        <animateMotion dur="3s" repeatCount="indefinite" path="M150,200 L350,100 L550,150 L750,200"/>
-      </circle>
-      <circle r="4" fill="#34d399" filter="url(#glow-g)">
-        <animateMotion dur="4s" repeatCount="indefinite" begin="0.5s" path="M150,200 L350,200 L550,150 L750,200"/>
-      </circle>
-      <circle r="4" fill="#fb923c" filter="url(#glow-o)">
-        <animateMotion dur="3.5s" repeatCount="indefinite" begin="1s" path="M150,200 L350,300 L550,280 L750,200"/>
-      </circle>
-      <circle r="3" fill="#a78bfa" filter="url(#glow-p)">
-        <animateMotion dur="4.5s" repeatCount="indefinite" begin="1.5s" path="M750,200 L550,280 L350,200 L150,200"/>
-      </circle>
-      <circle r="3" fill="#22d3ee" filter="url(#glow-c)">
-        <animateMotion dur="3.8s" repeatCount="indefinite" begin="2s" path="M750,200 L550,150 L350,100 L150,200"/>
-      </circle>
-
-      <!-- Glow filters -->
+  <div class="diagram reveal">
+    <span class="diagram-title" style="color:var(--aws)">AWS — Production VPC</span>
+    <svg viewBox="0 0 960 520" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <filter id="glow-b" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        <filter id="glow-g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        <filter id="glow-o" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        <filter id="glow-p" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        <filter id="glow-c" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="g1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
       </defs>
 
-      <!-- Server nodes -->
-      <g class="net-node">
-        <rect x="115" y="165" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(255,255,255,0.1)"/>
-        <rect x="115" y="165" width="70" height="70" rx="16" fill="url(#gr-client)" opacity="0.9"/>
-        <text x="150" y="207" text-anchor="middle" fill="white" font-size="20">&#x1F4BB;</text>
-        <text x="150" y="255" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">CLIENT</text>
-      </g>
-      <g class="net-node">
-        <rect x="315" y="65" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(74,158,255,0.2)"/>
-        <text x="350" y="107" text-anchor="middle" fill="#4a9eff" font-size="20">&#9881;</text>
-        <text x="350" y="155" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">CI/CD</text>
-      </g>
-      <g class="net-node">
-        <rect x="315" y="165" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(255,153,0,0.2)"/>
-        <text x="350" y="207" text-anchor="middle" fill="#ff9900" font-size="20">&#9729;</text>
-        <text x="350" y="255" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">AWS</text>
-      </g>
-      <g class="net-node">
-        <rect x="315" y="265" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(251,146,60,0.2)"/>
-        <text x="350" y="307" text-anchor="middle" fill="#fb923c" font-size="20">&#128339;</text>
-        <text x="350" y="355" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">CRON</text>
-      </g>
-      <g class="net-node">
-        <rect x="515" y="115" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(52,211,153,0.2)"/>
-        <text x="550" y="157" text-anchor="middle" fill="#34d399" font-size="20">&#128259;</text>
-        <text x="550" y="205" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">ETL</text>
-      </g>
-      <g class="net-node">
-        <rect x="515" y="245" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(167,139,250,0.2)"/>
-        <text x="550" y="287" text-anchor="middle" fill="#a78bfa" font-size="20">&#128451;</text>
-        <text x="550" y="335" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">DATABASE</text>
-      </g>
-      <g class="net-node">
-        <rect x="715" y="165" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(248,113,113,0.2)"/>
-        <text x="750" y="207" text-anchor="middle" fill="#f87171" font-size="20">&#128200;</text>
-        <text x="750" y="255" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">MONITOR</text>
-      </g>
+      <!-- VPC boundary -->
+      <rect x="200" y="40" width="720" height="440" rx="20" fill="none" stroke="rgba(255,153,0,0.12)" stroke-width="1.5" stroke-dasharray="8,4"/>
+      <text x="220" y="68" fill="rgba(255,153,0,0.4)" font-size="10" font-weight="700" letter-spacing="0.1em">VPC 10.0.0.0/16</text>
+
+      <!-- Public Subnet -->
+      <rect x="280" y="90" width="280" height="160" rx="12" fill="rgba(74,158,255,0.04)" stroke="rgba(74,158,255,0.1)" stroke-width="1"/>
+      <text x="300" y="112" fill="rgba(74,158,255,0.5)" font-size="8" font-weight="600" letter-spacing="0.08em">PUBLIC SUBNET — AZ-1</text>
+
+      <!-- Private Subnet -->
+      <rect x="280" y="280" width="280" height="180" rx="12" fill="rgba(167,139,250,0.04)" stroke="rgba(167,139,250,0.1)" stroke-width="1"/>
+      <text x="300" y="302" fill="rgba(167,139,250,0.5)" font-size="8" font-weight="600" letter-spacing="0.08em">PRIVATE SUBNET — AZ-1</text>
+
+      <!-- Private Subnet AZ-2 -->
+      <rect x="600" y="280" width="280" height="180" rx="12" fill="rgba(167,139,250,0.04)" stroke="rgba(167,139,250,0.1)" stroke-width="1"/>
+      <text x="620" y="302" fill="rgba(167,139,250,0.5)" font-size="8" font-weight="600" letter-spacing="0.08em">PRIVATE SUBNET — AZ-2</text>
+
+      <!-- USERS node -->
+      <rect x="20" y="135" width="100" height="60" rx="14" fill="#111118" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+      <text x="70" y="165" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Users</text>
+      <text x="70" y="180" text-anchor="middle" fill="#6e6e80" font-size="7" font-weight="600">HTTPS</text>
+
+      <!-- Route 53 -->
+      <rect x="295" y="120" width="90" height="56" rx="12" fill="#111118" stroke="rgba(255,153,0,0.3)" stroke-width="1.5"/>
+      <text x="340" y="148" text-anchor="middle" fill="#ff9900" font-size="10" font-weight="700">Route 53</text>
+      <text x="340" y="163" text-anchor="middle" fill="#6e6e80" font-size="7">DNS</text>
+
+      <!-- CloudFront -->
+      <rect x="430" y="120" width="100" height="56" rx="12" fill="#111118" stroke="rgba(255,153,0,0.3)" stroke-width="1.5"/>
+      <text x="480" y="148" text-anchor="middle" fill="#ff9900" font-size="10" font-weight="700">CloudFront</text>
+      <text x="480" y="163" text-anchor="middle" fill="#6e6e80" font-size="7">CDN Edge</text>
+
+      <!-- ALB -->
+      <rect x="430" y="210" width="100" height="50" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="480" y="236" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">ALB</text>
+      <text x="480" y="249" text-anchor="middle" fill="#6e6e80" font-size="7">Load Balancer</text>
+
+      <!-- EC2 instances -->
+      <rect x="310" y="320" width="90" height="56" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="355" y="348" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">EC2</text>
+      <text x="355" y="363" text-anchor="middle" fill="#6e6e80" font-size="7">App Server 1</text>
+
+      <rect x="630" y="320" width="90" height="56" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="675" y="348" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">EC2</text>
+      <text x="675" y="363" text-anchor="middle" fill="#6e6e80" font-size="7">App Server 2</text>
+
+      <!-- RDS -->
+      <rect x="430" y="410" width="100" height="56" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <text x="480" y="438" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">RDS</text>
+      <text x="480" y="453" text-anchor="middle" fill="#6e6e80" font-size="7">Multi-AZ MySQL</text>
+
+      <!-- ElastiCache -->
+      <rect x="750" y="410" width="100" height="56" rx="12" fill="#111118" stroke="rgba(248,113,113,0.3)" stroke-width="1.5"/>
+      <text x="800" y="438" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">ElastiCache</text>
+      <text x="800" y="453" text-anchor="middle" fill="#6e6e80" font-size="7">Redis Cluster</text>
+
+      <!-- S3 -->
+      <rect x="630" y="120" width="90" height="56" rx="12" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
+      <text x="675" y="148" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">S3</text>
+      <text x="675" y="163" text-anchor="middle" fill="#6e6e80" font-size="7">Static Assets</text>
+
+      <!-- CloudWatch -->
+      <rect x="800" y="120" width="90" height="56" rx="12" fill="#111118" stroke="rgba(248,113,113,0.3)" stroke-width="1.5"/>
+      <text x="845" y="148" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">CloudWatch</text>
+      <text x="845" y="163" text-anchor="middle" fill="#6e6e80" font-size="7">Monitoring</text>
+
+      <!-- Connection paths -->
+      <path d="M120,165 C180,165 240,148 295,148" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p1"/>
+      <path d="M385,148 L430,148" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p2"/>
+      <path d="M480,176 L480,210" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p3"/>
+      <path d="M480,260 C480,290 400,320 400,348" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p4"/>
+      <path d="M480,260 C480,290 620,320 630,348" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p5"/>
+      <path d="M355,376 C355,410 430,430 430,438" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p6"/>
+      <path d="M675,376 C675,410 530,430 530,438" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p7"/>
+      <path d="M675,376 L750,438" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p8"/>
+      <path d="M530,148 L630,148" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p9"/>
+      <path d="M720,148 L800,148" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="4,3" id="aws-p10"/>
+
+      <!-- Animated packets -->
+      <circle r="4" fill="#ff9900" filter="url(#g1)"><animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#aws-p1"/></animateMotion></circle>
+      <circle r="3.5" fill="#ff9900" filter="url(#g1)"><animateMotion dur="1s" repeatCount="indefinite" begin="0.3s"><mpath href="#aws-p2"/></animateMotion></circle>
+      <circle r="3.5" fill="#4a9eff" filter="url(#g1)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="0.6s"><mpath href="#aws-p3"/></animateMotion></circle>
+      <circle r="4" fill="#4a9eff" filter="url(#g1)"><animateMotion dur="2s" repeatCount="indefinite" begin="1s"><mpath href="#aws-p4"/></animateMotion></circle>
+      <circle r="4" fill="#4a9eff" filter="url(#g1)"><animateMotion dur="2s" repeatCount="indefinite" begin="1.5s"><mpath href="#aws-p5"/></animateMotion></circle>
+      <circle r="3" fill="#a78bfa" filter="url(#g1)"><animateMotion dur="2s" repeatCount="indefinite" begin="2s"><mpath href="#aws-p6"/></animateMotion></circle>
+      <circle r="3" fill="#a78bfa" filter="url(#g1)"><animateMotion dur="2s" repeatCount="indefinite" begin="2.4s"><mpath href="#aws-p7"/></animateMotion></circle>
+      <circle r="3" fill="#f87171" filter="url(#g1)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="1.8s"><mpath href="#aws-p8"/></animateMotion></circle>
+      <circle r="3" fill="#34d399" filter="url(#g1)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="0.8s"><mpath href="#aws-p9"/></animateMotion></circle>
+      <circle r="2.5" fill="#f87171" filter="url(#g1)"><animateMotion dur="2s" repeatCount="indefinite" begin="3s"><mpath href="#aws-p10"/></animateMotion></circle>
     </svg>
   </div>
 </section>
 
-<!-- ===== SERVICES ===== -->
-<section id="services" style="background: var(--surface);">
-  <div class="tag reveal" style="color: var(--blue);">What I do</div>
+<!-- ══════════ 2. CISCO NETWORK TOPOLOGY ══════════ -->
+<section id="cisco">
+  <div class="tag reveal" style="color:var(--indigo)">Network Infrastructure</div>
+  <h2 class="reveal">Cisco Enterprise Network</h2>
+  <p class="sub reveal">Three-tier campus design — internet edge with redundant firewalls, core layer switching, distribution to access switches, and segmented VLANs for servers, users, and management.</p>
+
+  <div class="diagram reveal">
+    <span class="diagram-title" style="color:var(--indigo)">Cisco — 3-Tier Campus Network</span>
+    <svg viewBox="0 0 960 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="g2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+
+      <!-- Layer labels -->
+      <text x="30" y="75" fill="rgba(129,140,248,0.3)" font-size="9" font-weight="700" letter-spacing="0.1em" transform="rotate(-90,30,75)">EDGE</text>
+      <text x="30" y="210" fill="rgba(129,140,248,0.3)" font-size="9" font-weight="700" letter-spacing="0.1em" transform="rotate(-90,30,210)">CORE</text>
+      <text x="30" y="350" fill="rgba(129,140,248,0.3)" font-size="9" font-weight="700" letter-spacing="0.1em" transform="rotate(-90,30,350)">DIST</text>
+      <text x="30" y="490" fill="rgba(129,140,248,0.3)" font-size="9" font-weight="700" letter-spacing="0.1em" transform="rotate(-90,30,490)">ACCESS</text>
+
+      <!-- Horizontal dividers -->
+      <line x1="60" y1="130" x2="930" y2="130" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="60" y1="270" x2="930" y2="270" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="60" y1="420" x2="930" y2="420" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4,4"/>
+
+      <!-- EDGE LAYER -->
+      <!-- Internet -->
+      <rect x="380" y="30" width="200" height="50" rx="12" fill="#111118" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+      <text x="480" y="56" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Internet / ISP</text>
+      <text x="480" y="70" text-anchor="middle" fill="#6e6e80" font-size="7">BGP Peering</text>
+
+      <!-- Firewalls -->
+      <rect x="280" y="100" width="120" height="50" rx="12" fill="#111118" stroke="rgba(248,113,113,0.3)" stroke-width="1.5"/>
+      <text x="340" y="126" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">ASA 5525-X</text>
+      <text x="340" y="140" text-anchor="middle" fill="#6e6e80" font-size="7">Firewall — Active</text>
+
+      <rect x="560" y="100" width="120" height="50" rx="12" fill="#111118" stroke="rgba(248,113,113,0.3)" stroke-width="1.5"/>
+      <text x="620" y="126" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">ASA 5525-X</text>
+      <text x="620" y="140" text-anchor="middle" fill="#6e6e80" font-size="7">Firewall — Standby</text>
+
+      <!-- CORE LAYER -->
+      <rect x="220" y="180" width="160" height="56" rx="14" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5"/>
+      <text x="300" y="208" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700">Cat 9500</text>
+      <text x="300" y="223" text-anchor="middle" fill="#6e6e80" font-size="7">Core Switch 1 — L3</text>
+
+      <rect x="580" y="180" width="160" height="56" rx="14" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5"/>
+      <text x="660" y="208" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700">Cat 9500</text>
+      <text x="660" y="223" text-anchor="middle" fill="#6e6e80" font-size="7">Core Switch 2 — L3</text>
+
+      <!-- Cross-connect core -->
+      <line x1="380" y1="208" x2="580" y2="208" stroke="rgba(129,140,248,0.15)" stroke-width="2"/>
+
+      <!-- DISTRIBUTION LAYER -->
+      <rect x="100" y="300" width="140" height="52" rx="12" fill="#111118" stroke="rgba(34,211,238,0.3)" stroke-width="1.5"/>
+      <text x="170" y="326" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="700">Cat 9300</text>
+      <text x="170" y="340" text-anchor="middle" fill="#6e6e80" font-size="7">Dist-SW1 — VLAN 10,20</text>
+
+      <rect x="400" y="300" width="140" height="52" rx="12" fill="#111118" stroke="rgba(34,211,238,0.3)" stroke-width="1.5"/>
+      <text x="470" y="326" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="700">Cat 9300</text>
+      <text x="470" y="340" text-anchor="middle" fill="#6e6e80" font-size="7">Dist-SW2 — VLAN 30,40</text>
+
+      <rect x="710" y="300" width="140" height="52" rx="12" fill="#111118" stroke="rgba(34,211,238,0.3)" stroke-width="1.5"/>
+      <text x="780" y="326" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="700">Cat 9300</text>
+      <text x="780" y="340" text-anchor="middle" fill="#6e6e80" font-size="7">Dist-SW3 — VLAN 50</text>
+
+      <!-- ACCESS LAYER -->
+      <rect x="70" y="440" width="100" height="46" rx="10" fill="#111118" stroke="rgba(52,211,153,0.25)" stroke-width="1"/>
+      <text x="120" y="463" text-anchor="middle" fill="#34d399" font-size="9" font-weight="600">VLAN 10</text>
+      <text x="120" y="476" text-anchor="middle" fill="#6e6e80" font-size="7">Servers</text>
+
+      <rect x="200" y="440" width="100" height="46" rx="10" fill="#111118" stroke="rgba(251,146,60,0.25)" stroke-width="1"/>
+      <text x="250" y="463" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="600">VLAN 20</text>
+      <text x="250" y="476" text-anchor="middle" fill="#6e6e80" font-size="7">DMZ</text>
+
+      <rect x="370" y="440" width="100" height="46" rx="10" fill="#111118" stroke="rgba(74,158,255,0.25)" stroke-width="1"/>
+      <text x="420" y="463" text-anchor="middle" fill="#4a9eff" font-size="9" font-weight="600">VLAN 30</text>
+      <text x="420" y="476" text-anchor="middle" fill="#6e6e80" font-size="7">Workstations</text>
+
+      <rect x="500" y="440" width="100" height="46" rx="10" fill="#111118" stroke="rgba(167,139,250,0.25)" stroke-width="1"/>
+      <text x="550" y="463" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="600">VLAN 40</text>
+      <text x="550" y="476" text-anchor="middle" fill="#6e6e80" font-size="7">VoIP</text>
+
+      <rect x="710" y="440" width="140" height="46" rx="10" fill="#111118" stroke="rgba(255,153,0,0.25)" stroke-width="1"/>
+      <text x="780" y="463" text-anchor="middle" fill="#ff9900" font-size="9" font-weight="600">VLAN 50</text>
+      <text x="780" y="476" text-anchor="middle" fill="#6e6e80" font-size="7">Management / OOB</text>
+
+      <!-- WLC + AP -->
+      <rect x="820" y="510" width="100" height="40" rx="10" fill="#111118" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
+      <text x="870" y="533" text-anchor="middle" fill="#34d399" font-size="8" font-weight="600">WLC + APs</text>
+
+      <!-- Connection paths -->
+      <path d="M480,80 C480,90 340,95 340,100" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p1"/>
+      <path d="M480,80 C480,90 620,95 620,100" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p2"/>
+      <path d="M340,150 L300,180" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p3"/>
+      <path d="M620,150 L660,180" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p4"/>
+      <path d="M340,150 L660,180" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="c-p3b"/>
+      <path d="M620,150 L300,180" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="c-p4b"/>
+      <path d="M300,236 L170,300" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p5"/>
+      <path d="M300,236 C350,260 420,280 470,300" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p6"/>
+      <path d="M660,236 C610,260 530,280 470,300" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p7"/>
+      <path d="M660,236 L780,300" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p8"/>
+      <path d="M170,352 L120,440" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p9"/>
+      <path d="M170,352 L250,440" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p10"/>
+      <path d="M470,352 L420,440" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p11"/>
+      <path d="M470,352 L550,440" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p12"/>
+      <path d="M780,352 L780,440" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p13"/>
+      <path d="M780,486 L870,510" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="c-p14"/>
+
+      <!-- Animated packets -->
+      <circle r="4" fill="#f87171" filter="url(#g2)"><animateMotion dur="1.5s" repeatCount="indefinite"><mpath href="#c-p1"/></animateMotion></circle>
+      <circle r="4" fill="#f87171" filter="url(#g2)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="0.8s"><mpath href="#c-p2"/></animateMotion></circle>
+      <circle r="3.5" fill="#818cf8" filter="url(#g2)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="0.3s"><mpath href="#c-p3"/></animateMotion></circle>
+      <circle r="3.5" fill="#818cf8" filter="url(#g2)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="1s"><mpath href="#c-p4"/></animateMotion></circle>
+      <circle r="3" fill="rgba(129,140,248,0.5)" filter="url(#g2)"><animateMotion dur="2s" repeatCount="indefinite" begin="0.5s"><mpath href="#c-p3b"/></animateMotion></circle>
+      <circle r="3.5" fill="#22d3ee" filter="url(#g2)"><animateMotion dur="1.8s" repeatCount="indefinite" begin="1.5s"><mpath href="#c-p5"/></animateMotion></circle>
+      <circle r="3.5" fill="#22d3ee" filter="url(#g2)"><animateMotion dur="2s" repeatCount="indefinite" begin="2s"><mpath href="#c-p6"/></animateMotion></circle>
+      <circle r="3.5" fill="#22d3ee" filter="url(#g2)"><animateMotion dur="2s" repeatCount="indefinite" begin="2.5s"><mpath href="#c-p7"/></animateMotion></circle>
+      <circle r="3.5" fill="#22d3ee" filter="url(#g2)"><animateMotion dur="1.8s" repeatCount="indefinite" begin="1.2s"><mpath href="#c-p8"/></animateMotion></circle>
+      <circle r="3" fill="#34d399" filter="url(#g2)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3s"><mpath href="#c-p9"/></animateMotion></circle>
+      <circle r="3" fill="#fb923c" filter="url(#g2)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3.3s"><mpath href="#c-p10"/></animateMotion></circle>
+      <circle r="3" fill="#4a9eff" filter="url(#g2)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="2.8s"><mpath href="#c-p11"/></animateMotion></circle>
+      <circle r="3" fill="#a78bfa" filter="url(#g2)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3.5s"><mpath href="#c-p12"/></animateMotion></circle>
+      <circle r="3" fill="#ff9900" filter="url(#g2)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="2.2s"><mpath href="#c-p13"/></animateMotion></circle>
+      <circle r="2.5" fill="#34d399" filter="url(#g2)"><animateMotion dur="1s" repeatCount="indefinite" begin="4s"><mpath href="#c-p14"/></animateMotion></circle>
+    </svg>
+  </div>
+</section>
+
+<!-- ══════════ 3. ETL PIPELINE ══════════ -->
+<section id="etl" class="alt-bg">
+  <div class="tag reveal" style="color:var(--green)">Data Engineering</div>
+  <h2 class="reveal">ETL Pipeline Architecture</h2>
+  <p class="sub reveal">Data extracted from REST APIs, databases, and file drops flows through validation, transformation, and deduplication stages before loading into Redshift via S3 staging.</p>
+
+  <div class="diagram reveal">
+    <span class="diagram-title" style="color:var(--green)">ETL — Daily Data Ingestion Pipeline</span>
+    <svg viewBox="0 0 960 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="g3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+
+      <!-- Phase labels -->
+      <rect x="40" y="45" width="140" height="24" rx="6" fill="rgba(251,146,60,0.08)" stroke="rgba(251,146,60,0.2)" stroke-width="1"/>
+      <text x="110" y="61" text-anchor="middle" fill="#fb923c" font-size="8" font-weight="700" letter-spacing="0.1em">EXTRACT</text>
+
+      <rect x="260" y="45" width="140" height="24" rx="6" fill="rgba(74,158,255,0.08)" stroke="rgba(74,158,255,0.2)" stroke-width="1"/>
+      <text x="330" y="61" text-anchor="middle" fill="#4a9eff" font-size="8" font-weight="700" letter-spacing="0.1em">STAGING</text>
+
+      <rect x="480" y="45" width="140" height="24" rx="6" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.2)" stroke-width="1"/>
+      <text x="550" y="61" text-anchor="middle" fill="#a78bfa" font-size="8" font-weight="700" letter-spacing="0.1em">TRANSFORM</text>
+
+      <rect x="700" y="45" width="140" height="24" rx="6" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
+      <text x="770" y="61" text-anchor="middle" fill="#34d399" font-size="8" font-weight="700" letter-spacing="0.1em">LOAD</text>
+
+      <!-- EXTRACT: Data Sources -->
+      <rect x="50" y="100" width="120" height="50" rx="12" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5"/>
+      <text x="110" y="126" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">REST APIs</text>
+      <text x="110" y="140" text-anchor="middle" fill="#6e6e80" font-size="7">12 Endpoints</text>
+
+      <rect x="50" y="175" width="120" height="50" rx="12" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5"/>
+      <text x="110" y="201" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">PostgreSQL</text>
+      <text x="110" y="215" text-anchor="middle" fill="#6e6e80" font-size="7">Source DB</text>
+
+      <rect x="50" y="250" width="120" height="50" rx="12" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5"/>
+      <text x="110" y="276" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">SFTP / CSV</text>
+      <text x="110" y="290" text-anchor="middle" fill="#6e6e80" font-size="7">File Drops</text>
+
+      <!-- STAGING: S3 Raw -->
+      <rect x="270" y="140" width="120" height="56" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="330" y="168" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">S3 Bucket</text>
+      <text x="330" y="183" text-anchor="middle" fill="#6e6e80" font-size="7">s3://raw-data/</text>
+
+      <rect x="270" y="225" width="120" height="50" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="330" y="251" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">Schema</text>
+      <text x="330" y="265" text-anchor="middle" fill="#6e6e80" font-size="7">Validation</text>
+
+      <!-- TRANSFORM -->
+      <rect x="490" y="100" width="120" height="50" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <text x="550" y="126" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Glue Job</text>
+      <text x="550" y="140" text-anchor="middle" fill="#6e6e80" font-size="7">PySpark Clean</text>
+
+      <rect x="490" y="175" width="120" height="50" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <text x="550" y="201" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Deduplicate</text>
+      <text x="550" y="215" text-anchor="middle" fill="#6e6e80" font-size="7">Hash Matching</text>
+
+      <rect x="490" y="250" width="120" height="50" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <text x="550" y="276" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Enrich</text>
+      <text x="550" y="290" text-anchor="middle" fill="#6e6e80" font-size="7">Join + Aggregate</text>
+
+      <!-- LOAD -->
+      <rect x="710" y="100" width="120" height="56" rx="12" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
+      <text x="770" y="128" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">S3 Bucket</text>
+      <text x="770" y="143" text-anchor="middle" fill="#6e6e80" font-size="7">s3://processed/</text>
+
+      <rect x="710" y="190" width="120" height="56" rx="12" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
+      <text x="770" y="218" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">Redshift</text>
+      <text x="770" y="233" text-anchor="middle" fill="#6e6e80" font-size="7">COPY Command</text>
+
+      <!-- DQ + Alerts -->
+      <rect x="600" y="340" width="120" height="46" rx="10" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1"/>
+      <text x="660" y="363" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">CloudWatch</text>
+      <text x="660" y="376" text-anchor="middle" fill="#6e6e80" font-size="7">Alerts + Logs</text>
+
+      <rect x="760" y="340" width="100" height="46" rx="10" fill="#111118" stroke="rgba(251,146,60,0.25)" stroke-width="1"/>
+      <text x="810" y="363" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="600">SNS</text>
+      <text x="810" y="376" text-anchor="middle" fill="#6e6e80" font-size="7">Failure Alerts</text>
+
+      <!-- Connection paths -->
+      <path d="M170,125 C210,125 230,160 270,165" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p1"/>
+      <path d="M170,200 C210,200 230,170 270,168" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p2"/>
+      <path d="M170,275 C210,275 230,175 270,170" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p3"/>
+      <path d="M330,196 L330,225" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p4"/>
+      <path d="M390,250 C420,220 460,125 490,125" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p5"/>
+      <path d="M550,150 L550,175" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p6"/>
+      <path d="M550,225 L550,250" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p7"/>
+      <path d="M610,125 L710,128" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p8"/>
+      <path d="M770,156 L770,190" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p9"/>
+      <path d="M550,300 C580,340 620,350 600,360" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="e-p10"/>
+      <path d="M720,363 L760,363" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="e-p11"/>
+
+      <!-- Animated packets -->
+      <circle r="4" fill="#fb923c" filter="url(#g3)"><animateMotion dur="2s" repeatCount="indefinite"><mpath href="#e-p1"/></animateMotion></circle>
+      <circle r="4" fill="#fb923c" filter="url(#g3)"><animateMotion dur="2s" repeatCount="indefinite" begin="0.7s"><mpath href="#e-p2"/></animateMotion></circle>
+      <circle r="4" fill="#fb923c" filter="url(#g3)"><animateMotion dur="2s" repeatCount="indefinite" begin="1.4s"><mpath href="#e-p3"/></animateMotion></circle>
+      <circle r="3" fill="#4a9eff" filter="url(#g3)"><animateMotion dur="1s" repeatCount="indefinite" begin="2.5s"><mpath href="#e-p4"/></animateMotion></circle>
+      <circle r="4" fill="#4a9eff" filter="url(#g3)"><animateMotion dur="2.5s" repeatCount="indefinite" begin="3s"><mpath href="#e-p5"/></animateMotion></circle>
+      <circle r="3" fill="#a78bfa" filter="url(#g3)"><animateMotion dur="1s" repeatCount="indefinite" begin="4s"><mpath href="#e-p6"/></animateMotion></circle>
+      <circle r="3" fill="#a78bfa" filter="url(#g3)"><animateMotion dur="1s" repeatCount="indefinite" begin="4.5s"><mpath href="#e-p7"/></animateMotion></circle>
+      <circle r="4" fill="#34d399" filter="url(#g3)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="5s"><mpath href="#e-p8"/></animateMotion></circle>
+      <circle r="3.5" fill="#34d399" filter="url(#g3)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="5.5s"><mpath href="#e-p9"/></animateMotion></circle>
+      <circle r="2.5" fill="#f87171" filter="url(#g3)"><animateMotion dur="2s" repeatCount="indefinite" begin="3s"><mpath href="#e-p10"/></animateMotion></circle>
+      <circle r="2.5" fill="#fb923c" filter="url(#g3)"><animateMotion dur="1s" repeatCount="indefinite" begin="4s"><mpath href="#e-p11"/></animateMotion></circle>
+    </svg>
+  </div>
+</section>
+
+<!-- ══════════ 4. BATCH JOB PIPELINE ══════════ -->
+<section id="batch">
+  <div class="tag reveal" style="color:var(--cyan)">Batch Processing</div>
+  <h2 class="reveal">Scheduled Batch Pipeline</h2>
+  <p class="sub reveal">CloudWatch cron triggers Step Functions orchestration — Lambda validates, AWS Batch processes in parallel across Fargate containers, results land in S3, with SNS alerts on completion or failure.</p>
+
+  <div class="diagram reveal">
+    <span class="diagram-title" style="color:var(--cyan)">AWS Batch — Nightly Processing Pipeline</span>
+    <svg viewBox="0 0 960 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="g4" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+
+      <!-- TRIGGER -->
+      <rect x="30" y="140" width="110" height="56" rx="14" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5"/>
+      <text x="85" y="168" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">EventBridge</text>
+      <text x="85" y="183" text-anchor="middle" fill="#6e6e80" font-size="7">cron(0 2 * * ? *)</text>
+
+      <!-- STEP FUNCTIONS -->
+      <rect x="190" y="120" width="120" height="90" rx="14" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <text x="250" y="158" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Step</text>
+      <text x="250" y="172" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Functions</text>
+      <text x="250" y="198" text-anchor="middle" fill="#6e6e80" font-size="7">Orchestrator</text>
+
+      <!-- LAMBDA VALIDATE -->
+      <rect x="360" y="90" width="110" height="50" rx="12" fill="#111118" stroke="rgba(255,153,0,0.3)" stroke-width="1.5"/>
+      <text x="415" y="116" text-anchor="middle" fill="#ff9900" font-size="10" font-weight="700">Lambda</text>
+      <text x="415" y="130" text-anchor="middle" fill="#6e6e80" font-size="7">Validate Input</text>
+
+      <!-- BATCH COMPUTE -->
+      <rect x="520" y="55" width="130" height="52" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="585" y="81" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">Batch Job 1</text>
+      <text x="585" y="96" text-anchor="middle" fill="#6e6e80" font-size="7">Fargate — Report Gen</text>
+
+      <rect x="520" y="130" width="130" height="52" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="585" y="156" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">Batch Job 2</text>
+      <text x="585" y="171" text-anchor="middle" fill="#6e6e80" font-size="7">Fargate — Aggregation</text>
+
+      <rect x="520" y="205" width="130" height="52" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
+      <text x="585" y="231" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">Batch Job 3</text>
+      <text x="585" y="246" text-anchor="middle" fill="#6e6e80" font-size="7">Fargate — Cleanup</text>
+
+      <!-- Parallel bracket -->
+      <text x="508" y="85" fill="rgba(74,158,255,0.3)" font-size="60" font-weight="100">&#123;</text>
+      <text x="498" y="150" fill="rgba(74,158,255,0.2)" font-size="7" font-weight="600" letter-spacing="0.06em">PARALLEL</text>
+
+      <!-- OUTPUT S3 -->
+      <rect x="700" y="100" width="110" height="56" rx="12" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
+      <text x="755" y="128" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">S3 Bucket</text>
+      <text x="755" y="143" text-anchor="middle" fill="#6e6e80" font-size="7">s3://batch-output/</text>
+
+      <!-- DynamoDB state -->
+      <rect x="700" y="190" width="110" height="50" rx="12" fill="#111118" stroke="rgba(74,158,255,0.25)" stroke-width="1"/>
+      <text x="755" y="216" text-anchor="middle" fill="#4a9eff" font-size="9" font-weight="600">DynamoDB</text>
+      <text x="755" y="230" text-anchor="middle" fill="#6e6e80" font-size="7">Job State Table</text>
+
+      <!-- SNS -->
+      <rect x="860" y="100" width="80" height="50" rx="12" fill="#111118" stroke="rgba(248,113,113,0.3)" stroke-width="1.5"/>
+      <text x="900" y="126" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">SNS</text>
+      <text x="900" y="140" text-anchor="middle" fill="#6e6e80" font-size="7">Notify</text>
+
+      <!-- CloudWatch Logs -->
+      <rect x="360" y="300" width="120" height="46" rx="10" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1"/>
+      <text x="420" y="323" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">CloudWatch</text>
+      <text x="420" y="336" text-anchor="middle" fill="#6e6e80" font-size="7">Logs + Metrics</text>
+
+      <!-- Dead Letter Queue -->
+      <rect x="540" y="300" width="110" height="46" rx="10" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1"/>
+      <text x="595" y="323" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">SQS DLQ</text>
+      <text x="595" y="336" text-anchor="middle" fill="#6e6e80" font-size="7">Failed Jobs</text>
+
+      <!-- Paths -->
+      <path d="M140,168 L190,165" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p1"/>
+      <path d="M310,155 C330,140 350,120 360,115" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p2"/>
+      <path d="M470,105 C490,90 510,82 520,81" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p3"/>
+      <path d="M470,115 C490,130 510,145 520,156" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p4"/>
+      <path d="M470,120 C490,170 510,210 520,231" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p5"/>
+      <path d="M650,81 L700,118" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p6"/>
+      <path d="M650,156 L700,130" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p7"/>
+      <path d="M650,231 C670,220 690,200 700,215" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p8"/>
+      <path d="M810,128 L860,125" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p9"/>
+      <path d="M585,257 L585,300" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="b-p10"/>
+      <path d="M415,140 L415,300" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="b-p11"/>
+
+      <!-- Animated packets -->
+      <circle r="4" fill="#fb923c" filter="url(#g4)"><animateMotion dur="1s" repeatCount="indefinite"><mpath href="#b-p1"/></animateMotion></circle>
+      <circle r="4" fill="#a78bfa" filter="url(#g4)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="0.5s"><mpath href="#b-p2"/></animateMotion></circle>
+      <circle r="3.5" fill="#ff9900" filter="url(#g4)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="1s"><mpath href="#b-p3"/></animateMotion></circle>
+      <circle r="3.5" fill="#ff9900" filter="url(#g4)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="1.3s"><mpath href="#b-p4"/></animateMotion></circle>
+      <circle r="3.5" fill="#ff9900" filter="url(#g4)"><animateMotion dur="1.8s" repeatCount="indefinite" begin="1.6s"><mpath href="#b-p5"/></animateMotion></circle>
+      <circle r="4" fill="#4a9eff" filter="url(#g4)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="2.5s"><mpath href="#b-p6"/></animateMotion></circle>
+      <circle r="4" fill="#4a9eff" filter="url(#g4)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3s"><mpath href="#b-p7"/></animateMotion></circle>
+      <circle r="3" fill="#4a9eff" filter="url(#g4)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3.5s"><mpath href="#b-p8"/></animateMotion></circle>
+      <circle r="3.5" fill="#34d399" filter="url(#g4)"><animateMotion dur="1s" repeatCount="indefinite" begin="4s"><mpath href="#b-p9"/></animateMotion></circle>
+      <circle r="2.5" fill="#f87171" filter="url(#g4)"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3s"><mpath href="#b-p10"/></animateMotion></circle>
+      <circle r="2.5" fill="#f87171" filter="url(#g4)"><animateMotion dur="2s" repeatCount="indefinite" begin="2s"><mpath href="#b-p11"/></animateMotion></circle>
+    </svg>
+  </div>
+</section>
+
+<!-- ══════════ SERVICES ══════════ -->
+<section id="services" class="alt-bg">
+  <div class="tag reveal" style="color:var(--blue)">What I do</div>
   <h2 class="reveal">Services</h2>
   <p class="sub reveal">End-to-end DevOps engineering — from cloud provisioning to production monitoring.</p>
 
   <div class="services reveal">
     <div class="svc">
-      <div class="svc-icon" style="background: rgba(255,153,0,0.12);">
+      <div class="svc-icon" style="background:rgba(255,153,0,0.12)">
         <svg viewBox="0 0 24 24" fill="none" stroke="#ff9900" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
       </div>
-      <h3>AWS Cloud Configuration</h3>
-      <p>EC2, S3, Lambda, RDS, VPC, IAM — full infrastructure setup, security hardening, and cost optimization on AWS.</p>
-      <span class="svc-tag" style="background: rgba(255,153,0,0.1); color: #ff9900;">AWS</span>
+      <h3>AWS Cloud Architecture</h3>
+      <p>VPC design, EC2, S3, RDS, Lambda, IAM policies — full infrastructure provisioning, security hardening, and cost optimization.</p>
+      <span class="svc-tag" style="background:rgba(255,153,0,0.1);color:#ff9900">AWS</span>
     </div>
     <div class="svc">
-      <div class="svc-icon" style="background: rgba(74,158,255,0.12);">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#4a9eff" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <div class="svc-icon" style="background:rgba(129,140,248,0.12)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1"/><circle cx="6" cy="18" r="1"/></svg>
       </div>
-      <h3>Cron Job Automation</h3>
-      <p>Scheduled task orchestration, backup rotations, log cleanup, health checks — reliable cron pipelines that never miss a beat.</p>
-      <span class="svc-tag" style="background: rgba(74,158,255,0.1); color: var(--blue);">Scheduling</span>
+      <h3>Cisco Networking</h3>
+      <p>Campus network design, VLAN segmentation, ASA firewalls, routing protocols (OSPF, BGP), and Catalyst switch configuration.</p>
+      <span class="svc-tag" style="background:rgba(129,140,248,0.1);color:#818cf8">Cisco</span>
     </div>
     <div class="svc">
-      <div class="svc-icon" style="background: rgba(52,211,153,0.12);">
+      <div class="svc-icon" style="background:rgba(52,211,153,0.12)">
         <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
       </div>
       <h3>ETL Pipelines</h3>
-      <p>Extract, transform, load — data ingestion from APIs, databases, and files into data warehouses with full error handling.</p>
-      <span class="svc-tag" style="background: rgba(52,211,153,0.1); color: var(--green);">Data</span>
+      <p>Data ingestion from APIs, databases, and files. AWS Glue, PySpark transforms, S3 staging, and Redshift loading with full error handling.</p>
+      <span class="svc-tag" style="background:rgba(52,211,153,0.1);color:#34d399">Data</span>
     </div>
     <div class="svc">
-      <div class="svc-icon" style="background: rgba(34,211,238,0.12);">
+      <div class="svc-icon" style="background:rgba(34,211,238,0.12)">
         <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       </div>
       <h3>CI/CD Pipelines</h3>
-      <p>GitHub Actions, GitLab CI, Jenkins — automated build, test, and deploy workflows. Zero-downtime deployments.</p>
-      <span class="svc-tag" style="background: rgba(34,211,238,0.1); color: var(--cyan);">Automation</span>
+      <p>GitHub Actions, GitLab CI, Jenkins — automated build, test, and deploy workflows with blue-green and canary deployments.</p>
+      <span class="svc-tag" style="background:rgba(34,211,238,0.1);color:#22d3ee">Automation</span>
     </div>
     <div class="svc">
-      <div class="svc-icon" style="background: rgba(129,140,248,0.12);">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1"/><circle cx="6" cy="18" r="1"/></svg>
+      <div class="svc-icon" style="background:rgba(251,146,60,0.12)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
-      <h3>Networking & Servers</h3>
-      <p>VPC design, subnetting, load balancers, firewall rules, DNS, SSL — secure and performant network architecture.</p>
-      <span class="svc-tag" style="background: rgba(129,140,248,0.1); color: #818cf8;">Infra</span>
+      <h3>Batch & Cron Jobs</h3>
+      <p>AWS Batch, Step Functions, EventBridge scheduling. Parallel Fargate processing, dead letter queues, and automated failure recovery.</p>
+      <span class="svc-tag" style="background:rgba(251,146,60,0.1);color:#fb923c">Scheduling</span>
     </div>
     <div class="svc">
-      <div class="svc-icon" style="background: rgba(248,113,113,0.12);">
+      <div class="svc-icon" style="background:rgba(248,113,113,0.12)">
         <svg viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       </div>
       <h3>Monitoring & Alerting</h3>
-      <p>Prometheus, Grafana, CloudWatch — real-time dashboards, uptime monitoring, on-call alerting, and incident response.</p>
-      <span class="svc-tag" style="background: rgba(248,113,113,0.1); color: var(--red);">Ops</span>
+      <p>Prometheus, Grafana, CloudWatch — dashboards, uptime checks, log aggregation, and PagerDuty incident escalation.</p>
+      <span class="svc-tag" style="background:rgba(248,113,113,0.1);color:#f87171">Ops</span>
     </div>
   </div>
 </section>
 
-<!-- ===== 3D ARCHITECTURE ===== -->
-<section id="network">
-  <div class="tag reveal" style="color: var(--purple);">Live architecture</div>
-  <h2 class="reveal">How it all connects.</h2>
-  <p class="sub reveal">Data packets flow between services in real time — from ingestion through processing to storage and monitoring.</p>
-
-  <div class="scene reveal">
-    <svg viewBox="0 0 860 440" fill="none" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;">
-      <defs>
-        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="5" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-
-      <!-- Connection lines (curved) -->
-      <path d="M130,340 C200,300 250,200 330,180" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p1"/>
-      <path d="M130,340 C200,340 300,340 430,300" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p2"/>
-      <path d="M330,180 C380,160 450,140 530,120" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p3"/>
-      <path d="M330,180 C380,220 420,280 430,300" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p4"/>
-      <path d="M430,300 C500,280 550,200 530,120" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p5"/>
-      <path d="M530,120 C600,100 680,120 730,160" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p6"/>
-      <path d="M430,300 C530,320 650,280 730,160" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p7"/>
-      <path d="M130,340 C250,380 500,400 730,160" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="6,6" id="p8"/>
-
-      <!-- Animated packets along paths -->
-      <circle r="5" fill="#4a9eff" filter="url(#glow)">
-        <animateMotion dur="3s" repeatCount="indefinite" rotate="auto"><mpath href="#p1"/></animateMotion>
-      </circle>
-      <circle r="4" fill="#ff9900" filter="url(#glow)">
-        <animateMotion dur="4s" repeatCount="indefinite" begin="0.3s" rotate="auto"><mpath href="#p2"/></animateMotion>
-      </circle>
-      <circle r="5" fill="#34d399" filter="url(#glow)">
-        <animateMotion dur="2.5s" repeatCount="indefinite" begin="0.8s" rotate="auto"><mpath href="#p3"/></animateMotion>
-      </circle>
-      <circle r="4" fill="#a78bfa" filter="url(#glow)">
-        <animateMotion dur="3.5s" repeatCount="indefinite" begin="1.2s" rotate="auto"><mpath href="#p4"/></animateMotion>
-      </circle>
-      <circle r="4" fill="#22d3ee" filter="url(#glow)">
-        <animateMotion dur="3s" repeatCount="indefinite" begin="0.5s" rotate="auto"><mpath href="#p5"/></animateMotion>
-      </circle>
-      <circle r="5" fill="#fb923c" filter="url(#glow)">
-        <animateMotion dur="2.8s" repeatCount="indefinite" begin="1.5s" rotate="auto"><mpath href="#p6"/></animateMotion>
-      </circle>
-      <circle r="4" fill="#f87171" filter="url(#glow)">
-        <animateMotion dur="4s" repeatCount="indefinite" begin="2s" rotate="auto"><mpath href="#p7"/></animateMotion>
-      </circle>
-      <circle r="3" fill="rgba(255,255,255,0.3)">
-        <animateMotion dur="6s" repeatCount="indefinite" begin="1s" rotate="auto"><mpath href="#p8"/></animateMotion>
-      </circle>
-
-      <!-- Node boxes -->
-      <g>
-        <rect x="90" y="305" width="80" height="70" rx="16" fill="#111118" stroke="rgba(74,158,255,0.25)" stroke-width="1.5"/>
-        <text x="130" y="340" text-anchor="middle" fill="white" font-size="22">&#128421;</text>
-        <text x="130" y="360" text-anchor="middle" fill="#4a9eff" font-size="8" font-weight="700" letter-spacing="0.1em">SERVER</text>
-      </g>
-      <g>
-        <rect x="290" y="145" width="80" height="70" rx="16" fill="#111118" stroke="rgba(255,153,0,0.25)" stroke-width="1.5"/>
-        <text x="330" y="180" text-anchor="middle" fill="white" font-size="22">&#9729;</text>
-        <text x="330" y="200" text-anchor="middle" fill="#ff9900" font-size="8" font-weight="700" letter-spacing="0.1em">AWS S3</text>
-      </g>
-      <g>
-        <rect x="390" y="265" width="80" height="70" rx="16" fill="#111118" stroke="rgba(52,211,153,0.25)" stroke-width="1.5"/>
-        <text x="430" y="300" text-anchor="middle" fill="white" font-size="22">&#128259;</text>
-        <text x="430" y="320" text-anchor="middle" fill="#34d399" font-size="8" font-weight="700" letter-spacing="0.1em">ETL JOB</text>
-      </g>
-      <g>
-        <rect x="490" y="85" width="80" height="70" rx="16" fill="#111118" stroke="rgba(167,139,250,0.25)" stroke-width="1.5"/>
-        <text x="530" y="120" text-anchor="middle" fill="white" font-size="22">&#128451;</text>
-        <text x="530" y="140" text-anchor="middle" fill="#a78bfa" font-size="8" font-weight="700" letter-spacing="0.1em">DATABASE</text>
-      </g>
-      <g>
-        <rect x="690" y="125" width="80" height="70" rx="16" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1.5"/>
-        <text x="730" y="160" text-anchor="middle" fill="white" font-size="22">&#128200;</text>
-        <text x="730" y="180" text-anchor="middle" fill="#f87171" font-size="8" font-weight="700" letter-spacing="0.1em">MONITOR</text>
-      </g>
-    </svg>
-  </div>
-</section>
-
-<!-- ===== PROJECTS ===== -->
-<section id="projects" style="background: var(--surface);">
-  <div class="tag reveal" style="color: var(--orange);">Portfolio</div>
-  <h2 class="reveal">What I've built.</h2>
-  <p class="sub reveal">Real infrastructure, real automation, real results.</p>
-
-  <div class="projects">
-    <div class="proj reveal">
-      <div class="proj-num">01</div>
-      <h3>AWS Multi-Region Infrastructure</h3>
-      <p>Designed and deployed a fault-tolerant multi-region AWS setup with auto-scaling EC2 fleets, cross-region S3 replication, and RDS failover. Reduced downtime by 99.5%.</p>
-      <div class="proj-tags">
-        <span>EC2</span><span>S3</span><span>RDS</span><span>Route53</span><span>Terraform</span>
-      </div>
-    </div>
-    <div class="proj reveal">
-      <div class="proj-num">02</div>
-      <h3>Automated ETL Data Pipeline</h3>
-      <p>Built a scheduled ETL pipeline that ingests data from 12 REST APIs, transforms and deduplicates records, and loads into Redshift. Processes 2M+ rows daily via cron-triggered Lambda.</p>
-      <div class="proj-tags">
-        <span>Lambda</span><span>Redshift</span><span>Python</span><span>Cron</span><span>S3</span>
-      </div>
-    </div>
-    <div class="proj reveal">
-      <div class="proj-num">03</div>
-      <h3>CI/CD Pipeline with Zero-Downtime Deploy</h3>
-      <p>Implemented GitHub Actions pipeline with linting, tests, Docker build, ECR push, and ECS blue-green deployment. Full pipeline runs in under 4 minutes.</p>
-      <div class="proj-tags">
-        <span>GitHub Actions</span><span>Docker</span><span>ECS</span><span>ECR</span>
-      </div>
-    </div>
-    <div class="proj reveal">
-      <div class="proj-num">04</div>
-      <h3>Network Architecture & VPC Design</h3>
-      <p>Architected a multi-tier VPC with public/private subnets, NAT gateways, security groups, NACLs, and VPN tunnels connecting on-premise servers to AWS cloud.</p>
-      <div class="proj-tags">
-        <span>VPC</span><span>Subnetting</span><span>VPN</span><span>ALB</span><span>WAF</span>
-      </div>
-    </div>
-    <div class="proj reveal">
-      <div class="proj-num">05</div>
-      <h3>Cron-Based Backup & Rotation System</h3>
-      <p>Designed automated backup system using cron jobs for database snapshots, log rotation, and S3 lifecycle policies. Includes Slack alerting on failures.</p>
-      <div class="proj-tags">
-        <span>Cron</span><span>Bash</span><span>S3</span><span>RDS Snapshots</span><span>Slack API</span>
-      </div>
-    </div>
-    <div class="proj reveal">
-      <div class="proj-num">06</div>
-      <h3>Full-Stack Monitoring & Alerting</h3>
-      <p>Deployed Prometheus + Grafana stack with custom dashboards, CloudWatch integration, uptime checks, and PagerDuty escalation policies for 24/7 incident response.</p>
-      <div class="proj-tags">
-        <span>Prometheus</span><span>Grafana</span><span>CloudWatch</span><span>PagerDuty</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
+<!-- ══════════ CONTACT ══════════ -->
 <section id="contact">
-  <div class="tag reveal" style="color: var(--cyan);">Get in touch</div>
+  <div class="tag reveal" style="color:var(--cyan)">Get in touch</div>
   <h2 class="reveal">Let's build something.</h2>
   <p class="sub reveal">Looking for a DevOps engineer? I'm available for freelance and full-time roles.</p>
   <div class="contact-links reveal">
@@ -647,21 +614,14 @@ footer {
 </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const els = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    els.forEach(el => obs.observe(el));
-  } else {
-    els.forEach(el => el.classList.add('visible'));
-  }
+document.addEventListener('DOMContentLoaded',()=>{
+  const els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+    },{threshold:0.08});
+    els.forEach(el=>obs.observe(el));
+  }else{els.forEach(el=>el.classList.add('visible'))}
 });
 </script>
 </body>
