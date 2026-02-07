@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOps — Simplified</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #fafafa;
+    --text: #1d1d1f;
+    --muted: #86868b;
+    --accent: #0071e3;
+    --accent2: #bf5af2;
+    --accent3: #30d158;
+    --accent4: #ff9f0a;
+    --card-bg: #ffffff;
+    --card-border: rgba(0,0,0,0.06);
+    --section-alt: #f5f5f7;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #000000;
+      --text: #f5f5f7;
+      --muted: #86868b;
+      --card-bg: #1c1c1e;
+      --card-border: rgba(255,255,255,0.08);
+      --section-alt: #111111;
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: center; align-items: center; gap: 2rem;
+    padding: 0.8rem 2rem;
+    background: rgba(250,250,250,0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--card-border);
+    font-size: 0.82rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    nav { background: rgba(0,0,0,0.72); }
+  }
+  nav a {
+    color: var(--text); text-decoration: none; opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  nav a:hover { opacity: 1; }
+  .nav-logo { font-weight: 600; letter-spacing: -0.02em; opacity: 1 !important; }
+
+  /* ---------- SECTIONS ---------- */
+  section {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 6rem 2rem;
+    position: relative;
+  }
+  section:nth-child(even) { background: var(--section-alt); }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-align: center;
+    line-height: 1.1;
+    max-width: 800px;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    text-align: center;
+    line-height: 1.15;
+    max-width: 700px;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--muted);
+    text-align: center;
+    max-width: 520px;
+    margin-top: 1rem;
+  }
+
+  /* ---------- FADE-IN ON SCROLL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- HERO ---------- */
+  #hero { min-height: 100vh; gap: 1.5rem; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    padding: 0.4rem 1rem; border-radius: 100px;
+    font-size: 0.8rem; color: var(--muted);
+  }
+  .hero-badge span { color: var(--accent3); }
+  .scroll-hint {
+    position: absolute; bottom: 2rem;
+    animation: bounce 2s ease infinite;
+    color: var(--muted); font-size: 0.8rem;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* ---------- ANIMATION CANVAS SHARED ---------- */
+  .anim-box {
+    width: min(90vw, 700px);
+    height: 320px;
+    position: relative;
+    margin: 2.5rem 0 1rem;
+    border-radius: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+  }
+
+  /* ---------- CI/CD PIPELINE ANIM ---------- */
+  .pipeline {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; height: 100%; padding: 2rem;
+  }
+  .pipe-stage {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.5rem; flex: 1; position: relative; z-index: 1;
+  }
+  .pipe-icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    color: #fff;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .pipe-icon svg { width: 28px; height: 28px; }
+  .pipe-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .pipe-arrow {
+    width: 40px; display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 0;
+  }
+  .pipe-arrow::before {
+    content: ''; width: 100%; height: 2px;
+    background: var(--card-border);
+  }
+  .pipe-dot {
+    position: absolute; width: 8px; height: 8px;
+    border-radius: 50%; background: var(--accent);
+    animation: pipemove 2.5s ease-in-out infinite;
+    left: -4px;
+  }
+  .pipe-stage:nth-child(1) .pipe-icon { background: linear-gradient(135deg, #0071e3, #40a0ff); }
+  .pipe-stage:nth-child(3) .pipe-icon { background: linear-gradient(135deg, #bf5af2, #da8fff); animation-delay: 0.6s; }
+  .pipe-stage:nth-child(5) .pipe-icon { background: linear-gradient(135deg, #ff9f0a, #ffc44d); animation-delay: 1.2s; }
+  .pipe-stage:nth-child(7) .pipe-icon { background: linear-gradient(135deg, #30d158, #6ee58a); animation-delay: 1.8s; }
+
+  .pipe-stage .pipe-icon { animation: stagepop 2.5s ease infinite; }
+  .pipe-stage:nth-child(3) .pipe-icon { animation-delay: 0.6s; }
+  .pipe-stage:nth-child(5) .pipe-icon { animation-delay: 1.2s; }
+  .pipe-stage:nth-child(7) .pipe-icon { animation-delay: 1.8s; }
+
+  @keyframes stagepop {
+    0%, 30%, 100% { transform: scale(1); }
+    15% { transform: scale(1.12); }
+  }
+  @keyframes pipemove {
+    0% { left: -4px; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: calc(100% - 4px); opacity: 0; }
+  }
+  .pipe-arrow:nth-child(4) .pipe-dot { animation-delay: 0.6s; }
+  .pipe-arrow:nth-child(6) .pipe-dot { animation-delay: 1.2s; }
+
+  /* ---------- AWS / CLOUD STORAGE ANIM ---------- */
+  .cloud-scene { position: relative; width: 100%; height: 100%; }
+
+  .cloud-icon {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 90px; height: 90px;
+    background: linear-gradient(135deg, #ff9f0a, #ff6723);
+    border-radius: 22px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 40px rgba(255,159,10,0.2);
+    z-index: 2;
+  }
+  .cloud-icon svg { width: 44px; height: 44px; color: #fff; }
+
+  .file-particle {
+    position: absolute;
+    width: 36px; height: 44px;
+    border-radius: 8px;
+    background: var(--bg);
+    border: 1.5px solid var(--card-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 600; color: var(--muted);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    z-index: 1;
+  }
+
+  .fp1 { animation: filefly1 4s ease-in-out infinite; }
+  .fp2 { animation: filefly2 4s ease-in-out 0.7s infinite; }
+  .fp3 { animation: filefly3 4s ease-in-out 1.4s infinite; }
+  .fp4 { animation: filefly4 4s ease-in-out 2.1s infinite; }
+
+  @keyframes filefly1 {
+    0% { top: 80%; left: 10%; opacity: 0; transform: scale(0.7); }
+    20% { opacity: 1; transform: scale(1); }
+    50% { top: 42%; left: 42%; opacity: 1; transform: scale(0.8); }
+    55% { opacity: 0; transform: scale(0.3); }
+    100% { opacity: 0; top: 42%; left: 42%; }
+  }
+  @keyframes filefly2 {
+    0% { top: 15%; left: 85%; opacity: 0; transform: scale(0.7); }
+    20% { opacity: 1; transform: scale(1); }
+    50% { top: 42%; left: 52%; opacity: 1; transform: scale(0.8); }
+    55% { opacity: 0; transform: scale(0.3); }
+    100% { opacity: 0; top: 42%; left: 52%; }
+  }
+  @keyframes filefly3 {
+    0% { top: 80%; left: 78%; opacity: 0; transform: scale(0.7); }
+    20% { opacity: 1; transform: scale(1); }
+    50% { top: 45%; left: 48%; opacity: 1; transform: scale(0.8); }
+    55% { opacity: 0; transform: scale(0.3); }
+    100% { opacity: 0; top: 45%; left: 48%; }
+  }
+  @keyframes filefly4 {
+    0% { top: 10%; left: 15%; opacity: 0; transform: scale(0.7); }
+    20% { opacity: 1; transform: scale(1); }
+    50% { top: 40%; left: 46%; opacity: 1; transform: scale(0.8); }
+    55% { opacity: 0; transform: scale(0.3); }
+    100% { opacity: 0; top: 40%; left: 46%; }
+  }
+
+  .cloud-pulse {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 90px; height: 90px;
+    border-radius: 22px;
+    border: 2px solid rgba(255,159,10,0.25);
+    animation: cpulse 2.5s ease-out infinite;
+    z-index: 1;
+  }
+  .cloud-pulse:nth-child(2) { animation-delay: 0.8s; }
+  @keyframes cpulse {
+    0% { width: 90px; height: 90px; opacity: 0.6; }
+    100% { width: 180px; height: 180px; opacity: 0; }
+  }
+
+  /* ---------- INFRA / CONTAINERS ANIM ---------- */
+  .container-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 2rem;
+    width: 100%; height: 100%;
+    align-content: center;
+  }
+  .container-box {
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), #40a0ff);
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 0.65rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    animation: containerbeat 3s ease infinite;
+    position: relative;
+    overflow: hidden;
+  }
+  .container-box::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1));
+  }
+  .container-box:nth-child(2) { background: linear-gradient(135deg, #bf5af2, #da8fff); animation-delay: 0.3s; }
+  .container-box:nth-child(3) { background: linear-gradient(135deg, #30d158, #6ee58a); animation-delay: 0.6s; }
+  .container-box:nth-child(4) { background: linear-gradient(135deg, #ff9f0a, #ffc44d); animation-delay: 0.9s; }
+  .container-box:nth-child(5) { background: linear-gradient(135deg, #ff453a, #ff6e6e); animation-delay: 0.4s; }
+  .container-box:nth-child(6) { background: linear-gradient(135deg, #64d2ff, #0a84ff); animation-delay: 0.7s; }
+  .container-box:nth-child(7) { background: linear-gradient(135deg, #ffd60a, #ffdf4d); animation-delay: 1.0s; }
+  .container-box:nth-child(8) { background: linear-gradient(135deg, #5e5ce6, #8e8cf6); animation-delay: 1.3s; }
+
+  @keyframes containerbeat {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.04); opacity: 1; }
+  }
+
+  /* ---------- MONITORING ANIM ---------- */
+  .monitor-scene { position: relative; width: 100%; height: 100%; padding: 2rem; display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
+
+  .metric-row {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0 1rem;
+  }
+  .metric-label { font-size: 0.7rem; font-weight: 600; color: var(--muted); width: 60px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .metric-bar-track {
+    flex: 1; height: 8px;
+    background: var(--section-alt);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .metric-bar {
+    height: 100%; border-radius: 100px;
+    animation: barfill 3s ease-in-out infinite alternate;
+  }
+  .m-cpu .metric-bar { background: linear-gradient(90deg, #30d158, #0071e3); width: 72%; }
+  .m-mem .metric-bar { background: linear-gradient(90deg, #ff9f0a, #ff453a); width: 58%; animation-delay: 0.5s; }
+  .m-net .metric-bar { background: linear-gradient(90deg, #bf5af2, #5e5ce6); width: 41%; animation-delay: 1s; }
+  .m-disk .metric-bar { background: linear-gradient(90deg, #64d2ff, #30d158); width: 85%; animation-delay: 1.5s; }
+  .metric-val {
+    font-size: 0.75rem; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    width: 40px; text-align: right;
+  }
+
+  @keyframes barfill {
+    0% { transform: scaleX(1); }
+    100% { transform: scaleX(0.7); transform-origin: left; }
+  }
+
+  .heartbeat-line {
+    position: absolute; bottom: 2rem; left: 2rem; right: 2rem; height: 40px;
+    overflow: hidden;
+  }
+  .heartbeat-line svg {
+    width: 200%; height: 100%;
+    animation: heartscroll 4s linear infinite;
+  }
+  @keyframes heartscroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ---------- FEATURE GRID ---------- */
+  .feat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+    max-width: 900px;
+    width: 100%;
+    margin-top: 2.5rem;
+  }
+  .feat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .feat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  }
+  .feat-card-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+  }
+  .feat-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .feat-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.45; }
+
+  /* ---------- CTA ---------- */
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 0.75rem 2rem;
+    background: var(--accent);
+    color: #fff;
+    border: none; border-radius: 100px;
+    font-size: 0.95rem; font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, filter 0.2s;
+  }
+  .cta-btn:hover { transform: scale(1.04); filter: brightness(1.1); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 600px) {
+    .pipeline { flex-wrap: wrap; gap: 0.5rem; padding: 1rem; }
+    .pipe-arrow { display: none; }
+    .anim-box { height: 260px; }
+    .container-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    nav { gap: 1rem; font-size: 0.75rem; padding: 0.6rem 1rem; }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">DevOps</a>
+  <a href="#cicd">CI/CD</a>
+  <a href="#cloud">Cloud</a>
+  <a href="#infra">Containers</a>
+  <a href="#monitor">Monitoring</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge reveal"><span>&#9679;</span> Built for modern teams</div>
+  <h1 class="reveal">DevOps,<br>beautifully automated.</h1>
+  <p class="subtitle reveal">Ship faster, break less. A visual journey through the modern DevOps pipeline &mdash; from code to cloud.</p>
+  <div class="scroll-hint">&darr; Scroll</div>
+</section>
+
+<!-- CI/CD -->
+<section id="cicd">
+  <span class="section-label reveal">Continuous Delivery</span>
+  <h2 class="reveal">Code. Build. Test. Deploy.</h2>
+  <p class="subtitle reveal">Every commit triggers an automated pipeline that builds, tests, and ships your code with zero manual steps.</p>
+  <div class="anim-box reveal">
+    <div class="pipeline">
+      <div class="pipe-stage">
+        <div class="pipe-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <span class="pipe-label">Code</span>
+      </div>
+      <div class="pipe-arrow"><div class="pipe-dot"></div></div>
+      <div class="pipe-stage">
+        <div class="pipe-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h4v4H7z"/><path d="M7 13h10"/><path d="M7 17h10"/></svg>
+        </div>
+        <span class="pipe-label">Build</span>
+      </div>
+      <div class="pipe-arrow"><div class="pipe-dot"></div></div>
+      <div class="pipe-stage">
+        <div class="pipe-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <span class="pipe-label">Test</span>
+      </div>
+      <div class="pipe-arrow"><div class="pipe-dot"></div></div>
+      <div class="pipe-stage">
+        <div class="pipe-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12A10 10 0 1112 2a10 10 0 0110 10z"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/></svg>
+        </div>
+        <span class="pipe-label">Deploy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOUD STORAGE -->
+<section id="cloud">
+  <span class="section-label reveal" style="color: var(--accent4);">Cloud Storage</span>
+  <h2 class="reveal">Your files, everywhere.</h2>
+  <p class="subtitle reveal">AWS S3, Azure Blob, GCS &mdash; store and retrieve any amount of data, any time, from anywhere.</p>
+  <div class="anim-box reveal">
+    <div class="cloud-scene">
+      <div class="cloud-pulse"></div>
+      <div class="cloud-pulse"></div>
+      <div class="cloud-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
+      </div>
+      <div class="file-particle fp1">.yml</div>
+      <div class="file-particle fp2">.tar</div>
+      <div class="file-particle fp3">.log</div>
+      <div class="file-particle fp4">.env</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTAINERS -->
+<section id="infra">
+  <span class="section-label reveal" style="color: var(--accent3);">Infrastructure</span>
+  <h2 class="reveal">Containers at scale.</h2>
+  <p class="subtitle reveal">Orchestrate hundreds of containers effortlessly. Kubernetes, Docker, ECS &mdash; all in harmony.</p>
+  <div class="anim-box reveal">
+    <div class="container-grid">
+      <div class="container-box">API</div>
+      <div class="container-box">Web</div>
+      <div class="container-box">Auth</div>
+      <div class="container-box">DB</div>
+      <div class="container-box">Cache</div>
+      <div class="container-box">Queue</div>
+      <div class="container-box">Worker</div>
+      <div class="container-box">Logs</div>
+    </div>
+  </div>
+</section>
+
+<!-- MONITORING -->
+<section id="monitor">
+  <span class="section-label reveal" style="color: var(--accent2);">Observability</span>
+  <h2 class="reveal">See everything. Miss nothing.</h2>
+  <p class="subtitle reveal">Real-time metrics, distributed tracing, and intelligent alerts keep your stack healthy.</p>
+  <div class="anim-box reveal">
+    <div class="monitor-scene">
+      <div class="metric-row m-cpu">
+        <span class="metric-label">CPU</span>
+        <div class="metric-bar-track"><div class="metric-bar"></div></div>
+        <span class="metric-val">72%</span>
+      </div>
+      <div class="metric-row m-mem">
+        <span class="metric-label">Memory</span>
+        <div class="metric-bar-track"><div class="metric-bar"></div></div>
+        <span class="metric-val">58%</span>
+      </div>
+      <div class="metric-row m-net">
+        <span class="metric-label">Network</span>
+        <div class="metric-bar-track"><div class="metric-bar"></div></div>
+        <span class="metric-val">41%</span>
+      </div>
+      <div class="metric-row m-disk">
+        <span class="metric-label">Disk</span>
+        <div class="metric-bar-track"><div class="metric-bar"></div></div>
+        <span class="metric-val">85%</span>
+      </div>
+      <div class="heartbeat-line">
+        <svg viewBox="0 0 800 40" preserveAspectRatio="none">
+          <polyline fill="none" stroke="var(--accent2)" stroke-width="2" opacity="0.5"
+            points="0,25 20,25 30,25 35,10 40,35 45,20 50,25 80,25 100,25 110,25 115,8 120,38 125,18 130,25 160,25 180,25 190,25 195,10 200,35 205,20 210,25 240,25 260,25 270,25 275,8 280,38 285,18 290,25 320,25 340,25 350,25 355,10 360,35 365,20 370,25 400,25 420,25 430,25 435,8 440,38 445,18 450,25 480,25 500,25 510,25 515,10 520,35 525,20 530,25 560,25 580,25 590,25 595,8 600,38 605,18 610,25 640,25 660,25 670,25 675,10 680,35 685,20 690,25 720,25 740,25 750,25 755,10 760,35 765,20 770,25 800,25"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <span class="section-label reveal">Why DevOps</span>
+  <h2 class="reveal">Everything you need to ship.</h2>
+  <div class="feat-grid">
+    <div class="feat-card reveal">
+      <div class="feat-card-icon" style="background: rgba(0,113,227,0.1); color: var(--accent);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      </div>
+      <h3>Infrastructure as Code</h3>
+      <p>Terraform, CloudFormation, Pulumi. Define your entire stack in version-controlled config files.</p>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-card-icon" style="background: rgba(191,90,242,0.1); color: var(--accent2);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Security First</h3>
+      <p>Secrets management, RBAC, vulnerability scanning baked into every stage of your pipeline.</p>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-card-icon" style="background: rgba(48,209,88,0.1); color: var(--accent3);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Real-time Monitoring</h3>
+      <p>Prometheus, Grafana, Datadog. Know exactly what's happening across every service in real time.</p>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-card-icon" style="background: rgba(255,159,10,0.1); color: var(--accent4);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      </div>
+      <h3>Auto Scaling</h3>
+      <p>Scale from zero to millions. Horizontal pod autoscaling and serverless functions that respond to demand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <h2 class="reveal">Ready to automate?</h2>
+  <p class="subtitle reveal">Start building your DevOps pipeline today.</p>
+  <a href="#hero" class="cta-btn reveal">Get Started &rarr;</a>
+</section>
+
+<footer>
+  <p>DevOps &mdash; Beautifully Automated</p>
+</footer>
+
+<!-- Minimal JS: Intersection Observer for scroll reveals (lightweight, no libraries) -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const els = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(el => obs.observe(el));
+    } else {
+      els.forEach(el => el.classList.add('visible'));
+    }
+  });
+</script>
+</body>
+</html>
