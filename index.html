@@ -3,641 +3,666 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DevOps — Simplified</title>
+<title>Stefan Laza — DevOps Engineer</title>
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root {
-    --bg: #fafafa;
-    --text: #1d1d1f;
-    --muted: #86868b;
-    --accent: #0071e3;
-    --accent2: #bf5af2;
-    --accent3: #30d158;
-    --accent4: #ff9f0a;
-    --card-bg: #ffffff;
-    --card-border: rgba(0,0,0,0.06);
-    --section-alt: #f5f5f7;
-  }
+:root {
+  --bg: #050507;
+  --surface: #0d0d12;
+  --card: #111118;
+  --border: rgba(255,255,255,0.06);
+  --text: #f0f0f5;
+  --muted: #6e6e80;
+  --blue: #4a9eff;
+  --purple: #a78bfa;
+  --green: #34d399;
+  --orange: #fb923c;
+  --red: #f87171;
+  --cyan: #22d3ee;
+  --glow-blue: rgba(74,158,255,0.15);
+  --glow-purple: rgba(167,139,250,0.15);
+  --glow-green: rgba(52,211,153,0.15);
+}
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #000000;
-      --text: #f5f5f7;
-      --muted: #86868b;
-      --card-bg: #1c1c1e;
-      --card-border: rgba(255,255,255,0.08);
-      --section-alt: #111111;
-    }
-  }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
 
-  html { scroll-behavior: smooth; }
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(5,5,7,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-name { font-weight: 600; font-size: 0.9rem; letter-spacing: -0.01em; }
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a {
+  color: var(--muted); text-decoration: none; font-size: 0.8rem;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
+/* ===== SECTIONS ===== */
+section {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 7rem 2rem 5rem;
+  position: relative;
+}
 
-  /* ---------- NAV ---------- */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: center; align-items: center; gap: 2rem;
-    padding: 0.8rem 2rem;
-    background: rgba(250,250,250,0.72);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--card-border);
-    font-size: 0.82rem;
-  }
-  @media (prefers-color-scheme: dark) {
-    nav { background: rgba(0,0,0,0.72); }
-  }
-  nav a {
-    color: var(--text); text-decoration: none; opacity: 0.8;
-    transition: opacity 0.2s;
-  }
-  nav a:hover { opacity: 1; }
-  .nav-logo { font-weight: 600; letter-spacing: -0.02em; opacity: 1 !important; }
+.tag {
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
 
-  /* ---------- SECTIONS ---------- */
-  section {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 6rem 2rem;
-    position: relative;
-  }
-  section:nth-child(even) { background: var(--section-alt); }
+h1 {
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 700; letter-spacing: -0.04em;
+  text-align: center; line-height: 1.05;
+  background: linear-gradient(135deg, #fff 0%, #888 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-  .section-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
-  }
+h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 600; letter-spacing: -0.03em;
+  text-align: center; line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
 
-  h1 {
-    font-size: clamp(2.4rem, 6vw, 4.5rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    text-align: center;
-    line-height: 1.1;
-    max-width: 800px;
-  }
+.sub {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  color: var(--muted); text-align: center;
+  max-width: 540px; margin-top: 1rem;
+}
 
-  h2 {
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    text-align: center;
-    line-height: 1.15;
-    max-width: 700px;
-    margin-bottom: 1rem;
-  }
+/* ===== REVEAL ===== */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-  .subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: var(--muted);
-    text-align: center;
-    max-width: 520px;
-    margin-top: 1rem;
-  }
+/* ===== 3D SCENE CONTAINER ===== */
+.scene {
+  width: min(92vw, 860px);
+  height: 440px;
+  margin: 2.5rem 0;
+  position: relative;
+  perspective: 1200px;
+}
 
-  /* ---------- FADE-IN ON SCROLL ---------- */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.iso-plane {
+  width: 100%; height: 100%;
+  position: relative;
+  transform: rotateX(55deg) rotateZ(-45deg);
+  transform-style: preserve-3d;
+}
 
-  /* ---------- HERO ---------- */
-  #hero { min-height: 100vh; gap: 1.5rem; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: var(--card-bg); border: 1px solid var(--card-border);
-    padding: 0.4rem 1rem; border-radius: 100px;
-    font-size: 0.8rem; color: var(--muted);
-  }
-  .hero-badge span { color: var(--accent3); }
-  .scroll-hint {
-    position: absolute; bottom: 2rem;
-    animation: bounce 2s ease infinite;
-    color: var(--muted); font-size: 0.8rem;
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-  }
+/* ===== 3D SERVER NODES ===== */
+.node {
+  position: absolute;
+  width: 80px; height: 80px;
+  transform-style: preserve-3d;
+}
 
-  /* ---------- ANIMATION CANVAS SHARED ---------- */
-  .anim-box {
-    width: min(90vw, 700px);
-    height: 320px;
-    position: relative;
-    margin: 2.5rem 0 1rem;
-    border-radius: 20px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    overflow: hidden;
-  }
+.node-top {
+  position: absolute; width: 80px; height: 80px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 4px;
+  transform: translateZ(30px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.node-side-r {
+  position: absolute; width: 80px; height: 30px;
+  bottom: -15px; right: -15px;
+  transform: rotateX(-90deg) translateZ(40px);
+  border-radius: 0 0 8px 8px;
+  opacity: 0.6;
+}
+.node-side-l {
+  position: absolute; width: 30px; height: 80px;
+  bottom: -15px; left: -15px;
+  transform: rotateY(90deg) translateZ(40px);
+  border-radius: 0 8px 8px 0;
+  opacity: 0.5;
+}
+.node-label {
+  position: absolute;
+  transform: rotateZ(45deg) rotateX(-55deg) translateZ(50px);
+  font-size: 0.65rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  white-space: nowrap; text-align: center;
+  width: 100px; left: -10px; top: -28px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+.node-top svg { width: 28px; height: 28px; stroke: #fff; fill: none; stroke-width: 1.8; }
+.node-top .mini { font-size: 0.5rem; color: rgba(255,255,255,0.7); font-weight: 600; letter-spacing: 0.05em; }
 
-  /* ---------- CI/CD PIPELINE ANIM ---------- */
-  .pipeline {
-    display: flex; align-items: center; justify-content: center;
-    gap: 0; height: 100%; padding: 2rem;
-  }
-  .pipe-stage {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 0.5rem; flex: 1; position: relative; z-index: 1;
-  }
-  .pipe-icon {
-    width: 56px; height: 56px;
-    border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    color: #fff;
-    position: relative;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  }
-  .pipe-icon svg { width: 28px; height: 28px; }
-  .pipe-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+/* Node colors */
+.n-aws .node-top { background: linear-gradient(135deg, #ff9900, #e68a00); }
+.n-aws .node-side-r, .n-aws .node-side-l { background: #b36b00; }
+.n-server .node-top { background: linear-gradient(135deg, var(--blue), #2d7ad6); }
+.n-server .node-side-r, .n-server .node-side-l { background: #1d5a9e; }
+.n-db .node-top { background: linear-gradient(135deg, var(--purple), #8b6fdf); }
+.n-db .node-side-r, .n-db .node-side-l { background: #6b4fbf; }
+.n-etl .node-top { background: linear-gradient(135deg, var(--green), #1faa7a); }
+.n-etl .node-side-r, .n-etl .node-side-l { background: #17805c; }
+.n-cron .node-top { background: linear-gradient(135deg, var(--orange), #e07820); }
+.n-cron .node-side-r, .n-cron .node-side-l { background: #b06018; }
+.n-ci .node-top { background: linear-gradient(135deg, var(--cyan), #0ea5c0); }
+.n-ci .node-side-r, .n-ci .node-side-l { background: #0b7f95; }
+.n-monitor .node-top { background: linear-gradient(135deg, var(--red), #e04040); }
+.n-monitor .node-side-r, .n-monitor .node-side-l { background: #b03030; }
+.n-net .node-top { background: linear-gradient(135deg, #818cf8, #6366f1); }
+.n-net .node-side-r, .n-net .node-side-l { background: #4f46e5; }
 
-  .pipe-arrow {
-    width: 40px; display: flex; align-items: center; justify-content: center;
-    position: relative; z-index: 0;
-  }
-  .pipe-arrow::before {
-    content: ''; width: 100%; height: 2px;
-    background: var(--card-border);
-  }
-  .pipe-dot {
-    position: absolute; width: 8px; height: 8px;
-    border-radius: 50%; background: var(--accent);
-    animation: pipemove 2.5s ease-in-out infinite;
-    left: -4px;
-  }
-  .pipe-stage:nth-child(1) .pipe-icon { background: linear-gradient(135deg, #0071e3, #40a0ff); }
-  .pipe-stage:nth-child(3) .pipe-icon { background: linear-gradient(135deg, #bf5af2, #da8fff); animation-delay: 0.6s; }
-  .pipe-stage:nth-child(5) .pipe-icon { background: linear-gradient(135deg, #ff9f0a, #ffc44d); animation-delay: 1.2s; }
-  .pipe-stage:nth-child(7) .pipe-icon { background: linear-gradient(135deg, #30d158, #6ee58a); animation-delay: 1.8s; }
+/* ===== SVG PATHS + PACKETS ===== */
+.paths-layer {
+  position: absolute; inset: 0;
+  transform: translateZ(28px);
+  pointer-events: none;
+}
+.paths-layer svg { width: 100%; height: 100%; }
+.conn-line {
+  fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 2;
+}
+.packet {
+  r: 5; fill: var(--blue);
+  filter: drop-shadow(0 0 6px var(--blue));
+}
+.packet-green { fill: var(--green); filter: drop-shadow(0 0 6px var(--green)); }
+.packet-orange { fill: var(--orange); filter: drop-shadow(0 0 6px var(--orange)); }
+.packet-purple { fill: var(--purple); filter: drop-shadow(0 0 6px var(--purple)); }
+.packet-cyan { fill: var(--cyan); filter: drop-shadow(0 0 6px var(--cyan)); }
+.packet-red { fill: var(--red); filter: drop-shadow(0 0 6px var(--red)); }
 
-  .pipe-stage .pipe-icon { animation: stagepop 2.5s ease infinite; }
-  .pipe-stage:nth-child(3) .pipe-icon { animation-delay: 0.6s; }
-  .pipe-stage:nth-child(5) .pipe-icon { animation-delay: 1.2s; }
-  .pipe-stage:nth-child(7) .pipe-icon { animation-delay: 1.8s; }
+/* ===== FLAT 2D NETWORK SCENE (hero) ===== */
+.network-canvas {
+  width: min(92vw, 900px);
+  height: 400px;
+  position: relative;
+  margin: 2rem 0;
+}
+.network-canvas svg { width: 100%; height: 100%; }
 
-  @keyframes stagepop {
-    0%, 30%, 100% { transform: scale(1); }
-    15% { transform: scale(1.12); }
-  }
-  @keyframes pipemove {
-    0% { left: -4px; opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { left: calc(100% - 4px); opacity: 0; }
-  }
-  .pipe-arrow:nth-child(4) .pipe-dot { animation-delay: 0.6s; }
-  .pipe-arrow:nth-child(6) .pipe-dot { animation-delay: 1.2s; }
+.net-node {
+  cursor: default;
+  transition: filter 0.3s;
+}
+.net-node:hover { filter: brightness(1.3); }
 
-  /* ---------- AWS / CLOUD STORAGE ANIM ---------- */
-  .cloud-scene { position: relative; width: 100%; height: 100%; }
+/* ===== SERVICES GRID ===== */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  max-width: 960px; width: 100%;
+  background: var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 2.5rem;
+}
+.svc {
+  background: var(--card);
+  padding: 2rem;
+  transition: background 0.3s;
+  position: relative;
+}
+.svc:hover { background: #16161e; }
+.svc-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem;
+}
+.svc-icon svg { width: 22px; height: 22px; stroke-width: 1.8; }
+.svc h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+.svc p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+.svc-tag {
+  display: inline-block;
+  font-size: 0.6rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.8rem;
+}
 
-  .cloud-icon {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 90px; height: 90px;
-    background: linear-gradient(135deg, #ff9f0a, #ff6723);
-    border-radius: 22px;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 8px 40px rgba(255,159,10,0.2);
-    z-index: 2;
-  }
-  .cloud-icon svg { width: 44px; height: 44px; color: #fff; }
+/* ===== PROJECT CARDS ===== */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 960px; width: 100%;
+  margin-top: 2.5rem;
+}
+.proj {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.proj:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.12); }
+.proj-num {
+  font-size: 4rem; font-weight: 800;
+  position: absolute; top: -10px; right: 16px;
+  opacity: 0.04;
+  line-height: 1;
+}
+.proj h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+.proj p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.proj-tags span {
+  font-size: 0.6rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 0.25rem 0.6rem; border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
 
-  .file-particle {
-    position: absolute;
-    width: 36px; height: 44px;
-    border-radius: 8px;
-    background: var(--bg);
-    border: 1.5px solid var(--card-border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.65rem; font-weight: 600; color: var(--muted);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-    z-index: 1;
-  }
+/* ===== CONTACT ===== */
+.contact-links {
+  display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;
+  justify-content: center;
+}
+.contact-links a {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.5rem; border-radius: 100px;
+  font-size: 0.85rem; font-weight: 500;
+  text-decoration: none; color: var(--text);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, background 0.2s;
+}
+.contact-links a:hover { border-color: rgba(255,255,255,0.2); background: var(--card); }
+.contact-links a svg { width: 18px; height: 18px; }
 
-  .fp1 { animation: filefly1 4s ease-in-out infinite; }
-  .fp2 { animation: filefly2 4s ease-in-out 0.7s infinite; }
-  .fp3 { animation: filefly3 4s ease-in-out 1.4s infinite; }
-  .fp4 { animation: filefly4 4s ease-in-out 2.1s infinite; }
+footer {
+  text-align: center; padding: 3rem 2rem;
+  font-size: 0.7rem; color: var(--muted);
+  border-top: 1px solid var(--border);
+}
 
-  @keyframes filefly1 {
-    0% { top: 80%; left: 10%; opacity: 0; transform: scale(0.7); }
-    20% { opacity: 1; transform: scale(1); }
-    50% { top: 42%; left: 42%; opacity: 1; transform: scale(0.8); }
-    55% { opacity: 0; transform: scale(0.3); }
-    100% { opacity: 0; top: 42%; left: 42%; }
-  }
-  @keyframes filefly2 {
-    0% { top: 15%; left: 85%; opacity: 0; transform: scale(0.7); }
-    20% { opacity: 1; transform: scale(1); }
-    50% { top: 42%; left: 52%; opacity: 1; transform: scale(0.8); }
-    55% { opacity: 0; transform: scale(0.3); }
-    100% { opacity: 0; top: 42%; left: 52%; }
-  }
-  @keyframes filefly3 {
-    0% { top: 80%; left: 78%; opacity: 0; transform: scale(0.7); }
-    20% { opacity: 1; transform: scale(1); }
-    50% { top: 45%; left: 48%; opacity: 1; transform: scale(0.8); }
-    55% { opacity: 0; transform: scale(0.3); }
-    100% { opacity: 0; top: 45%; left: 48%; }
-  }
-  @keyframes filefly4 {
-    0% { top: 10%; left: 15%; opacity: 0; transform: scale(0.7); }
-    20% { opacity: 1; transform: scale(1); }
-    50% { top: 40%; left: 46%; opacity: 1; transform: scale(0.8); }
-    55% { opacity: 0; transform: scale(0.3); }
-    100% { opacity: 0; top: 40%; left: 46%; }
-  }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .scene { height: 320px; }
+  .network-canvas { height: 300px; }
+  nav { padding: 0.8rem 1.2rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.72rem; }
+  section { padding: 5rem 1.2rem 3rem; }
+  .services { grid-template-columns: 1fr; }
+  .projects { grid-template-columns: 1fr; }
+}
 
-  .cloud-pulse {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    width: 90px; height: 90px;
-    border-radius: 22px;
-    border: 2px solid rgba(255,159,10,0.25);
-    animation: cpulse 2.5s ease-out infinite;
-    z-index: 1;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  .cloud-pulse:nth-child(2) { animation-delay: 0.8s; }
-  @keyframes cpulse {
-    0% { width: 90px; height: 90px; opacity: 0.6; }
-    100% { width: 180px; height: 180px; opacity: 0; }
-  }
-
-  /* ---------- INFRA / CONTAINERS ANIM ---------- */
-  .container-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    padding: 2rem;
-    width: 100%; height: 100%;
-    align-content: center;
-  }
-  .container-box {
-    border-radius: 12px;
-    background: linear-gradient(135deg, var(--accent), #40a0ff);
-    aspect-ratio: 1;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 0.65rem; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.06em;
-    animation: containerbeat 3s ease infinite;
-    position: relative;
-    overflow: hidden;
-  }
-  .container-box::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1));
-  }
-  .container-box:nth-child(2) { background: linear-gradient(135deg, #bf5af2, #da8fff); animation-delay: 0.3s; }
-  .container-box:nth-child(3) { background: linear-gradient(135deg, #30d158, #6ee58a); animation-delay: 0.6s; }
-  .container-box:nth-child(4) { background: linear-gradient(135deg, #ff9f0a, #ffc44d); animation-delay: 0.9s; }
-  .container-box:nth-child(5) { background: linear-gradient(135deg, #ff453a, #ff6e6e); animation-delay: 0.4s; }
-  .container-box:nth-child(6) { background: linear-gradient(135deg, #64d2ff, #0a84ff); animation-delay: 0.7s; }
-  .container-box:nth-child(7) { background: linear-gradient(135deg, #ffd60a, #ffdf4d); animation-delay: 1.0s; }
-  .container-box:nth-child(8) { background: linear-gradient(135deg, #5e5ce6, #8e8cf6); animation-delay: 1.3s; }
-
-  @keyframes containerbeat {
-    0%, 100% { transform: scale(1); opacity: 0.85; }
-    50% { transform: scale(1.04); opacity: 1; }
-  }
-
-  /* ---------- MONITORING ANIM ---------- */
-  .monitor-scene { position: relative; width: 100%; height: 100%; padding: 2rem; display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
-
-  .metric-row {
-    display: flex; align-items: center; gap: 1rem;
-    padding: 0 1rem;
-  }
-  .metric-label { font-size: 0.7rem; font-weight: 600; color: var(--muted); width: 60px; text-transform: uppercase; letter-spacing: 0.04em; }
-  .metric-bar-track {
-    flex: 1; height: 8px;
-    background: var(--section-alt);
-    border-radius: 100px;
-    overflow: hidden;
-  }
-  .metric-bar {
-    height: 100%; border-radius: 100px;
-    animation: barfill 3s ease-in-out infinite alternate;
-  }
-  .m-cpu .metric-bar { background: linear-gradient(90deg, #30d158, #0071e3); width: 72%; }
-  .m-mem .metric-bar { background: linear-gradient(90deg, #ff9f0a, #ff453a); width: 58%; animation-delay: 0.5s; }
-  .m-net .metric-bar { background: linear-gradient(90deg, #bf5af2, #5e5ce6); width: 41%; animation-delay: 1s; }
-  .m-disk .metric-bar { background: linear-gradient(90deg, #64d2ff, #30d158); width: 85%; animation-delay: 1.5s; }
-  .metric-val {
-    font-size: 0.75rem; font-weight: 600;
-    font-variant-numeric: tabular-nums;
-    width: 40px; text-align: right;
-  }
-
-  @keyframes barfill {
-    0% { transform: scaleX(1); }
-    100% { transform: scaleX(0.7); transform-origin: left; }
-  }
-
-  .heartbeat-line {
-    position: absolute; bottom: 2rem; left: 2rem; right: 2rem; height: 40px;
-    overflow: hidden;
-  }
-  .heartbeat-line svg {
-    width: 200%; height: 100%;
-    animation: heartscroll 4s linear infinite;
-  }
-  @keyframes heartscroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  /* ---------- FEATURE GRID ---------- */
-  .feat-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.2rem;
-    max-width: 900px;
-    width: 100%;
-    margin-top: 2.5rem;
-  }
-  .feat-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .feat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-  }
-  .feat-card-icon {
-    width: 40px; height: 40px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 0.8rem;
-    font-size: 1.2rem;
-  }
-  .feat-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
-  .feat-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.45; }
-
-  /* ---------- CTA ---------- */
-  .cta-btn {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    margin-top: 2rem;
-    padding: 0.75rem 2rem;
-    background: var(--accent);
-    color: #fff;
-    border: none; border-radius: 100px;
-    font-size: 0.95rem; font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    transition: transform 0.2s, filter 0.2s;
-  }
-  .cta-btn:hover { transform: scale(1.04); filter: brightness(1.1); }
-
-  /* ---------- FOOTER ---------- */
-  footer {
-    text-align: center;
-    padding: 3rem 2rem;
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 600px) {
-    .pipeline { flex-wrap: wrap; gap: 0.5rem; padding: 1rem; }
-    .pipe-arrow { display: none; }
-    .anim-box { height: 260px; }
-    .container-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    nav { gap: 1rem; font-size: 0.75rem; padding: 0.6rem 1rem; }
-  }
-
-  /* Reduce motion for accessibility */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">DevOps</a>
-  <a href="#cicd">CI/CD</a>
-  <a href="#cloud">Cloud</a>
-  <a href="#infra">Containers</a>
-  <a href="#monitor">Monitoring</a>
+  <span class="nav-name">Stefan Laza</span>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#network">Architecture</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
 </nav>
 
-<!-- HERO -->
+<!-- ===== HERO ===== -->
 <section id="hero">
-  <div class="hero-badge reveal"><span>&#9679;</span> Built for modern teams</div>
-  <h1 class="reveal">DevOps,<br>beautifully automated.</h1>
-  <p class="subtitle reveal">Ship faster, break less. A visual journey through the modern DevOps pipeline &mdash; from code to cloud.</p>
-  <div class="scroll-hint">&darr; Scroll</div>
+  <div class="tag reveal" style="color: var(--green);">Available for hire</div>
+  <h1 class="reveal">DevOps<br>Engineer.</h1>
+  <p class="sub reveal">I build, automate, and monitor cloud infrastructure. AWS, CI/CD pipelines, ETL jobs, cron scheduling, and network architecture — end to end.</p>
+
+  <!-- Hero network animation — flat 2D with animated packets -->
+  <div class="network-canvas reveal">
+    <svg viewBox="0 0 900 400" fill="none">
+      <!-- Connection lines -->
+      <line x1="150" y1="200" x2="350" y2="100" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="150" y1="200" x2="350" y2="200" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="150" y1="200" x2="350" y2="300" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="350" y1="100" x2="550" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="350" y1="200" x2="550" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="350" y1="200" x2="550" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="350" y1="300" x2="550" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="550" y1="150" x2="750" y2="200" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="550" y1="280" x2="750" y2="200" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+
+      <!-- Animated packets -->
+      <circle r="4" fill="#4a9eff" filter="url(#glow-b)">
+        <animateMotion dur="3s" repeatCount="indefinite" path="M150,200 L350,100 L550,150 L750,200"/>
+      </circle>
+      <circle r="4" fill="#34d399" filter="url(#glow-g)">
+        <animateMotion dur="4s" repeatCount="indefinite" begin="0.5s" path="M150,200 L350,200 L550,150 L750,200"/>
+      </circle>
+      <circle r="4" fill="#fb923c" filter="url(#glow-o)">
+        <animateMotion dur="3.5s" repeatCount="indefinite" begin="1s" path="M150,200 L350,300 L550,280 L750,200"/>
+      </circle>
+      <circle r="3" fill="#a78bfa" filter="url(#glow-p)">
+        <animateMotion dur="4.5s" repeatCount="indefinite" begin="1.5s" path="M750,200 L550,280 L350,200 L150,200"/>
+      </circle>
+      <circle r="3" fill="#22d3ee" filter="url(#glow-c)">
+        <animateMotion dur="3.8s" repeatCount="indefinite" begin="2s" path="M750,200 L550,150 L350,100 L150,200"/>
+      </circle>
+
+      <!-- Glow filters -->
+      <defs>
+        <filter id="glow-b" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glow-g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glow-o" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glow-p" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glow-c" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+
+      <!-- Server nodes -->
+      <g class="net-node">
+        <rect x="115" y="165" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(255,255,255,0.1)"/>
+        <rect x="115" y="165" width="70" height="70" rx="16" fill="url(#gr-client)" opacity="0.9"/>
+        <text x="150" y="207" text-anchor="middle" fill="white" font-size="20">&#x1F4BB;</text>
+        <text x="150" y="255" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">CLIENT</text>
+      </g>
+      <g class="net-node">
+        <rect x="315" y="65" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(74,158,255,0.2)"/>
+        <text x="350" y="107" text-anchor="middle" fill="#4a9eff" font-size="20">&#9881;</text>
+        <text x="350" y="155" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">CI/CD</text>
+      </g>
+      <g class="net-node">
+        <rect x="315" y="165" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(255,153,0,0.2)"/>
+        <text x="350" y="207" text-anchor="middle" fill="#ff9900" font-size="20">&#9729;</text>
+        <text x="350" y="255" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">AWS</text>
+      </g>
+      <g class="net-node">
+        <rect x="315" y="265" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(251,146,60,0.2)"/>
+        <text x="350" y="307" text-anchor="middle" fill="#fb923c" font-size="20">&#128339;</text>
+        <text x="350" y="355" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">CRON</text>
+      </g>
+      <g class="net-node">
+        <rect x="515" y="115" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(52,211,153,0.2)"/>
+        <text x="550" y="157" text-anchor="middle" fill="#34d399" font-size="20">&#128259;</text>
+        <text x="550" y="205" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">ETL</text>
+      </g>
+      <g class="net-node">
+        <rect x="515" y="245" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(167,139,250,0.2)"/>
+        <text x="550" y="287" text-anchor="middle" fill="#a78bfa" font-size="20">&#128451;</text>
+        <text x="550" y="335" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">DATABASE</text>
+      </g>
+      <g class="net-node">
+        <rect x="715" y="165" width="70" height="70" rx="16" fill="#1a1a24" stroke="rgba(248,113,113,0.2)"/>
+        <text x="750" y="207" text-anchor="middle" fill="#f87171" font-size="20">&#128200;</text>
+        <text x="750" y="255" text-anchor="middle" fill="#6e6e80" font-size="9" font-weight="600" letter-spacing="0.1em">MONITOR</text>
+      </g>
+    </svg>
+  </div>
 </section>
 
-<!-- CI/CD -->
-<section id="cicd">
-  <span class="section-label reveal">Continuous Delivery</span>
-  <h2 class="reveal">Code. Build. Test. Deploy.</h2>
-  <p class="subtitle reveal">Every commit triggers an automated pipeline that builds, tests, and ships your code with zero manual steps.</p>
-  <div class="anim-box reveal">
-    <div class="pipeline">
-      <div class="pipe-stage">
-        <div class="pipe-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        </div>
-        <span class="pipe-label">Code</span>
+<!-- ===== SERVICES ===== -->
+<section id="services" style="background: var(--surface);">
+  <div class="tag reveal" style="color: var(--blue);">What I do</div>
+  <h2 class="reveal">Services</h2>
+  <p class="sub reveal">End-to-end DevOps engineering — from cloud provisioning to production monitoring.</p>
+
+  <div class="services reveal">
+    <div class="svc">
+      <div class="svc-icon" style="background: rgba(255,153,0,0.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#ff9900" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
       </div>
-      <div class="pipe-arrow"><div class="pipe-dot"></div></div>
-      <div class="pipe-stage">
-        <div class="pipe-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h4v4H7z"/><path d="M7 13h10"/><path d="M7 17h10"/></svg>
-        </div>
-        <span class="pipe-label">Build</span>
+      <h3>AWS Cloud Configuration</h3>
+      <p>EC2, S3, Lambda, RDS, VPC, IAM — full infrastructure setup, security hardening, and cost optimization on AWS.</p>
+      <span class="svc-tag" style="background: rgba(255,153,0,0.1); color: #ff9900;">AWS</span>
+    </div>
+    <div class="svc">
+      <div class="svc-icon" style="background: rgba(74,158,255,0.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4a9eff" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
-      <div class="pipe-arrow"><div class="pipe-dot"></div></div>
-      <div class="pipe-stage">
-        <div class="pipe-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-        </div>
-        <span class="pipe-label">Test</span>
+      <h3>Cron Job Automation</h3>
+      <p>Scheduled task orchestration, backup rotations, log cleanup, health checks — reliable cron pipelines that never miss a beat.</p>
+      <span class="svc-tag" style="background: rgba(74,158,255,0.1); color: var(--blue);">Scheduling</span>
+    </div>
+    <div class="svc">
+      <div class="svc-icon" style="background: rgba(52,211,153,0.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
       </div>
-      <div class="pipe-arrow"><div class="pipe-dot"></div></div>
-      <div class="pipe-stage">
-        <div class="pipe-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12A10 10 0 1112 2a10 10 0 0110 10z"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/></svg>
-        </div>
-        <span class="pipe-label">Deploy</span>
+      <h3>ETL Pipelines</h3>
+      <p>Extract, transform, load — data ingestion from APIs, databases, and files into data warehouses with full error handling.</p>
+      <span class="svc-tag" style="background: rgba(52,211,153,0.1); color: var(--green);">Data</span>
+    </div>
+    <div class="svc">
+      <div class="svc-icon" style="background: rgba(34,211,238,0.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <h3>CI/CD Pipelines</h3>
+      <p>GitHub Actions, GitLab CI, Jenkins — automated build, test, and deploy workflows. Zero-downtime deployments.</p>
+      <span class="svc-tag" style="background: rgba(34,211,238,0.1); color: var(--cyan);">Automation</span>
+    </div>
+    <div class="svc">
+      <div class="svc-icon" style="background: rgba(129,140,248,0.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1"/><circle cx="6" cy="18" r="1"/></svg>
+      </div>
+      <h3>Networking & Servers</h3>
+      <p>VPC design, subnetting, load balancers, firewall rules, DNS, SSL — secure and performant network architecture.</p>
+      <span class="svc-tag" style="background: rgba(129,140,248,0.1); color: #818cf8;">Infra</span>
+    </div>
+    <div class="svc">
+      <div class="svc-icon" style="background: rgba(248,113,113,0.12);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Monitoring & Alerting</h3>
+      <p>Prometheus, Grafana, CloudWatch — real-time dashboards, uptime monitoring, on-call alerting, and incident response.</p>
+      <span class="svc-tag" style="background: rgba(248,113,113,0.1); color: var(--red);">Ops</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3D ARCHITECTURE ===== -->
+<section id="network">
+  <div class="tag reveal" style="color: var(--purple);">Live architecture</div>
+  <h2 class="reveal">How it all connects.</h2>
+  <p class="sub reveal">Data packets flow between services in real time — from ingestion through processing to storage and monitoring.</p>
+
+  <div class="scene reveal">
+    <svg viewBox="0 0 860 440" fill="none" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;">
+      <defs>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- Connection lines (curved) -->
+      <path d="M130,340 C200,300 250,200 330,180" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p1"/>
+      <path d="M130,340 C200,340 300,340 430,300" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p2"/>
+      <path d="M330,180 C380,160 450,140 530,120" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p3"/>
+      <path d="M330,180 C380,220 420,280 430,300" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p4"/>
+      <path d="M430,300 C500,280 550,200 530,120" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p5"/>
+      <path d="M530,120 C600,100 680,120 730,160" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p6"/>
+      <path d="M430,300 C530,320 650,280 730,160" stroke="rgba(255,255,255,0.05)" stroke-width="2" id="p7"/>
+      <path d="M130,340 C250,380 500,400 730,160" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="6,6" id="p8"/>
+
+      <!-- Animated packets along paths -->
+      <circle r="5" fill="#4a9eff" filter="url(#glow)">
+        <animateMotion dur="3s" repeatCount="indefinite" rotate="auto"><mpath href="#p1"/></animateMotion>
+      </circle>
+      <circle r="4" fill="#ff9900" filter="url(#glow)">
+        <animateMotion dur="4s" repeatCount="indefinite" begin="0.3s" rotate="auto"><mpath href="#p2"/></animateMotion>
+      </circle>
+      <circle r="5" fill="#34d399" filter="url(#glow)">
+        <animateMotion dur="2.5s" repeatCount="indefinite" begin="0.8s" rotate="auto"><mpath href="#p3"/></animateMotion>
+      </circle>
+      <circle r="4" fill="#a78bfa" filter="url(#glow)">
+        <animateMotion dur="3.5s" repeatCount="indefinite" begin="1.2s" rotate="auto"><mpath href="#p4"/></animateMotion>
+      </circle>
+      <circle r="4" fill="#22d3ee" filter="url(#glow)">
+        <animateMotion dur="3s" repeatCount="indefinite" begin="0.5s" rotate="auto"><mpath href="#p5"/></animateMotion>
+      </circle>
+      <circle r="5" fill="#fb923c" filter="url(#glow)">
+        <animateMotion dur="2.8s" repeatCount="indefinite" begin="1.5s" rotate="auto"><mpath href="#p6"/></animateMotion>
+      </circle>
+      <circle r="4" fill="#f87171" filter="url(#glow)">
+        <animateMotion dur="4s" repeatCount="indefinite" begin="2s" rotate="auto"><mpath href="#p7"/></animateMotion>
+      </circle>
+      <circle r="3" fill="rgba(255,255,255,0.3)">
+        <animateMotion dur="6s" repeatCount="indefinite" begin="1s" rotate="auto"><mpath href="#p8"/></animateMotion>
+      </circle>
+
+      <!-- Node boxes -->
+      <g>
+        <rect x="90" y="305" width="80" height="70" rx="16" fill="#111118" stroke="rgba(74,158,255,0.25)" stroke-width="1.5"/>
+        <text x="130" y="340" text-anchor="middle" fill="white" font-size="22">&#128421;</text>
+        <text x="130" y="360" text-anchor="middle" fill="#4a9eff" font-size="8" font-weight="700" letter-spacing="0.1em">SERVER</text>
+      </g>
+      <g>
+        <rect x="290" y="145" width="80" height="70" rx="16" fill="#111118" stroke="rgba(255,153,0,0.25)" stroke-width="1.5"/>
+        <text x="330" y="180" text-anchor="middle" fill="white" font-size="22">&#9729;</text>
+        <text x="330" y="200" text-anchor="middle" fill="#ff9900" font-size="8" font-weight="700" letter-spacing="0.1em">AWS S3</text>
+      </g>
+      <g>
+        <rect x="390" y="265" width="80" height="70" rx="16" fill="#111118" stroke="rgba(52,211,153,0.25)" stroke-width="1.5"/>
+        <text x="430" y="300" text-anchor="middle" fill="white" font-size="22">&#128259;</text>
+        <text x="430" y="320" text-anchor="middle" fill="#34d399" font-size="8" font-weight="700" letter-spacing="0.1em">ETL JOB</text>
+      </g>
+      <g>
+        <rect x="490" y="85" width="80" height="70" rx="16" fill="#111118" stroke="rgba(167,139,250,0.25)" stroke-width="1.5"/>
+        <text x="530" y="120" text-anchor="middle" fill="white" font-size="22">&#128451;</text>
+        <text x="530" y="140" text-anchor="middle" fill="#a78bfa" font-size="8" font-weight="700" letter-spacing="0.1em">DATABASE</text>
+      </g>
+      <g>
+        <rect x="690" y="125" width="80" height="70" rx="16" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1.5"/>
+        <text x="730" y="160" text-anchor="middle" fill="white" font-size="22">&#128200;</text>
+        <text x="730" y="180" text-anchor="middle" fill="#f87171" font-size="8" font-weight="700" letter-spacing="0.1em">MONITOR</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects" style="background: var(--surface);">
+  <div class="tag reveal" style="color: var(--orange);">Portfolio</div>
+  <h2 class="reveal">What I've built.</h2>
+  <p class="sub reveal">Real infrastructure, real automation, real results.</p>
+
+  <div class="projects">
+    <div class="proj reveal">
+      <div class="proj-num">01</div>
+      <h3>AWS Multi-Region Infrastructure</h3>
+      <p>Designed and deployed a fault-tolerant multi-region AWS setup with auto-scaling EC2 fleets, cross-region S3 replication, and RDS failover. Reduced downtime by 99.5%.</p>
+      <div class="proj-tags">
+        <span>EC2</span><span>S3</span><span>RDS</span><span>Route53</span><span>Terraform</span>
+      </div>
+    </div>
+    <div class="proj reveal">
+      <div class="proj-num">02</div>
+      <h3>Automated ETL Data Pipeline</h3>
+      <p>Built a scheduled ETL pipeline that ingests data from 12 REST APIs, transforms and deduplicates records, and loads into Redshift. Processes 2M+ rows daily via cron-triggered Lambda.</p>
+      <div class="proj-tags">
+        <span>Lambda</span><span>Redshift</span><span>Python</span><span>Cron</span><span>S3</span>
+      </div>
+    </div>
+    <div class="proj reveal">
+      <div class="proj-num">03</div>
+      <h3>CI/CD Pipeline with Zero-Downtime Deploy</h3>
+      <p>Implemented GitHub Actions pipeline with linting, tests, Docker build, ECR push, and ECS blue-green deployment. Full pipeline runs in under 4 minutes.</p>
+      <div class="proj-tags">
+        <span>GitHub Actions</span><span>Docker</span><span>ECS</span><span>ECR</span>
+      </div>
+    </div>
+    <div class="proj reveal">
+      <div class="proj-num">04</div>
+      <h3>Network Architecture & VPC Design</h3>
+      <p>Architected a multi-tier VPC with public/private subnets, NAT gateways, security groups, NACLs, and VPN tunnels connecting on-premise servers to AWS cloud.</p>
+      <div class="proj-tags">
+        <span>VPC</span><span>Subnetting</span><span>VPN</span><span>ALB</span><span>WAF</span>
+      </div>
+    </div>
+    <div class="proj reveal">
+      <div class="proj-num">05</div>
+      <h3>Cron-Based Backup & Rotation System</h3>
+      <p>Designed automated backup system using cron jobs for database snapshots, log rotation, and S3 lifecycle policies. Includes Slack alerting on failures.</p>
+      <div class="proj-tags">
+        <span>Cron</span><span>Bash</span><span>S3</span><span>RDS Snapshots</span><span>Slack API</span>
+      </div>
+    </div>
+    <div class="proj reveal">
+      <div class="proj-num">06</div>
+      <h3>Full-Stack Monitoring & Alerting</h3>
+      <p>Deployed Prometheus + Grafana stack with custom dashboards, CloudWatch integration, uptime checks, and PagerDuty escalation policies for 24/7 incident response.</p>
+      <div class="proj-tags">
+        <span>Prometheus</span><span>Grafana</span><span>CloudWatch</span><span>PagerDuty</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CLOUD STORAGE -->
-<section id="cloud">
-  <span class="section-label reveal" style="color: var(--accent4);">Cloud Storage</span>
-  <h2 class="reveal">Your files, everywhere.</h2>
-  <p class="subtitle reveal">AWS S3, Azure Blob, GCS &mdash; store and retrieve any amount of data, any time, from anywhere.</p>
-  <div class="anim-box reveal">
-    <div class="cloud-scene">
-      <div class="cloud-pulse"></div>
-      <div class="cloud-pulse"></div>
-      <div class="cloud-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
-      </div>
-      <div class="file-particle fp1">.yml</div>
-      <div class="file-particle fp2">.tar</div>
-      <div class="file-particle fp3">.log</div>
-      <div class="file-particle fp4">.env</div>
-    </div>
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="tag reveal" style="color: var(--cyan);">Get in touch</div>
+  <h2 class="reveal">Let's build something.</h2>
+  <p class="sub reveal">Looking for a DevOps engineer? I'm available for freelance and full-time roles.</p>
+  <div class="contact-links reveal">
+    <a href="https://github.com/stefanlaza" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="mailto:stefan@example.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email
+    </a>
+    <a href="https://linkedin.com" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
   </div>
-</section>
-
-<!-- CONTAINERS -->
-<section id="infra">
-  <span class="section-label reveal" style="color: var(--accent3);">Infrastructure</span>
-  <h2 class="reveal">Containers at scale.</h2>
-  <p class="subtitle reveal">Orchestrate hundreds of containers effortlessly. Kubernetes, Docker, ECS &mdash; all in harmony.</p>
-  <div class="anim-box reveal">
-    <div class="container-grid">
-      <div class="container-box">API</div>
-      <div class="container-box">Web</div>
-      <div class="container-box">Auth</div>
-      <div class="container-box">DB</div>
-      <div class="container-box">Cache</div>
-      <div class="container-box">Queue</div>
-      <div class="container-box">Worker</div>
-      <div class="container-box">Logs</div>
-    </div>
-  </div>
-</section>
-
-<!-- MONITORING -->
-<section id="monitor">
-  <span class="section-label reveal" style="color: var(--accent2);">Observability</span>
-  <h2 class="reveal">See everything. Miss nothing.</h2>
-  <p class="subtitle reveal">Real-time metrics, distributed tracing, and intelligent alerts keep your stack healthy.</p>
-  <div class="anim-box reveal">
-    <div class="monitor-scene">
-      <div class="metric-row m-cpu">
-        <span class="metric-label">CPU</span>
-        <div class="metric-bar-track"><div class="metric-bar"></div></div>
-        <span class="metric-val">72%</span>
-      </div>
-      <div class="metric-row m-mem">
-        <span class="metric-label">Memory</span>
-        <div class="metric-bar-track"><div class="metric-bar"></div></div>
-        <span class="metric-val">58%</span>
-      </div>
-      <div class="metric-row m-net">
-        <span class="metric-label">Network</span>
-        <div class="metric-bar-track"><div class="metric-bar"></div></div>
-        <span class="metric-val">41%</span>
-      </div>
-      <div class="metric-row m-disk">
-        <span class="metric-label">Disk</span>
-        <div class="metric-bar-track"><div class="metric-bar"></div></div>
-        <span class="metric-val">85%</span>
-      </div>
-      <div class="heartbeat-line">
-        <svg viewBox="0 0 800 40" preserveAspectRatio="none">
-          <polyline fill="none" stroke="var(--accent2)" stroke-width="2" opacity="0.5"
-            points="0,25 20,25 30,25 35,10 40,35 45,20 50,25 80,25 100,25 110,25 115,8 120,38 125,18 130,25 160,25 180,25 190,25 195,10 200,35 205,20 210,25 240,25 260,25 270,25 275,8 280,38 285,18 290,25 320,25 340,25 350,25 355,10 360,35 365,20 370,25 400,25 420,25 430,25 435,8 440,38 445,18 450,25 480,25 500,25 510,25 515,10 520,35 525,20 530,25 560,25 580,25 590,25 595,8 600,38 605,18 610,25 640,25 660,25 670,25 675,10 680,35 685,20 690,25 720,25 740,25 750,25 755,10 760,35 765,20 770,25 800,25"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section id="features">
-  <span class="section-label reveal">Why DevOps</span>
-  <h2 class="reveal">Everything you need to ship.</h2>
-  <div class="feat-grid">
-    <div class="feat-card reveal">
-      <div class="feat-card-icon" style="background: rgba(0,113,227,0.1); color: var(--accent);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-      </div>
-      <h3>Infrastructure as Code</h3>
-      <p>Terraform, CloudFormation, Pulumi. Define your entire stack in version-controlled config files.</p>
-    </div>
-    <div class="feat-card reveal">
-      <div class="feat-card-icon" style="background: rgba(191,90,242,0.1); color: var(--accent2);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <h3>Security First</h3>
-      <p>Secrets management, RBAC, vulnerability scanning baked into every stage of your pipeline.</p>
-    </div>
-    <div class="feat-card reveal">
-      <div class="feat-card-icon" style="background: rgba(48,209,88,0.1); color: var(--accent3);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      </div>
-      <h3>Real-time Monitoring</h3>
-      <p>Prometheus, Grafana, Datadog. Know exactly what's happening across every service in real time.</p>
-    </div>
-    <div class="feat-card reveal">
-      <div class="feat-card-icon" style="background: rgba(255,159,10,0.1); color: var(--accent4);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-      </div>
-      <h3>Auto Scaling</h3>
-      <p>Scale from zero to millions. Horizontal pod autoscaling and serverless functions that respond to demand.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section>
-  <h2 class="reveal">Ready to automate?</h2>
-  <p class="subtitle reveal">Start building your DevOps pipeline today.</p>
-  <a href="#hero" class="cta-btn reveal">Get Started &rarr;</a>
 </section>
 
 <footer>
-  <p>DevOps &mdash; Beautifully Automated</p>
+  <p>Stefan Laza &mdash; DevOps Engineer &mdash; 2026</p>
 </footer>
 
-<!-- Minimal JS: Intersection Observer for scroll reveals (lightweight, no libraries) -->
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const els = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            obs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      els.forEach(el => obs.observe(el));
-    } else {
-      els.forEach(el => el.classList.add('visible'));
-    }
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  const els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(el => obs.observe(el));
+  } else {
+    els.forEach(el => el.classList.add('visible'));
+  }
+});
 </script>
 </body>
 </html>
