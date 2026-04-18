@@ -1,38 +1,34 @@
-# Stefan Lazarevic
+# Stefan Lazarevic — Technical Product Manager
 
-Interactive portfolio showcasing cloud architecture, DevOps engineering, and technical project delivery.
+Interactive portfolio showcasing technical product management, AI platform delivery, FinTech systems, and cloud architecture.
 
+Queens, New York · Green Card holder · No sponsorship required
+[LinkedIn](https://linkedin.com/in/stefanlazarevic) · [CV Portfolio](https://stefanlaza.github.io/CV/)
 
+---
 
 ## What's Inside
 
-### Architecture Diagrams (Interactive)
-Click any node to trace its connections through the system.
+### AI & Product Delivery
+Real AI platform work with measurable outcomes:
+- **AI Chatbot Platform** — ServiceNow implementation, 800 → 300 tickets/month (62% reduction), 20,000 users across 5 European languages
+- **Multilingual NLP Engine** — Automated translation of automotive parts catalogs and invoices across German, French, Italian, Spanish, English
+- **Invoice Automation** — 30 days → 1 day processing time (97% reduction), 200+ hours saved monthly at Zurich Insurance
 
-| Diagram | Stack |
-|---------|-------|
-| AWS 3-Tier | CloudFront, ALB, EC2, RDS Multi-AZ, ElastiCache, S3 |
-| Cisco Network | Core/Distribution/Access layers, ASA firewalls, VLANs |
-| ETL Pipeline | S3 ingestion, AWS Glue, PySpark, Redshift |
-| Batch Processing | EventBridge, Step Functions, Fargate, DLQ |
-| Microservices on K8s | Jenkins, ECR, EKS, Istio, Helm |
-| Monolith on EC2 | Jenkins, Tomcat, EC2, ALB, RDS |
+### Services
+End-to-end TPM capabilities:
+- Technical Product Management — roadmap, backlog, PRDs, stakeholder alignment
+- AWS Cloud Architecture — VPC, EC2, RDS, Lambda, IAM, cost optimization
+- AI Platform Delivery — chatbot, NLP, automation, build vs buy
+- ETL Pipelines — AWS Glue, PySpark, S3, Redshift
+- CI/CD Pipelines — GitHub Actions, GitLab CI, Jenkins, blue-green deployments
+- Monitoring & Alerting — Prometheus, Grafana, CloudWatch
 
 ### Case Studies
 Real-world project outcomes with before/after metrics:
-- **CI/CD Overhaul** — 2hr deploys → 8min (92% faster)
-- **AWS Cost Optimization** — $44K/mo → $26K/mo (41% reduction)
-- **Incident Response** — MTTR reduced from 2hr to 23min
-
-### Monitoring Dashboard
-Grafana-style mockup with live-updating stats and SVG charts for latency, error rate, CPU, and throughput.
-
-### Architecture Decision Records (ADRs)
-Documented trade-off analysis for key infrastructure decisions:
-- ECS Fargate vs EKS
-- Terraform vs CloudFormation
-- Blue-Green vs Canary deployments
-- PostgreSQL vs DynamoDB
+- **CI/CD Overhaul** — 2hr deploys → 8min (92% faster, zero downtime)
+- **AWS Cost Optimization** — $44K/mo → $26K/mo (41% reduction, 99.97% uptime maintained)
+- **Incident Response** — MTTR reduced from 2hr to 23min, 4 runbooks added
 
 ### Project Delivery (PMP)
 - **Project Timeline** — Interactive Gantt chart showing a full cloud migration from initiation to close
@@ -42,7 +38,7 @@ Documented trade-off analysis for key infrastructure decisions:
 - **Retrospective Insights** — Key takeaways and action items from sprint retros
 - **Escalation Framework** — Visual decision flowchart for blocker resolution
 
-### Tutorials
+### Architecture Tutorials
 Step-by-step deployment walkthroughs in `/tutorials/`:
 - AWS 3-Tier Architecture
 - Cisco Campus Network
@@ -50,6 +46,8 @@ Step-by-step deployment walkthroughs in `/tutorials/`:
 - Batch Processing
 - Microservices on Kubernetes
 - Java Monolith to EC2
+
+---
 
 ## Tech Stack
 - Pure HTML/CSS/SVG — no frameworks, no build step
@@ -59,9 +57,8 @@ Step-by-step deployment walkthroughs in `/tutorials/`:
 
 ## Local Development
 ```bash
-# Clone and open
-git clone https://github.com/stefanlaza/DEVOPS.git
-cd DEVOPS
+git clone https://github.com/stefanlaza/Technical-Product-Manager.git
+cd Technical-Product-Manager
 open index.html
 ```
 
