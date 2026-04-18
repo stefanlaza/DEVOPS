@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stefan Laza — Technical Delivery Lead</title>
+<title>Stefan Lazarevic — Technical Product Manager</title>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -193,6 +193,20 @@ rect[data-node]:hover{filter:brightness(1.2)}
 .esc-wrap{width:min(94vw,960px);margin:2.5rem auto 0;border-radius:20px;background:var(--card);border:1px solid var(--border);overflow:hidden;padding:1.5rem}
 .esc-wrap svg{width:100%;height:auto;display:block}
 
+/* AI SECTION */
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:960px;width:100%;margin-top:2.5rem}
+.ai-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;transition:transform 0.3s,border-color 0.3s}
+.ai-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.12)}
+.ai-card-label{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:1rem;display:inline-block;padding:0.25rem 0.7rem;border-radius:6px}
+.ai-card h3{font-size:1.05rem;font-weight:600;margin-bottom:0.6rem}
+.ai-card p{font-size:0.8rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem}
+.ai-metrics{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1rem}
+.ai-metric{text-align:center;flex:1;min-width:80px}
+.ai-metric-val{font-size:1.5rem;font-weight:700;letter-spacing:-0.03em;line-height:1.2}
+.ai-metric-label{font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:0.15rem}
+.ai-stack{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem}
+.ai-stack span{font-size:0.65rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:6px;background:rgba(255,255,255,0.05);color:var(--muted)}
+
 /* RESPONSIVE */
 @media(max-width:700px){
   nav{padding:0.8rem 1rem}.nav-links{gap:0.8rem}.nav-links a{font-size:0.7rem}
@@ -206,7 +220,7 @@ rect[data-node]:hover{filter:brightness(1.2)}
 <body>
 
 <nav>
-  <span class="nav-name">Stefan Laza</span>
+  <span class="nav-name">Stefan Lazarevic</span>
   <div class="nav-links">
     <a href="#aws">AWS</a>
     <a href="#cisco">Network</a>
@@ -214,6 +228,7 @@ rect[data-node]:hover{filter:brightness(1.2)}
     <a href="#batch">Batch</a>
     <a href="#microservices">Microservices</a>
     <a href="#monolith">Monolith</a>
+    <a href="#ai-work">AI</a>
     <a href="#services">Services</a>
     <a href="#case-studies">Impact</a>
     <a href="#monitoring">Dashboard</a>
@@ -231,8 +246,8 @@ rect[data-node]:hover{filter:brightness(1.2)}
 <!-- ══════════ HERO ══════════ -->
 <section id="hero">
   <div class="tag reveal" style="color:var(--green)">Available for hire</div>
-  <h1 class="reveal">Technical<br>Delivery Lead.</h1>
-  <p class="sub reveal">I design cloud architectures, automate pipelines, and keep production running. Real infrastructure — visualized.</p>
+  <h1 class="reveal">Technical<br>Product Manager.</h1>
+  <p class="sub reveal">I ship enterprise FinTech and AI platforms, lead engineering teams, and keep production running. Real delivery — visualized.</p>
 </section>
 
 <!-- ══════════ 1. AWS 3-TIER ARCHITECTURE ══════════ -->
@@ -248,73 +263,44 @@ rect[data-node]:hover{filter:brightness(1.2)}
       <defs>
         <filter id="g1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
       </defs>
-
-      <!-- VPC boundary -->
       <rect x="200" y="40" width="720" height="440" rx="20" fill="none" stroke="rgba(255,153,0,0.12)" stroke-width="1.5" stroke-dasharray="8,4"/>
       <text x="220" y="68" fill="rgba(255,153,0,0.4)" font-size="10" font-weight="700" letter-spacing="0.1em">VPC 10.0.0.0/16</text>
-
-      <!-- Public Subnet -->
       <rect x="280" y="90" width="280" height="160" rx="12" fill="rgba(74,158,255,0.04)" stroke="rgba(74,158,255,0.1)" stroke-width="1"/>
       <text x="300" y="112" fill="rgba(74,158,255,0.5)" font-size="8" font-weight="600" letter-spacing="0.08em">PUBLIC SUBNET — AZ-1</text>
-
-      <!-- Private Subnet -->
       <rect x="280" y="280" width="280" height="180" rx="12" fill="rgba(167,139,250,0.04)" stroke="rgba(167,139,250,0.1)" stroke-width="1"/>
       <text x="300" y="302" fill="rgba(167,139,250,0.5)" font-size="8" font-weight="600" letter-spacing="0.08em">PRIVATE SUBNET — AZ-1</text>
-
-      <!-- Private Subnet AZ-2 -->
       <rect x="600" y="280" width="280" height="180" rx="12" fill="rgba(167,139,250,0.04)" stroke="rgba(167,139,250,0.1)" stroke-width="1"/>
       <text x="620" y="302" fill="rgba(167,139,250,0.5)" font-size="8" font-weight="600" letter-spacing="0.08em">PRIVATE SUBNET — AZ-2</text>
-
-      <!-- USERS node -->
       <rect x="20" y="135" width="100" height="60" rx="14" fill="#111118" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" data-node="users"/>
       <text x="70" y="165" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Users</text>
       <text x="70" y="180" text-anchor="middle" fill="#6e6e80" font-size="7" font-weight="600">HTTPS</text>
-
-      <!-- Route 53 -->
       <rect x="295" y="120" width="90" height="56" rx="12" fill="#111118" stroke="rgba(255,153,0,0.3)" stroke-width="1.5" data-node="r53"/>
       <text x="340" y="148" text-anchor="middle" fill="#ff9900" font-size="10" font-weight="700">Route 53</text>
       <text x="340" y="163" text-anchor="middle" fill="#6e6e80" font-size="7">DNS</text>
-
-      <!-- CloudFront -->
       <rect x="430" y="120" width="100" height="56" rx="12" fill="#111118" stroke="rgba(255,153,0,0.3)" stroke-width="1.5" data-node="cf"/>
       <text x="480" y="148" text-anchor="middle" fill="#ff9900" font-size="10" font-weight="700">CloudFront</text>
       <text x="480" y="163" text-anchor="middle" fill="#6e6e80" font-size="7">CDN Edge</text>
-
-      <!-- ALB -->
       <rect x="430" y="210" width="100" height="50" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="alb"/>
       <text x="480" y="236" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">ALB</text>
       <text x="480" y="249" text-anchor="middle" fill="#6e6e80" font-size="7">Load Balancer</text>
-
-      <!-- EC2 instances -->
       <rect x="310" y="320" width="90" height="56" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="ec2a"/>
       <text x="355" y="348" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">EC2</text>
       <text x="355" y="363" text-anchor="middle" fill="#6e6e80" font-size="7">App Server 1</text>
-
       <rect x="630" y="320" width="90" height="56" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="ec2b"/>
       <text x="675" y="348" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">EC2</text>
       <text x="675" y="363" text-anchor="middle" fill="#6e6e80" font-size="7">App Server 2</text>
-
-      <!-- RDS -->
       <rect x="430" y="410" width="100" height="56" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5" data-node="rds"/>
       <text x="480" y="438" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">RDS</text>
       <text x="480" y="453" text-anchor="middle" fill="#6e6e80" font-size="7">Multi-AZ MySQL</text>
-
-      <!-- ElastiCache -->
       <rect x="750" y="410" width="100" height="56" rx="12" fill="#111118" stroke="rgba(248,113,113,0.3)" stroke-width="1.5" data-node="redis"/>
       <text x="800" y="438" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">ElastiCache</text>
       <text x="800" y="453" text-anchor="middle" fill="#6e6e80" font-size="7">Redis Cluster</text>
-
-      <!-- S3 -->
       <rect x="630" y="120" width="90" height="56" rx="12" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5" data-node="s3"/>
       <text x="675" y="148" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">S3</text>
       <text x="675" y="163" text-anchor="middle" fill="#6e6e80" font-size="7">Static Assets</text>
-
-      <!-- CloudWatch -->
       <rect x="800" y="120" width="90" height="56" rx="12" fill="#111118" stroke="rgba(248,113,113,0.3)" stroke-width="1.5" data-node="cw"/>
       <text x="845" y="148" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">CloudWatch</text>
       <text x="845" y="163" text-anchor="middle" fill="#6e6e80" font-size="7">Monitoring</text>
-
-      <!-- Connection paths -->
       <path d="M120,165 C180,165 240,148 295,148" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p1" data-path-nodes="users r53"/>
       <path d="M385,148 L430,148" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p2" data-path-nodes="r53 cf"/>
       <path d="M480,176 L480,210" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p3" data-path-nodes="cf alb"/>
@@ -325,8 +311,6 @@ rect[data-node]:hover{filter:brightness(1.2)}
       <path d="M675,376 L750,438" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p8" data-path-nodes="ec2b redis"/>
       <path d="M530,148 L630,148" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="aws-p9" data-path-nodes="cf s3"/>
       <path d="M720,148 L800,148" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="4,3" id="aws-p10" data-path-nodes="s3 cw"/>
-
-      <!-- Animated packets -->
       <circle r="4" fill="#ff9900" filter="url(#g1)" data-path-nodes="users r53"><animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#aws-p1"/></animateMotion></circle>
       <circle r="3.5" fill="#ff9900" filter="url(#g1)" data-path-nodes="r53 cf"><animateMotion dur="1s" repeatCount="indefinite" begin="0.3s"><mpath href="#aws-p2"/></animateMotion></circle>
       <circle r="3.5" fill="#4a9eff" filter="url(#g1)" data-path-nodes="cf alb"><animateMotion dur="1.2s" repeatCount="indefinite" begin="0.6s"><mpath href="#aws-p3"/></animateMotion></circle>
@@ -342,696 +326,74 @@ rect[data-node]:hover{filter:brightness(1.2)}
   <a href="tutorials/aws-3tier.html" class="tut-link reveal">View Full Tutorial — AWS 3-Tier Setup Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
 </section>
 
-<!-- ══════════ 2. CISCO NETWORK TOPOLOGY ══════════ -->
-<section id="cisco">
-  <div class="tag reveal" style="color:var(--indigo)">Network Infrastructure</div>
-  <h2 class="reveal">Cisco Enterprise Network</h2>
-  <p class="sub reveal">Three-tier campus design — internet edge with redundant firewalls, core layer switching, distribution to access switches, and segmented VLANs for servers, users, and management.</p>
+<!-- ══════════ AI WORK ══════════ -->
+<section id="ai-work">
+  <div class="tag reveal" style="color:var(--purple)">AI Product Delivery</div>
+  <h2 class="reveal">AI & Automation Platforms</h2>
+  <p class="sub reveal">End-to-end AI product ownership — from problem definition through deployment, adoption, and measurable outcome.</p>
 
-  <div class="diagram reveal">
-    <span class="diagram-title" style="color:var(--indigo)">Cisco — 3-Tier Campus Network</span>
-    <span class="hint">Click any service to trace its connections</span>
-    <svg viewBox="0 0 960 560" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="g2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      </defs>
+  <div class="ai-grid reveal">
 
-      <!-- Layer labels -->
-      <text x="30" y="75" fill="rgba(129,140,248,0.3)" font-size="9" font-weight="700" letter-spacing="0.1em" transform="rotate(-90,30,75)">EDGE</text>
-      <text x="30" y="210" fill="rgba(129,140,248,0.3)" font-size="9" font-weight="700" letter-spacing="0.1em" transform="rotate(-90,30,210)">CORE</text>
-      <text x="30" y="350" fill="rgba(129,140,248,0.3)" font-size="9" font-weight="700" letter-spacing="0.1em" transform="rotate(-90,30,350)">DIST</text>
-      <text x="30" y="490" fill="rgba(129,140,248,0.3)" font-size="9" font-weight="700" letter-spacing="0.1em" transform="rotate(-90,30,490)">ACCESS</text>
+    <div class="ai-card">
+      <span class="ai-card-label" style="background:rgba(167,139,250,0.1);color:var(--purple)">AI Chatbot Platform</span>
+      <h3>Customer Service Automation</h3>
+      <p>Owned end-to-end delivery of an AI-powered chatbot for customer service automation, serving 20,000 users monthly across 5 European markets. Defined product requirements, selected vendor platform, managed integration with ServiceNow, and drove adoption across operations teams.</p>
+      <div class="ai-metrics">
+        <div class="ai-metric"><div class="ai-metric-val" style="color:var(--purple)">62%</div><div class="ai-metric-label">Ticket reduction</div></div>
+        <div class="ai-metric"><div class="ai-metric-val" style="color:var(--green)">800→300</div><div class="ai-metric-label">Monthly tickets</div></div>
+        <div class="ai-metric"><div class="ai-metric-val" style="color:var(--blue)">20K</div><div class="ai-metric-label">Monthly users</div></div>
+      </div>
+      <div class="ai-stack">
+        <span>ServiceNow</span><span>AI Chatbot</span><span>REST APIs</span><span>Java</span><span>5 Languages</span>
+      </div>
+    </div>
 
-      <!-- Horizontal dividers -->
-      <line x1="60" y1="130" x2="930" y2="130" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4,4"/>
-      <line x1="60" y1="270" x2="930" y2="270" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4,4"/>
-      <line x1="60" y1="420" x2="930" y2="420" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4,4"/>
+    <div class="ai-card">
+      <span class="ai-card-label" style="background:rgba(34,211,238,0.1);color:var(--cyan)">Multilingual NLP</span>
+      <h3>Automotive Parts Translation Engine</h3>
+      <p>Built and shipped an automated multilingual translation platform for car parts catalogs and financial invoices across German, French, Italian, Spanish, and English. Integrated European Car Catalog APIs (KBA, ETX) with custom domain-specific NLP logic to handle automotive nomenclature and invoice line items accurately.</p>
+      <div class="ai-metrics">
+        <div class="ai-metric"><div class="ai-metric-val" style="color:var(--cyan)">5</div><div class="ai-metric-label">Languages</div></div>
+        <div class="ai-metric"><div class="ai-metric-val" style="color:var(--green)">100%</div><div class="ai-metric-label">Automated</div></div>
+        <div class="ai-metric"><div class="ai-metric-val" style="color:var(--aws)">0</div><div class="ai-metric-label">Manual steps</div></div>
+      </div>
+      <div class="ai-stack">
+        <span>NLP</span><span>KBA API</span><span>ETX API</span><span>Spring Boot</span><span>Java</span><span>Node.js</span>
+      </div>
+    </div>
 
-      <!-- EDGE LAYER -->
-      <!-- Internet -->
-      <rect x="380" y="30" width="200" height="50" rx="12" fill="#111118" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" data-node="isp"/>
-      <text x="480" y="56" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Internet / ISP</text>
-      <text x="480" y="70" text-anchor="middle" fill="#6e6e80" font-size="7">BGP Peering</text>
+    <div class="ai-card">
+      <span class="ai-card-label" style="background:rgba(52,211,153,0.1);color:var(--green)">Invoice Automation</span>
+      <h3>AI-Powered Invoice Processing</h3>
+      <p>Defined and shipped an automated invoice processing platform for Zurich Insurance that eliminated manual data entry across finance operations. Owned the full product lifecycle from business problem definition through engineering delivery and stakeholder sign-off.</p>
+      <div class="ai-metrics">
+        <div class="ai-metric"><div class="ai-metric-val" style="color:var(--green)">97%</div><div class="ai-metric-label">Time reduction</div></div>
+        <div class="ai-metric"><div class="ai-metric-val" style="color:var(--blue)">30→1</div><div class="ai-metric-label">Days to process</div></div>
+        <div class="ai-metric"><div class="ai-metric-val" style="color:var(--purple)">200+</div><div class="ai-metric-label">Hours/mo saved</div></div>
+      </div>
+      <div class="ai-stack">
+        <span>AWS</span><span>Spring Boot</span><span>xInvoice</span><span>UBL XML</span><span>FatturaPA</span><span>Kafka</span>
+      </div>
+    </div>
 
-      <!-- Firewalls -->
-      <rect x="280" y="100" width="120" height="50" rx="12" fill="#111118" stroke="rgba(248,113,113,0.3)" stroke-width="1.5" data-node="fw1"/>
-      <text x="340" y="126" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">ASA 5525-X</text>
-      <text x="340" y="140" text-anchor="middle" fill="#6e6e80" font-size="7">Firewall — Active</text>
-
-      <rect x="560" y="100" width="120" height="50" rx="12" fill="#111118" stroke="rgba(248,113,113,0.3)" stroke-width="1.5" data-node="fw2"/>
-      <text x="620" y="126" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">ASA 5525-X</text>
-      <text x="620" y="140" text-anchor="middle" fill="#6e6e80" font-size="7">Firewall — Standby</text>
-
-      <!-- CORE LAYER -->
-      <rect x="220" y="180" width="160" height="56" rx="14" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5" data-node="core1"/>
-      <text x="300" y="208" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700">Cat 9500</text>
-      <text x="300" y="223" text-anchor="middle" fill="#6e6e80" font-size="7">Core Switch 1 — L3</text>
-
-      <rect x="580" y="180" width="160" height="56" rx="14" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5" data-node="core2"/>
-      <text x="660" y="208" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700">Cat 9500</text>
-      <text x="660" y="223" text-anchor="middle" fill="#6e6e80" font-size="7">Core Switch 2 — L3</text>
-
-      <!-- Cross-connect core -->
-      <line x1="380" y1="208" x2="580" y2="208" stroke="rgba(129,140,248,0.15)" stroke-width="2"/>
-
-      <!-- DISTRIBUTION LAYER -->
-      <rect x="100" y="300" width="140" height="52" rx="12" fill="#111118" stroke="rgba(34,211,238,0.3)" stroke-width="1.5" data-node="dist1"/>
-      <text x="170" y="326" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="700">Cat 9300</text>
-      <text x="170" y="340" text-anchor="middle" fill="#6e6e80" font-size="7">Dist-SW1 — VLAN 10,20</text>
-
-      <rect x="400" y="300" width="140" height="52" rx="12" fill="#111118" stroke="rgba(34,211,238,0.3)" stroke-width="1.5" data-node="dist2"/>
-      <text x="470" y="326" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="700">Cat 9300</text>
-      <text x="470" y="340" text-anchor="middle" fill="#6e6e80" font-size="7">Dist-SW2 — VLAN 30,40</text>
-
-      <rect x="710" y="300" width="140" height="52" rx="12" fill="#111118" stroke="rgba(255,153,0,0.25)" stroke-width="1.5" data-node="dist3"/>
-      <text x="780" y="326" text-anchor="middle" fill="#22d3ee" font-size="10" font-weight="700">Cat 9300</text>
-      <text x="780" y="340" text-anchor="middle" fill="#6e6e80" font-size="7">Dist-SW3 — VLAN 50</text>
-
-      <!-- ACCESS LAYER -->
-      <rect x="70" y="440" width="100" height="46" rx="10" fill="#111118" stroke="rgba(52,211,153,0.25)" stroke-width="1" data-node="v10"/>
-      <text x="120" y="463" text-anchor="middle" fill="#34d399" font-size="9" font-weight="600">VLAN 10</text>
-      <text x="120" y="476" text-anchor="middle" fill="#6e6e80" font-size="7">Servers</text>
-
-      <rect x="200" y="440" width="100" height="46" rx="10" fill="#111118" stroke="rgba(251,146,60,0.25)" stroke-width="1" data-node="v20"/>
-      <text x="250" y="463" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="600">VLAN 20</text>
-      <text x="250" y="476" text-anchor="middle" fill="#6e6e80" font-size="7">DMZ</text>
-
-      <rect x="370" y="440" width="100" height="46" rx="10" fill="#111118" stroke="rgba(74,158,255,0.25)" stroke-width="1" data-node="v30"/>
-      <text x="420" y="463" text-anchor="middle" fill="#4a9eff" font-size="9" font-weight="600">VLAN 30</text>
-      <text x="420" y="476" text-anchor="middle" fill="#6e6e80" font-size="7">Workstations</text>
-
-      <rect x="500" y="440" width="100" height="46" rx="10" fill="#111118" stroke="rgba(167,139,250,0.25)" stroke-width="1" data-node="v40"/>
-      <text x="550" y="463" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="600">VLAN 40</text>
-      <text x="550" y="476" text-anchor="middle" fill="#6e6e80" font-size="7">VoIP</text>
-
-      <rect x="710" y="440" width="140" height="46" rx="10" fill="#111118" stroke="rgba(255,153,0,0.25)" stroke-width="1" data-node="v50"/>
-      <text x="780" y="463" text-anchor="middle" fill="#ff9900" font-size="9" font-weight="600">VLAN 50</text>
-      <text x="780" y="476" text-anchor="middle" fill="#6e6e80" font-size="7">Management / OOB</text>
-
-      <!-- WLC + AP -->
-      <rect x="820" y="510" width="100" height="40" rx="10" fill="#111118" stroke="rgba(52,211,153,0.2)" stroke-width="1" data-node="wlc"/>
-      <text x="870" y="533" text-anchor="middle" fill="#34d399" font-size="8" font-weight="600">WLC + APs</text>
-
-      <!-- Connection paths -->
-      <path d="M480,80 C480,90 340,95 340,100" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p1" data-path-nodes="isp fw1"/>
-      <path d="M480,80 C480,90 620,95 620,100" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p2" data-path-nodes="isp fw2"/>
-      <path d="M340,150 L300,180" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p3" data-path-nodes="fw1 core1"/>
-      <path d="M620,150 L660,180" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p4" data-path-nodes="fw2 core2"/>
-      <path d="M340,150 L660,180" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="c-p3b" data-path-nodes="fw1 core2"/>
-      <path d="M620,150 L300,180" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="c-p4b" data-path-nodes="fw2 core1"/>
-      <path d="M300,236 L170,300" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p5" data-path-nodes="core1 dist1"/>
-      <path d="M300,236 C350,260 420,280 470,300" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p6" data-path-nodes="core1 dist2"/>
-      <path d="M660,236 C610,260 530,280 470,300" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p7" data-path-nodes="core2 dist2"/>
-      <path d="M660,236 L780,300" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p8" data-path-nodes="core2 dist3"/>
-      <path d="M170,352 L120,440" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p9" data-path-nodes="dist1 v10"/>
-      <path d="M170,352 L250,440" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p10" data-path-nodes="dist1 v20"/>
-      <path d="M470,352 L420,440" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p11" data-path-nodes="dist2 v30"/>
-      <path d="M470,352 L550,440" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p12" data-path-nodes="dist2 v40"/>
-      <path d="M780,352 L780,440" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="c-p13" data-path-nodes="dist3 v50"/>
-      <path d="M780,486 L870,510" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="c-p14" data-path-nodes="v50 wlc"/>
-
-      <!-- Animated packets -->
-      <circle r="4" fill="#f87171" filter="url(#g2)" data-path-nodes="isp fw1"><animateMotion dur="1.5s" repeatCount="indefinite"><mpath href="#c-p1"/></animateMotion></circle>
-      <circle r="4" fill="#f87171" filter="url(#g2)" data-path-nodes="isp fw2"><animateMotion dur="1.5s" repeatCount="indefinite" begin="0.8s"><mpath href="#c-p2"/></animateMotion></circle>
-      <circle r="3.5" fill="#818cf8" filter="url(#g2)" data-path-nodes="fw1 core1"><animateMotion dur="1.2s" repeatCount="indefinite" begin="0.3s"><mpath href="#c-p3"/></animateMotion></circle>
-      <circle r="3.5" fill="#818cf8" filter="url(#g2)" data-path-nodes="fw2 core2"><animateMotion dur="1.2s" repeatCount="indefinite" begin="1s"><mpath href="#c-p4"/></animateMotion></circle>
-      <circle r="3" fill="rgba(129,140,248,0.5)" filter="url(#g2)" data-path-nodes="fw1 core2"><animateMotion dur="2s" repeatCount="indefinite" begin="0.5s"><mpath href="#c-p3b"/></animateMotion></circle>
-      <circle r="3.5" fill="#22d3ee" filter="url(#g2)" data-path-nodes="core1 dist1"><animateMotion dur="1.8s" repeatCount="indefinite" begin="1.5s"><mpath href="#c-p5"/></animateMotion></circle>
-      <circle r="3.5" fill="#22d3ee" filter="url(#g2)" data-path-nodes="core1 dist2"><animateMotion dur="2s" repeatCount="indefinite" begin="2s"><mpath href="#c-p6"/></animateMotion></circle>
-      <circle r="3.5" fill="#22d3ee" filter="url(#g2)" data-path-nodes="core2 dist2"><animateMotion dur="2s" repeatCount="indefinite" begin="2.5s"><mpath href="#c-p7"/></animateMotion></circle>
-      <circle r="3.5" fill="#22d3ee" filter="url(#g2)" data-path-nodes="core2 dist3"><animateMotion dur="1.8s" repeatCount="indefinite" begin="1.2s"><mpath href="#c-p8"/></animateMotion></circle>
-      <circle r="3" fill="#34d399" filter="url(#g2)" data-path-nodes="dist1 v10"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3s"><mpath href="#c-p9"/></animateMotion></circle>
-      <circle r="3" fill="#fb923c" filter="url(#g2)" data-path-nodes="dist1 v20"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3.3s"><mpath href="#c-p10"/></animateMotion></circle>
-      <circle r="3" fill="#4a9eff" filter="url(#g2)" data-path-nodes="dist2 v30"><animateMotion dur="1.5s" repeatCount="indefinite" begin="2.8s"><mpath href="#c-p11"/></animateMotion></circle>
-      <circle r="3" fill="#a78bfa" filter="url(#g2)" data-path-nodes="dist2 v40"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3.5s"><mpath href="#c-p12"/></animateMotion></circle>
-      <circle r="3" fill="#ff9900" filter="url(#g2)" data-path-nodes="dist3 v50"><animateMotion dur="1.2s" repeatCount="indefinite" begin="2.2s"><mpath href="#c-p13"/></animateMotion></circle>
-      <circle r="2.5" fill="#34d399" filter="url(#g2)" data-path-nodes="v50 wlc"><animateMotion dur="1s" repeatCount="indefinite" begin="4s"><mpath href="#c-p14"/></animateMotion></circle>
-    </svg>
   </div>
-  <a href="tutorials/cisco-network.html" class="tut-link reveal">View Full Tutorial — Cisco Network Setup Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-</section>
-
-<!-- ══════════ 3. ETL PIPELINE ══════════ -->
-<section id="etl" class="alt-bg">
-  <div class="tag reveal" style="color:var(--green)">Data Engineering</div>
-  <h2 class="reveal">ETL Pipeline Architecture</h2>
-  <p class="sub reveal">Data extracted from REST APIs, databases, and file drops flows through validation, transformation, and deduplication stages before loading into Redshift via S3 staging.</p>
-
-  <div class="diagram reveal">
-    <span class="diagram-title" style="color:var(--green)">ETL — Daily Data Ingestion Pipeline</span>
-    <span class="hint">Click any service to trace its connections</span>
-    <svg viewBox="0 0 960 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="g3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      </defs>
-
-      <!-- Phase labels -->
-      <rect x="40" y="45" width="140" height="24" rx="6" fill="rgba(251,146,60,0.08)" stroke="rgba(251,146,60,0.2)" stroke-width="1"/>
-      <text x="110" y="61" text-anchor="middle" fill="#fb923c" font-size="8" font-weight="700" letter-spacing="0.1em">EXTRACT</text>
-
-      <rect x="260" y="45" width="140" height="24" rx="6" fill="rgba(74,158,255,0.08)" stroke="rgba(74,158,255,0.2)" stroke-width="1"/>
-      <text x="330" y="61" text-anchor="middle" fill="#4a9eff" font-size="8" font-weight="700" letter-spacing="0.1em">STAGING</text>
-
-      <rect x="480" y="45" width="140" height="24" rx="6" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.2)" stroke-width="1"/>
-      <text x="550" y="61" text-anchor="middle" fill="#a78bfa" font-size="8" font-weight="700" letter-spacing="0.1em">TRANSFORM</text>
-
-      <rect x="700" y="45" width="140" height="24" rx="6" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
-      <text x="770" y="61" text-anchor="middle" fill="#34d399" font-size="8" font-weight="700" letter-spacing="0.1em">LOAD</text>
-
-      <!-- EXTRACT: Data Sources -->
-      <rect x="50" y="100" width="120" height="50" rx="12" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5" data-node="eapi"/>
-      <text x="110" y="126" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">REST APIs</text>
-      <text x="110" y="140" text-anchor="middle" fill="#6e6e80" font-size="7">12 Endpoints</text>
-
-      <rect x="50" y="175" width="120" height="50" rx="12" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5" data-node="epg"/>
-      <text x="110" y="201" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">PostgreSQL</text>
-      <text x="110" y="215" text-anchor="middle" fill="#6e6e80" font-size="7">Source DB</text>
-
-      <rect x="50" y="250" width="120" height="50" rx="12" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5" data-node="esftp"/>
-      <text x="110" y="276" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">SFTP / CSV</text>
-      <text x="110" y="290" text-anchor="middle" fill="#6e6e80" font-size="7">File Drops</text>
-
-      <!-- STAGING: S3 Raw -->
-      <rect x="270" y="140" width="120" height="56" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="eraw"/>
-      <text x="330" y="168" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">S3 Bucket</text>
-      <text x="330" y="183" text-anchor="middle" fill="#6e6e80" font-size="7">s3://raw-data/</text>
-
-      <rect x="270" y="225" width="120" height="50" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="eval"/>
-      <text x="330" y="251" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">Schema</text>
-      <text x="330" y="265" text-anchor="middle" fill="#6e6e80" font-size="7">Validation</text>
-
-      <!-- TRANSFORM -->
-      <rect x="490" y="100" width="120" height="50" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5" data-node="eglue"/>
-      <text x="550" y="126" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Glue Job</text>
-      <text x="550" y="140" text-anchor="middle" fill="#6e6e80" font-size="7">PySpark Clean</text>
-
-      <rect x="490" y="175" width="120" height="50" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5" data-node="ededup"/>
-      <text x="550" y="201" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Deduplicate</text>
-      <text x="550" y="215" text-anchor="middle" fill="#6e6e80" font-size="7">Hash Matching</text>
-
-      <rect x="490" y="250" width="120" height="50" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5" data-node="eenrich"/>
-      <text x="550" y="276" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Enrich</text>
-      <text x="550" y="290" text-anchor="middle" fill="#6e6e80" font-size="7">Join + Aggregate</text>
-
-      <!-- LOAD -->
-      <rect x="710" y="100" width="120" height="56" rx="12" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5" data-node="eproc"/>
-      <text x="770" y="128" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">S3 Bucket</text>
-      <text x="770" y="143" text-anchor="middle" fill="#6e6e80" font-size="7">s3://processed/</text>
-
-      <rect x="710" y="190" width="120" height="56" rx="12" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5" data-node="ers"/>
-      <text x="770" y="218" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">Redshift</text>
-      <text x="770" y="233" text-anchor="middle" fill="#6e6e80" font-size="7">COPY Command</text>
-
-      <!-- DQ + Alerts -->
-      <rect x="600" y="340" width="120" height="46" rx="10" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1" data-node="ecw"/>
-      <text x="660" y="363" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">CloudWatch</text>
-      <text x="660" y="376" text-anchor="middle" fill="#6e6e80" font-size="7">Alerts + Logs</text>
-
-      <rect x="760" y="340" width="100" height="46" rx="10" fill="#111118" stroke="rgba(251,146,60,0.25)" stroke-width="1" data-node="esns"/>
-      <text x="810" y="363" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="600">SNS</text>
-      <text x="810" y="376" text-anchor="middle" fill="#6e6e80" font-size="7">Failure Alerts</text>
-
-      <!-- Connection paths -->
-      <path d="M170,125 C210,125 230,160 270,165" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p1" data-path-nodes="eapi eraw"/>
-      <path d="M170,200 C210,200 230,170 270,168" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p2" data-path-nodes="epg eraw"/>
-      <path d="M170,275 C210,275 230,175 270,170" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p3" data-path-nodes="esftp eraw"/>
-      <path d="M330,196 L330,225" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p4" data-path-nodes="eraw eval"/>
-      <path d="M390,250 C420,220 460,125 490,125" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p5" data-path-nodes="eval eglue"/>
-      <path d="M550,150 L550,175" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p6" data-path-nodes="eglue ededup"/>
-      <path d="M550,225 L550,250" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p7" data-path-nodes="ededup eenrich"/>
-      <path d="M610,125 L710,128" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p8" data-path-nodes="eenrich eproc"/>
-      <path d="M770,156 L770,190" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="e-p9" data-path-nodes="eproc ers"/>
-      <path d="M550,300 C580,340 620,350 600,360" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="e-p10" data-path-nodes="eenrich ecw"/>
-      <path d="M720,363 L760,363" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="e-p11" data-path-nodes="ecw esns"/>
-
-      <!-- Animated packets -->
-      <circle r="4" fill="#fb923c" filter="url(#g3)" data-path-nodes="eapi eraw"><animateMotion dur="2s" repeatCount="indefinite"><mpath href="#e-p1"/></animateMotion></circle>
-      <circle r="4" fill="#fb923c" filter="url(#g3)" data-path-nodes="epg eraw"><animateMotion dur="2s" repeatCount="indefinite" begin="0.7s"><mpath href="#e-p2"/></animateMotion></circle>
-      <circle r="4" fill="#fb923c" filter="url(#g3)" data-path-nodes="esftp eraw"><animateMotion dur="2s" repeatCount="indefinite" begin="1.4s"><mpath href="#e-p3"/></animateMotion></circle>
-      <circle r="3" fill="#4a9eff" filter="url(#g3)" data-path-nodes="eraw eval"><animateMotion dur="1s" repeatCount="indefinite" begin="2.5s"><mpath href="#e-p4"/></animateMotion></circle>
-      <circle r="4" fill="#4a9eff" filter="url(#g3)" data-path-nodes="eval eglue"><animateMotion dur="2.5s" repeatCount="indefinite" begin="3s"><mpath href="#e-p5"/></animateMotion></circle>
-      <circle r="3" fill="#a78bfa" filter="url(#g3)" data-path-nodes="eglue ededup"><animateMotion dur="1s" repeatCount="indefinite" begin="4s"><mpath href="#e-p6"/></animateMotion></circle>
-      <circle r="3" fill="#a78bfa" filter="url(#g3)" data-path-nodes="ededup eenrich"><animateMotion dur="1s" repeatCount="indefinite" begin="4.5s"><mpath href="#e-p7"/></animateMotion></circle>
-      <circle r="4" fill="#34d399" filter="url(#g3)" data-path-nodes="eenrich eproc"><animateMotion dur="1.5s" repeatCount="indefinite" begin="5s"><mpath href="#e-p8"/></animateMotion></circle>
-      <circle r="3.5" fill="#34d399" filter="url(#g3)" data-path-nodes="eproc ers"><animateMotion dur="1.2s" repeatCount="indefinite" begin="5.5s"><mpath href="#e-p9"/></animateMotion></circle>
-      <circle r="2.5" fill="#f87171" filter="url(#g3)" data-path-nodes="eenrich ecw"><animateMotion dur="2s" repeatCount="indefinite" begin="3s"><mpath href="#e-p10"/></animateMotion></circle>
-      <circle r="2.5" fill="#fb923c" filter="url(#g3)" data-path-nodes="ecw esns"><animateMotion dur="1s" repeatCount="indefinite" begin="4s"><mpath href="#e-p11"/></animateMotion></circle>
-    </svg>
-  </div>
-  <a href="tutorials/etl-pipeline.html" class="tut-link reveal">View Full Tutorial — ETL Pipeline Setup Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-</section>
-
-<!-- ══════════ 4. BATCH JOB PIPELINE ══════════ -->
-<section id="batch">
-  <div class="tag reveal" style="color:var(--cyan)">Batch Processing</div>
-  <h2 class="reveal">Scheduled Batch Pipeline</h2>
-  <p class="sub reveal">CloudWatch cron triggers Step Functions orchestration — Lambda validates, AWS Batch processes in parallel across Fargate containers, results land in S3, with SNS alerts on completion or failure.</p>
-
-  <div class="diagram reveal">
-    <span class="diagram-title" style="color:var(--cyan)">AWS Batch — Nightly Processing Pipeline</span>
-    <span class="hint">Click any service to trace its connections</span>
-    <svg viewBox="0 0 960 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="g4" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      </defs>
-
-      <!-- TRIGGER -->
-      <rect x="30" y="140" width="110" height="56" rx="14" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5" data-node="beb"/>
-      <text x="85" y="168" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">EventBridge</text>
-      <text x="85" y="183" text-anchor="middle" fill="#6e6e80" font-size="7">cron(0 2 * * ? *)</text>
-
-      <!-- STEP FUNCTIONS -->
-      <rect x="190" y="120" width="120" height="90" rx="14" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5" data-node="bsfn"/>
-      <text x="250" y="158" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Step</text>
-      <text x="250" y="172" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Functions</text>
-      <text x="250" y="198" text-anchor="middle" fill="#6e6e80" font-size="7">Orchestrator</text>
-
-      <!-- LAMBDA VALIDATE -->
-      <rect x="360" y="90" width="110" height="50" rx="12" fill="#111118" stroke="rgba(255,153,0,0.3)" stroke-width="1.5" data-node="blam"/>
-      <text x="415" y="116" text-anchor="middle" fill="#ff9900" font-size="10" font-weight="700">Lambda</text>
-      <text x="415" y="130" text-anchor="middle" fill="#6e6e80" font-size="7">Validate Input</text>
-
-      <!-- BATCH COMPUTE -->
-      <rect x="520" y="55" width="130" height="52" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="bj1"/>
-      <text x="585" y="81" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">Batch Job 1</text>
-      <text x="585" y="96" text-anchor="middle" fill="#6e6e80" font-size="7">Fargate — Report Gen</text>
-
-      <rect x="520" y="130" width="130" height="52" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="bj2"/>
-      <text x="585" y="156" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">Batch Job 2</text>
-      <text x="585" y="171" text-anchor="middle" fill="#6e6e80" font-size="7">Fargate — Aggregation</text>
-
-      <rect x="520" y="205" width="130" height="52" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="bj3"/>
-      <text x="585" y="231" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">Batch Job 3</text>
-      <text x="585" y="246" text-anchor="middle" fill="#6e6e80" font-size="7">Fargate — Cleanup</text>
-
-      <!-- Parallel bracket -->
-      <text x="508" y="85" fill="rgba(74,158,255,0.3)" font-size="60" font-weight="100">&#123;</text>
-      <text x="498" y="150" fill="rgba(74,158,255,0.2)" font-size="7" font-weight="600" letter-spacing="0.06em">PARALLEL</text>
-
-      <!-- OUTPUT S3 -->
-      <rect x="700" y="100" width="110" height="56" rx="12" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5" data-node="bs3"/>
-      <text x="755" y="128" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">S3 Bucket</text>
-      <text x="755" y="143" text-anchor="middle" fill="#6e6e80" font-size="7">s3://batch-output/</text>
-
-      <!-- DynamoDB state -->
-      <rect x="700" y="190" width="110" height="50" rx="12" fill="#111118" stroke="rgba(74,158,255,0.25)" stroke-width="1" data-node="bddb"/>
-      <text x="755" y="216" text-anchor="middle" fill="#4a9eff" font-size="9" font-weight="600">DynamoDB</text>
-      <text x="755" y="230" text-anchor="middle" fill="#6e6e80" font-size="7">Job State Table</text>
-
-      <!-- SNS -->
-      <rect x="860" y="100" width="80" height="50" rx="12" fill="#111118" stroke="rgba(248,113,113,0.3)" stroke-width="1.5" data-node="bsns"/>
-      <text x="900" y="126" text-anchor="middle" fill="#f87171" font-size="10" font-weight="700">SNS</text>
-      <text x="900" y="140" text-anchor="middle" fill="#6e6e80" font-size="7">Notify</text>
-
-      <!-- CloudWatch Logs -->
-      <rect x="360" y="300" width="120" height="46" rx="10" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1" data-node="bcw"/>
-      <text x="420" y="323" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">CloudWatch</text>
-      <text x="420" y="336" text-anchor="middle" fill="#6e6e80" font-size="7">Logs + Metrics</text>
-
-      <!-- Dead Letter Queue -->
-      <rect x="540" y="300" width="110" height="46" rx="10" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1" data-node="bdlq"/>
-      <text x="595" y="323" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">SQS DLQ</text>
-      <text x="595" y="336" text-anchor="middle" fill="#6e6e80" font-size="7">Failed Jobs</text>
-
-      <!-- Paths -->
-      <path d="M140,168 L190,165" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p1" data-path-nodes="beb bsfn"/>
-      <path d="M310,155 C330,140 350,120 360,115" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p2" data-path-nodes="bsfn blam"/>
-      <path d="M470,105 C490,90 510,82 520,81" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p3" data-path-nodes="blam bj1"/>
-      <path d="M470,115 C490,130 510,145 520,156" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p4" data-path-nodes="blam bj2"/>
-      <path d="M470,120 C490,170 510,210 520,231" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p5" data-path-nodes="blam bj3"/>
-      <path d="M650,81 L700,118" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p6" data-path-nodes="bj1 bs3"/>
-      <path d="M650,156 L700,130" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p7" data-path-nodes="bj2 bs3"/>
-      <path d="M650,231 C670,220 690,200 700,215" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p8" data-path-nodes="bj3 bddb"/>
-      <path d="M810,128 L860,125" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="b-p9" data-path-nodes="bs3 bsns"/>
-      <path d="M585,257 L585,300" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="b-p10" data-path-nodes="bj3 bdlq"/>
-      <path d="M415,140 L415,300" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="b-p11" data-path-nodes="blam bcw"/>
-
-      <!-- Animated packets -->
-      <circle r="4" fill="#fb923c" filter="url(#g4)" data-path-nodes="beb bsfn"><animateMotion dur="1s" repeatCount="indefinite"><mpath href="#b-p1"/></animateMotion></circle>
-      <circle r="4" fill="#a78bfa" filter="url(#g4)" data-path-nodes="bsfn blam"><animateMotion dur="1.5s" repeatCount="indefinite" begin="0.5s"><mpath href="#b-p2"/></animateMotion></circle>
-      <circle r="3.5" fill="#ff9900" filter="url(#g4)" data-path-nodes="blam bj1"><animateMotion dur="1.5s" repeatCount="indefinite" begin="1s"><mpath href="#b-p3"/></animateMotion></circle>
-      <circle r="3.5" fill="#ff9900" filter="url(#g4)" data-path-nodes="blam bj2"><animateMotion dur="1.5s" repeatCount="indefinite" begin="1.3s"><mpath href="#b-p4"/></animateMotion></circle>
-      <circle r="3.5" fill="#ff9900" filter="url(#g4)" data-path-nodes="blam bj3"><animateMotion dur="1.8s" repeatCount="indefinite" begin="1.6s"><mpath href="#b-p5"/></animateMotion></circle>
-      <circle r="4" fill="#4a9eff" filter="url(#g4)" data-path-nodes="bj1 bs3"><animateMotion dur="1.5s" repeatCount="indefinite" begin="2.5s"><mpath href="#b-p6"/></animateMotion></circle>
-      <circle r="4" fill="#4a9eff" filter="url(#g4)" data-path-nodes="bj2 bs3"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3s"><mpath href="#b-p7"/></animateMotion></circle>
-      <circle r="3" fill="#4a9eff" filter="url(#g4)" data-path-nodes="bj3 bddb"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3.5s"><mpath href="#b-p8"/></animateMotion></circle>
-      <circle r="3.5" fill="#34d399" filter="url(#g4)" data-path-nodes="bs3 bsns"><animateMotion dur="1s" repeatCount="indefinite" begin="4s"><mpath href="#b-p9"/></animateMotion></circle>
-      <circle r="2.5" fill="#f87171" filter="url(#g4)" data-path-nodes="bj3 bdlq"><animateMotion dur="1.5s" repeatCount="indefinite" begin="3s"><mpath href="#b-p10"/></animateMotion></circle>
-      <circle r="2.5" fill="#f87171" filter="url(#g4)" data-path-nodes="blam bcw"><animateMotion dur="2s" repeatCount="indefinite" begin="2s"><mpath href="#b-p11"/></animateMotion></circle>
-    </svg>
-  </div>
-  <a href="tutorials/batch-pipeline.html" class="tut-link reveal">View Full Tutorial — Batch Pipeline Setup Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-</section>
-
-<!-- ══════════ 5. JAVA MICROSERVICES → K8S VIA JENKINS ══════════ -->
-<section id="microservices">
-  <div class="tag reveal" style="color:var(--cyan)">Microservices</div>
-  <h2 class="reveal">Java Microservices to Kubernetes</h2>
-  <p class="sub reveal">Developers push to Git, Jenkins builds each Spring Boot service with Maven, runs unit/integration tests, builds Docker images, pushes to Harbor registry, and deploys to Kubernetes with rolling updates. Each service has its own PostgreSQL schema.</p>
-
-  <div class="diagram reveal">
-    <span class="diagram-title" style="color:var(--cyan)">Jenkins — Microservices CI/CD to K8s</span>
-    <span class="hint">Click any service to trace its connections</span>
-    <svg viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="g5" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      </defs>
-
-      <!-- Phase headers -->
-      <rect x="25" y="20" width="100" height="22" rx="6" fill="rgba(129,140,248,0.08)" stroke="rgba(129,140,248,0.2)" stroke-width="1"/>
-      <text x="75" y="35" text-anchor="middle" fill="#818cf8" font-size="7" font-weight="700" letter-spacing="0.1em">SOURCE</text>
-
-      <rect x="170" y="20" width="100" height="22" rx="6" fill="rgba(251,146,60,0.08)" stroke="rgba(251,146,60,0.2)" stroke-width="1"/>
-      <text x="220" y="35" text-anchor="middle" fill="#fb923c" font-size="7" font-weight="700" letter-spacing="0.1em">BUILD</text>
-
-      <rect x="315" y="20" width="100" height="22" rx="6" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.2)" stroke-width="1"/>
-      <text x="365" y="35" text-anchor="middle" fill="#a78bfa" font-size="7" font-weight="700" letter-spacing="0.1em">TEST</text>
-
-      <rect x="460" y="20" width="100" height="22" rx="6" fill="rgba(74,158,255,0.08)" stroke="rgba(74,158,255,0.2)" stroke-width="1"/>
-      <text x="510" y="35" text-anchor="middle" fill="#4a9eff" font-size="7" font-weight="700" letter-spacing="0.1em">PACKAGE</text>
-
-      <rect x="610" y="20" width="100" height="22" rx="6" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
-      <text x="660" y="35" text-anchor="middle" fill="#34d399" font-size="7" font-weight="700" letter-spacing="0.1em">DEPLOY</text>
-
-      <rect x="770" y="20" width="140" height="22" rx="6" fill="rgba(34,211,238,0.08)" stroke="rgba(34,211,238,0.2)" stroke-width="1"/>
-      <text x="840" y="35" text-anchor="middle" fill="#22d3ee" font-size="7" font-weight="700" letter-spacing="0.1em">KUBERNETES</text>
-
-      <!-- ── PIPELINE ROW 1: user-service ── -->
-      <text x="40" y="78" fill="rgba(255,255,255,0.25)" font-size="8" font-weight="700" letter-spacing="0.06em">user-service</text>
-
-      <rect x="30" y="88" width="90" height="48" rx="10" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5" data-node="mga"/>
-      <text x="75" y="112" text-anchor="middle" fill="#818cf8" font-size="9" font-weight="700">Git Push</text>
-      <text x="75" y="126" text-anchor="middle" fill="#6e6e80" font-size="6.5">Webhook</text>
-
-      <rect x="170" y="88" width="100" height="48" rx="10" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5" data-node="mja"/>
-      <text x="220" y="112" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">Jenkins</text>
-      <text x="220" y="126" text-anchor="middle" fill="#6e6e80" font-size="6.5">mvn clean package</text>
-
-      <rect x="320" y="88" width="90" height="48" rx="10" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5" data-node="mta"/>
-      <text x="365" y="112" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="700">Tests</text>
-      <text x="365" y="126" text-anchor="middle" fill="#6e6e80" font-size="6.5">JUnit + Mockito</text>
-
-      <rect x="460" y="88" width="100" height="48" rx="10" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="mda"/>
-      <text x="510" y="112" text-anchor="middle" fill="#4a9eff" font-size="9" font-weight="700">Docker</text>
-      <text x="510" y="126" text-anchor="middle" fill="#6e6e80" font-size="6.5">Build + Push</text>
-
-      <rect x="615" y="88" width="90" height="48" rx="10" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5" data-node="mha"/>
-      <text x="660" y="112" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700">Helm</text>
-      <text x="660" y="126" text-anchor="middle" fill="#6e6e80" font-size="6.5">upgrade --install</text>
-
-      <!-- ── PIPELINE ROW 2: order-service ── -->
-      <text x="40" y="168" fill="rgba(255,255,255,0.25)" font-size="8" font-weight="700" letter-spacing="0.06em">order-service</text>
-
-      <rect x="30" y="178" width="90" height="48" rx="10" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5" data-node="mgb"/>
-      <text x="75" y="202" text-anchor="middle" fill="#818cf8" font-size="9" font-weight="700">Git Push</text>
-      <text x="75" y="216" text-anchor="middle" fill="#6e6e80" font-size="6.5">Webhook</text>
-
-      <rect x="170" y="178" width="100" height="48" rx="10" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5" data-node="mjb"/>
-      <text x="220" y="202" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">Jenkins</text>
-      <text x="220" y="216" text-anchor="middle" fill="#6e6e80" font-size="6.5">mvn clean package</text>
-
-      <rect x="320" y="178" width="90" height="48" rx="10" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5" data-node="mtb"/>
-      <text x="365" y="202" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="700">Tests</text>
-      <text x="365" y="216" text-anchor="middle" fill="#6e6e80" font-size="6.5">JUnit + Testcontainers</text>
-
-      <rect x="460" y="178" width="100" height="48" rx="10" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="mdb"/>
-      <text x="510" y="202" text-anchor="middle" fill="#4a9eff" font-size="9" font-weight="700">Docker</text>
-      <text x="510" y="216" text-anchor="middle" fill="#6e6e80" font-size="6.5">Build + Push</text>
-
-      <rect x="615" y="178" width="90" height="48" rx="10" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5" data-node="mhb"/>
-      <text x="660" y="202" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700">Helm</text>
-      <text x="660" y="216" text-anchor="middle" fill="#6e6e80" font-size="6.5">upgrade --install</text>
-
-      <!-- ── PIPELINE ROW 3: payment-service ── -->
-      <text x="40" y="258" fill="rgba(255,255,255,0.25)" font-size="8" font-weight="700" letter-spacing="0.06em">payment-service</text>
-
-      <rect x="30" y="268" width="90" height="48" rx="10" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5" data-node="mgc"/>
-      <text x="75" y="292" text-anchor="middle" fill="#818cf8" font-size="9" font-weight="700">Git Push</text>
-      <text x="75" y="306" text-anchor="middle" fill="#6e6e80" font-size="6.5">Webhook</text>
-
-      <rect x="170" y="268" width="100" height="48" rx="10" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5" data-node="mjc"/>
-      <text x="220" y="292" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">Jenkins</text>
-      <text x="220" y="306" text-anchor="middle" fill="#6e6e80" font-size="6.5">mvn clean package</text>
-
-      <rect x="320" y="268" width="90" height="48" rx="10" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5" data-node="mtc"/>
-      <text x="365" y="292" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="700">Tests</text>
-      <text x="365" y="306" text-anchor="middle" fill="#6e6e80" font-size="6.5">JUnit + WireMock</text>
-
-      <rect x="460" y="268" width="100" height="48" rx="10" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="mdc"/>
-      <text x="510" y="292" text-anchor="middle" fill="#4a9eff" font-size="9" font-weight="700">Docker</text>
-      <text x="510" y="306" text-anchor="middle" fill="#6e6e80" font-size="6.5">Build + Push</text>
-
-      <rect x="615" y="268" width="90" height="48" rx="10" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5" data-node="mhc"/>
-      <text x="660" y="292" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700">Helm</text>
-      <text x="660" y="306" text-anchor="middle" fill="#6e6e80" font-size="6.5">upgrade --install</text>
-
-      <!-- ── KUBERNETES CLUSTER ── -->
-      <rect x="760" y="60" width="175" height="280" rx="16" fill="rgba(34,211,238,0.03)" stroke="rgba(34,211,238,0.15)" stroke-width="1.5" stroke-dasharray="6,3"/>
-      <text x="775" y="80" fill="rgba(34,211,238,0.4)" font-size="7" font-weight="700" letter-spacing="0.08em">K8S CLUSTER</text>
-
-      <!-- K8s pods -->
-      <rect x="780" y="92" width="135" height="40" rx="8" fill="#111118" stroke="rgba(34,211,238,0.25)" stroke-width="1" data-node="mk1"/>
-      <text x="847" y="112" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">user-svc (3 pods)</text>
-      <text x="847" y="124" text-anchor="middle" fill="#6e6e80" font-size="6">Deployment + HPA</text>
-
-      <rect x="780" y="145" width="135" height="40" rx="8" fill="#111118" stroke="rgba(34,211,238,0.25)" stroke-width="1" data-node="mk2"/>
-      <text x="847" y="165" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">order-svc (3 pods)</text>
-      <text x="847" y="177" text-anchor="middle" fill="#6e6e80" font-size="6">Deployment + HPA</text>
-
-      <rect x="780" y="198" width="135" height="40" rx="8" fill="#111118" stroke="rgba(34,211,238,0.25)" stroke-width="1" data-node="mk3"/>
-      <text x="847" y="218" text-anchor="middle" fill="#22d3ee" font-size="8" font-weight="600">payment-svc (2 pods)</text>
-      <text x="847" y="230" text-anchor="middle" fill="#6e6e80" font-size="6">Deployment + HPA</text>
-
-      <!-- Ingress -->
-      <rect x="780" y="252" width="135" height="34" rx="8" fill="#111118" stroke="rgba(52,211,153,0.25)" stroke-width="1" data-node="ming"/>
-      <text x="847" y="272" text-anchor="middle" fill="#34d399" font-size="8" font-weight="600">NGINX Ingress</text>
-      <text x="847" y="282" text-anchor="middle" fill="#6e6e80" font-size="6">/api/* routing</text>
-
-      <!-- Config -->
-      <rect x="780" y="298" width="135" height="30" rx="8" fill="#111118" stroke="rgba(255,153,0,0.2)" stroke-width="1" data-node="mcfg"/>
-      <text x="847" y="317" text-anchor="middle" fill="#ff9900" font-size="7" font-weight="600">ConfigMaps + Secrets</text>
-
-      <!-- ── PostgreSQL cluster ── -->
-      <rect x="340" y="390" width="130" height="54" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5" data-node="mpg"/>
-      <text x="405" y="418" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">PostgreSQL</text>
-      <text x="405" y="434" text-anchor="middle" fill="#6e6e80" font-size="7">user_db / order_db / pay_db</text>
-
-      <!-- Harbor Registry -->
-      <rect x="480" y="390" width="110" height="54" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="mhar"/>
-      <text x="535" y="418" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">Harbor</text>
-      <text x="535" y="434" text-anchor="middle" fill="#6e6e80" font-size="7">Docker Registry</text>
-
-      <!-- SonarQube -->
-      <rect x="170" y="390" width="110" height="54" rx="12" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1" data-node="msonar"/>
-      <text x="225" y="418" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">SonarQube</text>
-      <text x="225" y="434" text-anchor="middle" fill="#6e6e80" font-size="7">Code Quality Gate</text>
-
-      <!-- Grafana + Prometheus -->
-      <rect x="780" y="390" width="135" height="54" rx="12" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1" data-node="mmon"/>
-      <text x="847" y="418" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">Prometheus + Grafana</text>
-      <text x="847" y="434" text-anchor="middle" fill="#6e6e80" font-size="7">Metrics + Dashboards</text>
-
-      <!-- ── Connection paths: Row 1 ── -->
-      <path d="M120,112 L170,112" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-a1" data-path-nodes="mga mja"/>
-      <path d="M270,112 L320,112" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-a2" data-path-nodes="mja mta"/>
-      <path d="M410,112 L460,112" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-a3" data-path-nodes="mta mda"/>
-      <path d="M560,112 L615,112" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-a4" data-path-nodes="mda mha"/>
-      <path d="M705,112 L780,112" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-a5" data-path-nodes="mha mk1"/>
-
-      <!-- ── Connection paths: Row 2 ── -->
-      <path d="M120,202 L170,202" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-b1" data-path-nodes="mgb mjb"/>
-      <path d="M270,202 L320,202" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-b2" data-path-nodes="mjb mtb"/>
-      <path d="M410,202 L460,202" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-b3" data-path-nodes="mtb mdb"/>
-      <path d="M560,202 L615,202" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-b4" data-path-nodes="mdb mhb"/>
-      <path d="M705,202 L780,165" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-b5" data-path-nodes="mhb mk2"/>
-
-      <!-- ── Connection paths: Row 3 ── -->
-      <path d="M120,292 L170,292" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-c1" data-path-nodes="mgc mjc"/>
-      <path d="M270,292 L320,292" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-c2" data-path-nodes="mjc mtc"/>
-      <path d="M410,292 L460,292" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-c3" data-path-nodes="mtc mdc"/>
-      <path d="M560,292 L615,292" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-c4" data-path-nodes="mdc mhc"/>
-      <path d="M705,292 L780,218" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="ms-c5" data-path-nodes="mhc mk3"/>
-
-      <!-- Docker to Harbor -->
-      <path d="M510,136 C510,350 535,370 535,390" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="ms-harbor" data-path-nodes="mda mhar"/>
-      <!-- Jenkins to Sonar -->
-      <path d="M220,136 L225,390" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="ms-sonar" data-path-nodes="mja msonar"/>
-      <!-- K8s to PostgreSQL -->
-      <path d="M847,340 C847,370 500,420 470,420" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="ms-db" data-path-nodes="mk1 mpg"/>
-      <!-- K8s to monitoring -->
-      <path d="M847,340 L847,390" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="ms-mon" data-path-nodes="mk1 mmon"/>
-
-      <!-- ── Animated packets Row 1 ── -->
-      <circle r="3.5" fill="#818cf8" filter="url(#g5)" data-path-nodes="mga mja"><animateMotion dur="1s" repeatCount="indefinite"><mpath href="#ms-a1"/></animateMotion></circle>
-      <circle r="3.5" fill="#fb923c" filter="url(#g5)" data-path-nodes="mja mta"><animateMotion dur="1s" repeatCount="indefinite" begin="0.5s"><mpath href="#ms-a2"/></animateMotion></circle>
-      <circle r="3" fill="#a78bfa" filter="url(#g5)" data-path-nodes="mta mda"><animateMotion dur="1s" repeatCount="indefinite" begin="1s"><mpath href="#ms-a3"/></animateMotion></circle>
-      <circle r="3.5" fill="#4a9eff" filter="url(#g5)" data-path-nodes="mda mha"><animateMotion dur="1s" repeatCount="indefinite" begin="1.5s"><mpath href="#ms-a4"/></animateMotion></circle>
-      <circle r="3.5" fill="#34d399" filter="url(#g5)" data-path-nodes="mha mk1"><animateMotion dur="1.2s" repeatCount="indefinite" begin="2s"><mpath href="#ms-a5"/></animateMotion></circle>
-
-      <!-- ── Animated packets Row 2 ── -->
-      <circle r="3.5" fill="#818cf8" filter="url(#g5)" data-path-nodes="mgb mjb"><animateMotion dur="1s" repeatCount="indefinite" begin="0.8s"><mpath href="#ms-b1"/></animateMotion></circle>
-      <circle r="3.5" fill="#fb923c" filter="url(#g5)" data-path-nodes="mjb mtb"><animateMotion dur="1s" repeatCount="indefinite" begin="1.3s"><mpath href="#ms-b2"/></animateMotion></circle>
-      <circle r="3" fill="#a78bfa" filter="url(#g5)" data-path-nodes="mtb mdb"><animateMotion dur="1s" repeatCount="indefinite" begin="1.8s"><mpath href="#ms-b3"/></animateMotion></circle>
-      <circle r="3.5" fill="#4a9eff" filter="url(#g5)" data-path-nodes="mdb mhb"><animateMotion dur="1s" repeatCount="indefinite" begin="2.3s"><mpath href="#ms-b4"/></animateMotion></circle>
-      <circle r="3.5" fill="#34d399" filter="url(#g5)" data-path-nodes="mhb mk2"><animateMotion dur="1.2s" repeatCount="indefinite" begin="2.8s"><mpath href="#ms-b5"/></animateMotion></circle>
-
-      <!-- ── Animated packets Row 3 ── -->
-      <circle r="3.5" fill="#818cf8" filter="url(#g5)" data-path-nodes="mgc mjc"><animateMotion dur="1s" repeatCount="indefinite" begin="1.5s"><mpath href="#ms-c1"/></animateMotion></circle>
-      <circle r="3.5" fill="#fb923c" filter="url(#g5)" data-path-nodes="mjc mtc"><animateMotion dur="1s" repeatCount="indefinite" begin="2s"><mpath href="#ms-c2"/></animateMotion></circle>
-      <circle r="3" fill="#a78bfa" filter="url(#g5)" data-path-nodes="mtc mdc"><animateMotion dur="1s" repeatCount="indefinite" begin="2.5s"><mpath href="#ms-c3"/></animateMotion></circle>
-      <circle r="3.5" fill="#4a9eff" filter="url(#g5)" data-path-nodes="mdc mhc"><animateMotion dur="1s" repeatCount="indefinite" begin="3s"><mpath href="#ms-c4"/></animateMotion></circle>
-      <circle r="3.5" fill="#34d399" filter="url(#g5)" data-path-nodes="mhc mk3"><animateMotion dur="1.2s" repeatCount="indefinite" begin="3.5s"><mpath href="#ms-c5"/></animateMotion></circle>
-
-      <!-- ── Side paths packets ── -->
-      <circle r="2.5" fill="#4a9eff" filter="url(#g5)" data-path-nodes="mda mhar"><animateMotion dur="3s" repeatCount="indefinite" begin="2s"><mpath href="#ms-harbor"/></animateMotion></circle>
-      <circle r="2.5" fill="#f87171" filter="url(#g5)" data-path-nodes="mja msonar"><animateMotion dur="2.5s" repeatCount="indefinite" begin="1s"><mpath href="#ms-sonar"/></animateMotion></circle>
-      <circle r="2.5" fill="#a78bfa" filter="url(#g5)" data-path-nodes="mk1 mpg"><animateMotion dur="3s" repeatCount="indefinite" begin="3s"><mpath href="#ms-db"/></animateMotion></circle>
-      <circle r="2.5" fill="#f87171" filter="url(#g5)" data-path-nodes="mk1 mmon"><animateMotion dur="1.5s" repeatCount="indefinite" begin="4s"><mpath href="#ms-mon"/></animateMotion></circle>
-    </svg>
-  </div>
-  <a href="tutorials/microservices-k8s.html" class="tut-link reveal">View Full Tutorial — Microservices K8s Setup Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-</section>
-
-<!-- ══════════ 6. JAVA MONOLITH → JENKINS → EC2/TOMCAT ══════════ -->
-<section id="monolith" class="alt-bg">
-  <div class="tag reveal" style="color:var(--orange)">Monolith</div>
-  <h2 class="reveal">Java Monolith Deployment</h2>
-  <p class="sub reveal">Single Spring Boot WAR deployed to Tomcat on EC2 behind an ALB. Jenkins builds with Maven, runs full test suite, packages WAR, uploads to S3 artifact store, and deploys via Ansible to a rolling EC2 target group with health checks.</p>
-
-  <div class="diagram reveal">
-    <span class="diagram-title" style="color:var(--orange)">Jenkins — Monolith CI/CD to EC2/Tomcat</span>
-    <span class="hint">Click any service to trace its connections</span>
-    <svg viewBox="0 0 960 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="g6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      </defs>
-
-      <!-- Single pipeline flow — top row -->
-      <rect x="30" y="80" width="100" height="56" rx="12" fill="#111118" stroke="rgba(129,140,248,0.3)" stroke-width="1.5" data-node="xgit"/>
-      <text x="80" y="106" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700">Git Push</text>
-      <text x="80" y="122" text-anchor="middle" fill="#6e6e80" font-size="7">monolith repo</text>
-
-      <rect x="175" y="80" width="110" height="56" rx="12" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5" data-node="xjen"/>
-      <text x="230" y="106" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">Jenkins</text>
-      <text x="230" y="122" text-anchor="middle" fill="#6e6e80" font-size="7">mvn clean package</text>
-
-      <rect x="330" y="80" width="100" height="56" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5" data-node="xtest"/>
-      <text x="380" y="106" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">Tests</text>
-      <text x="380" y="122" text-anchor="middle" fill="#6e6e80" font-size="7">JUnit + Selenium</text>
-
-      <rect x="475" y="80" width="110" height="56" rx="12" fill="#111118" stroke="rgba(52,211,153,0.3)" stroke-width="1.5" data-node="xs3"/>
-      <text x="530" y="106" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">S3 Artifact</text>
-      <text x="530" y="122" text-anchor="middle" fill="#6e6e80" font-size="7">app-v2.1.war</text>
-
-      <rect x="630" y="80" width="110" height="56" rx="12" fill="#111118" stroke="rgba(255,153,0,0.3)" stroke-width="1.5" data-node="xans"/>
-      <text x="685" y="106" text-anchor="middle" fill="#ff9900" font-size="10" font-weight="700">Ansible</text>
-      <text x="685" y="122" text-anchor="middle" fill="#6e6e80" font-size="7">Rolling Deploy</text>
-
-      <!-- EC2 Target Group -->
-      <rect x="700" y="190" width="230" height="190" rx="16" fill="rgba(74,158,255,0.03)" stroke="rgba(74,158,255,0.12)" stroke-width="1.5" stroke-dasharray="6,3"/>
-      <text x="720" y="210" fill="rgba(74,158,255,0.4)" font-size="7" font-weight="700" letter-spacing="0.08em">EC2 TARGET GROUP</text>
-
-      <!-- ALB -->
-      <rect x="560" y="220" width="100" height="50" rx="12" fill="#111118" stroke="rgba(74,158,255,0.3)" stroke-width="1.5" data-node="xalb"/>
-      <text x="610" y="246" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="700">ALB</text>
-      <text x="610" y="259" text-anchor="middle" fill="#6e6e80" font-size="7">Health Checks</text>
-
-      <!-- EC2 + Tomcat instances -->
-      <rect x="720" y="225" width="90" height="50" rx="10" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5" data-node="xt1"/>
-      <text x="765" y="250" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">EC2 + Tomcat</text>
-      <text x="765" y="264" text-anchor="middle" fill="#6e6e80" font-size="6.5">Instance 1</text>
-
-      <rect x="825" y="225" width="90" height="50" rx="10" fill="#111118" stroke="rgba(251,146,60,0.3)" stroke-width="1.5" data-node="xt2"/>
-      <text x="870" y="250" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="700">EC2 + Tomcat</text>
-      <text x="870" y="264" text-anchor="middle" fill="#6e6e80" font-size="6.5">Instance 2</text>
-
-      <rect x="720" y="295" width="90" height="50" rx="10" fill="#111118" stroke="rgba(251,146,60,0.25)" stroke-width="1" data-node="xt3"/>
-      <text x="765" y="320" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="600">EC2 + Tomcat</text>
-      <text x="765" y="334" text-anchor="middle" fill="#6e6e80" font-size="6.5">Instance 3</text>
-
-      <rect x="825" y="295" width="90" height="50" rx="10" fill="#111118" stroke="rgba(251,146,60,0.25)" stroke-width="1" data-node="xt4"/>
-      <text x="870" y="320" text-anchor="middle" fill="#fb923c" font-size="9" font-weight="600">EC2 + Tomcat</text>
-      <text x="870" y="334" text-anchor="middle" fill="#6e6e80" font-size="6.5">Instance 4</text>
-
-      <!-- PostgreSQL -->
-      <rect x="340" y="310" width="120" height="56" rx="12" fill="#111118" stroke="rgba(167,139,250,0.3)" stroke-width="1.5" data-node="xpg"/>
-      <text x="400" y="338" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">PostgreSQL</text>
-      <text x="400" y="354" text-anchor="middle" fill="#6e6e80" font-size="7">RDS Multi-AZ</text>
-
-      <!-- SonarQube -->
-      <rect x="175" y="195" width="110" height="46" rx="10" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1" data-node="xsonar"/>
-      <text x="230" y="218" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">SonarQube</text>
-      <text x="230" y="232" text-anchor="middle" fill="#6e6e80" font-size="7">Quality Gate</text>
-
-      <!-- Nexus -->
-      <rect x="330" y="195" width="100" height="46" rx="10" fill="#111118" stroke="rgba(34,211,238,0.25)" stroke-width="1" data-node="xnex"/>
-      <text x="380" y="218" text-anchor="middle" fill="#22d3ee" font-size="9" font-weight="600">Nexus</text>
-      <text x="380" y="232" text-anchor="middle" fill="#6e6e80" font-size="7">Maven Repo</text>
-
-      <!-- CloudWatch -->
-      <rect x="560" y="310" width="100" height="46" rx="10" fill="#111118" stroke="rgba(248,113,113,0.25)" stroke-width="1" data-node="xcw"/>
-      <text x="610" y="333" text-anchor="middle" fill="#f87171" font-size="9" font-weight="600">CloudWatch</text>
-      <text x="610" y="346" text-anchor="middle" fill="#6e6e80" font-size="7">Logs + Alarms</text>
-
-      <!-- Pipeline paths -->
-      <path d="M130,108 L175,108" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p1" data-path-nodes="xgit xjen"/>
-      <path d="M285,108 L330,108" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p2" data-path-nodes="xjen xtest"/>
-      <path d="M430,108 L475,108" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p3" data-path-nodes="xtest xs3"/>
-      <path d="M585,108 L630,108" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p4" data-path-nodes="xs3 xans"/>
-
-      <!-- Ansible to EC2s -->
-      <path d="M685,136 C685,180 765,200 765,225" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p5" data-path-nodes="xans xt1"/>
-      <path d="M685,136 C700,180 870,200 870,225" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p6" data-path-nodes="xans xt2"/>
-      <path d="M685,136 C685,220 765,270 765,295" stroke="rgba(255,255,255,0.05)" stroke-width="1" id="mo-p7" data-path-nodes="xans xt3"/>
-      <path d="M685,136 C700,220 870,270 870,295" stroke="rgba(255,255,255,0.05)" stroke-width="1" id="mo-p8" data-path-nodes="xans xt4"/>
-
-      <!-- ALB to EC2s -->
-      <path d="M660,245 L720,250" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p9" data-path-nodes="xalb xt1"/>
-      <path d="M660,245 L720,320" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" id="mo-p10" data-path-nodes="xalb xt3"/>
-
-      <!-- EC2 to PostgreSQL -->
-      <path d="M720,275 C600,300 480,320 460,335" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="mo-db" data-path-nodes="xt1 xpg"/>
-
-      <!-- Jenkins to SonarQube -->
-      <path d="M230,136 L230,195" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="mo-sonar" data-path-nodes="xjen xsonar"/>
-      <!-- Tests to Nexus -->
-      <path d="M380,136 L380,195" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="mo-nexus" data-path-nodes="xtest xnex"/>
-      <!-- EC2 to CloudWatch -->
-      <path d="M720,345 C680,345 650,340 660,333" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,3" id="mo-cw" data-path-nodes="xt3 xcw"/>
-
-      <!-- Animated packets -->
-      <circle r="4" fill="#818cf8" filter="url(#g6)" data-path-nodes="xgit xjen"><animateMotion dur="1s" repeatCount="indefinite"><mpath href="#mo-p1"/></animateMotion></circle>
-      <circle r="4" fill="#fb923c" filter="url(#g6)" data-path-nodes="xjen xtest"><animateMotion dur="1s" repeatCount="indefinite" begin="0.5s"><mpath href="#mo-p2"/></animateMotion></circle>
-      <circle r="3.5" fill="#a78bfa" filter="url(#g6)" data-path-nodes="xtest xs3"><animateMotion dur="1s" repeatCount="indefinite" begin="1s"><mpath href="#mo-p3"/></animateMotion></circle>
-      <circle r="4" fill="#34d399" filter="url(#g6)" data-path-nodes="xs3 xans"><animateMotion dur="1s" repeatCount="indefinite" begin="1.5s"><mpath href="#mo-p4"/></animateMotion></circle>
-
-      <!-- Ansible deploy packets -->
-      <circle r="3.5" fill="#ff9900" filter="url(#g6)" data-path-nodes="xans xt1"><animateMotion dur="2s" repeatCount="indefinite" begin="2s"><mpath href="#mo-p5"/></animateMotion></circle>
-      <circle r="3.5" fill="#ff9900" filter="url(#g6)" data-path-nodes="xans xt2"><animateMotion dur="2s" repeatCount="indefinite" begin="2.5s"><mpath href="#mo-p6"/></animateMotion></circle>
-      <circle r="3" fill="#ff9900" filter="url(#g6)" data-path-nodes="xans xt3"><animateMotion dur="2.5s" repeatCount="indefinite" begin="3s"><mpath href="#mo-p7"/></animateMotion></circle>
-      <circle r="3" fill="#ff9900" filter="url(#g6)" data-path-nodes="xans xt4"><animateMotion dur="2.5s" repeatCount="indefinite" begin="3.5s"><mpath href="#mo-p8"/></animateMotion></circle>
-
-      <!-- ALB traffic -->
-      <circle r="3" fill="#4a9eff" filter="url(#g6)" data-path-nodes="xalb xt1"><animateMotion dur="1s" repeatCount="indefinite" begin="0.3s"><mpath href="#mo-p9"/></animateMotion></circle>
-      <circle r="3" fill="#4a9eff" filter="url(#g6)" data-path-nodes="xalb xt3"><animateMotion dur="1.5s" repeatCount="indefinite" begin="1s"><mpath href="#mo-p10"/></animateMotion></circle>
-
-      <!-- Side paths -->
-      <circle r="2.5" fill="#a78bfa" filter="url(#g6)" data-path-nodes="xt1 xpg"><animateMotion dur="2.5s" repeatCount="indefinite" begin="3s"><mpath href="#mo-db"/></animateMotion></circle>
-      <circle r="2.5" fill="#f87171" filter="url(#g6)" data-path-nodes="xjen xsonar"><animateMotion dur="1.5s" repeatCount="indefinite" begin="1s"><mpath href="#mo-sonar"/></animateMotion></circle>
-      <circle r="2.5" fill="#22d3ee" filter="url(#g6)" data-path-nodes="xtest xnex"><animateMotion dur="1.5s" repeatCount="indefinite" begin="1.5s"><mpath href="#mo-nexus"/></animateMotion></circle>
-      <circle r="2.5" fill="#f87171" filter="url(#g6)" data-path-nodes="xt3 xcw"><animateMotion dur="1.5s" repeatCount="indefinite" begin="4s"><mpath href="#mo-cw"/></animateMotion></circle>
-    </svg>
-  </div>
-  <a href="tutorials/monolith-ec2.html" class="tut-link reveal">View Full Tutorial — Monolith EC2 Deployment Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
 </section>
 
 <!-- ══════════ SERVICES ══════════ -->
 <section id="services" class="alt-bg">
   <div class="tag reveal" style="color:var(--blue)">What I do</div>
   <h2 class="reveal">Services</h2>
-  <p class="sub reveal">End-to-end technical delivery — from cloud provisioning to production monitoring.</p>
+  <p class="sub reveal">End-to-end technical product delivery — from roadmap and cloud architecture to production monitoring.</p>
 
   <div class="services reveal">
+    <div class="svc">
+      <div class="svc-icon" style="background:rgba(167,139,250,0.12)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+      </div>
+      <h3>Technical Product Management</h3>
+      <p>Roadmap ownership, backlog prioritization, PRDs, stakeholder alignment, and end-to-end delivery for enterprise FinTech and SaaS platforms.</p>
+      <span class="svc-tag" style="background:rgba(167,139,250,0.1);color:#a78bfa">TPM</span>
+    </div>
     <div class="svc">
       <div class="svc-icon" style="background:rgba(255,153,0,0.12)">
         <svg viewBox="0 0 24 24" fill="none" stroke="#ff9900" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
@@ -1041,12 +403,12 @@ rect[data-node]:hover{filter:brightness(1.2)}
       <span class="svc-tag" style="background:rgba(255,153,0,0.1);color:#ff9900">AWS</span>
     </div>
     <div class="svc">
-      <div class="svc-icon" style="background:rgba(129,140,248,0.12)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1"/><circle cx="6" cy="18" r="1"/></svg>
+      <div class="svc-icon" style="background:rgba(34,211,238,0.12)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
       </div>
-      <h3>Cisco Networking</h3>
-      <p>Campus network design, VLAN segmentation, ASA firewalls, routing protocols (OSPF, BGP), and Catalyst switch configuration.</p>
-      <span class="svc-tag" style="background:rgba(129,140,248,0.1);color:#818cf8">Cisco</span>
+      <h3>AI Platform Delivery</h3>
+      <p>End-to-end ownership of AI chatbot and NLP automation platforms — from build vs buy through vendor selection, integration, and adoption.</p>
+      <span class="svc-tag" style="background:rgba(34,211,238,0.1);color:#22d3ee">AI</span>
     </div>
     <div class="svc">
       <div class="svc-icon" style="background:rgba(52,211,153,0.12)">
@@ -1063,14 +425,6 @@ rect[data-node]:hover{filter:brightness(1.2)}
       <h3>CI/CD Pipelines</h3>
       <p>GitHub Actions, GitLab CI, Jenkins — automated build, test, and deploy workflows with blue-green and canary deployments.</p>
       <span class="svc-tag" style="background:rgba(34,211,238,0.1);color:#22d3ee">Automation</span>
-    </div>
-    <div class="svc">
-      <div class="svc-icon" style="background:rgba(251,146,60,0.12)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <h3>Batch & Cron Jobs</h3>
-      <p>AWS Batch, Step Functions, EventBridge scheduling. Parallel Fargate processing, dead letter queues, and automated failure recovery.</p>
-      <span class="svc-tag" style="background:rgba(251,146,60,0.1);color:#fb923c">Scheduling</span>
     </div>
     <div class="svc">
       <div class="svc-icon" style="background:rgba(248,113,113,0.12)">
@@ -1173,46 +527,30 @@ rect[data-node]:hover{filter:brightness(1.2)}
       <div class="dash-chart">
         <div class="dash-chart-title">Request Latency (ms) — 24h</div>
         <svg id="latency-chart" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="latGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#4a9eff" stop-opacity="0.3"/>
-              <stop offset="100%" stop-color="#4a9eff" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <!-- Grid lines -->
+          <defs><linearGradient id="latGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4a9eff" stop-opacity="0.3"/><stop offset="100%" stop-color="#4a9eff" stop-opacity="0"/></linearGradient></defs>
           <line x1="0" y1="30" x2="400" y2="30" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
           <line x1="0" y1="60" x2="400" y2="60" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
           <line x1="0" y1="90" x2="400" y2="90" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
           <text x="2" y="28" fill="rgba(255,255,255,0.15)" font-size="7">100ms</text>
           <text x="2" y="58" fill="rgba(255,255,255,0.15)" font-size="7">50ms</text>
           <text x="2" y="88" fill="rgba(255,255,255,0.15)" font-size="7">25ms</text>
-          <!-- Area fill -->
           <path d="M0,70 Q20,65 40,68 T80,60 T120,55 T160,62 T200,48 T240,52 T280,45 T320,50 T360,42 T400,44 L400,120 L0,120Z" fill="url(#latGrad)"/>
-          <!-- Line -->
           <path d="M0,70 Q20,65 40,68 T80,60 T120,55 T160,62 T200,48 T240,52 T280,45 T320,50 T360,42 T400,44" stroke="#4a9eff" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <!-- Current value dot -->
           <circle cx="400" cy="44" r="3" fill="#4a9eff"/>
         </svg>
       </div>
       <div class="dash-chart">
         <div class="dash-chart-title">Error Rate (%) — 24h</div>
-        <svg id="error-chart" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="errGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#34d399" stop-opacity="0.2"/>
-              <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
+        <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="errGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#34d399" stop-opacity="0.2"/><stop offset="100%" stop-color="#34d399" stop-opacity="0"/></linearGradient></defs>
           <line x1="0" y1="30" x2="400" y2="30" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
           <line x1="0" y1="60" x2="400" y2="60" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
           <line x1="0" y1="90" x2="400" y2="90" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
           <text x="2" y="28" fill="rgba(255,255,255,0.15)" font-size="7">1.0%</text>
           <text x="2" y="58" fill="rgba(255,255,255,0.15)" font-size="7">0.5%</text>
           <text x="2" y="88" fill="rgba(255,255,255,0.15)" font-size="7">0.1%</text>
-          <!-- Spike at ~60% through for drama -->
           <path d="M0,105 Q20,104 40,106 T80,104 T120,105 T160,103 T200,100 T220,40 T240,95 T280,104 T320,106 T360,105 T400,104 L400,120 L0,120Z" fill="url(#errGrad)"/>
           <path d="M0,105 Q20,104 40,106 T80,104 T120,105 T160,103 T200,100 T220,40 T240,95 T280,104 T320,106 T360,105 T400,104" stroke="#34d399" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <!-- Spike annotation -->
           <circle cx="220" cy="40" r="3" fill="#f87171"/>
           <text x="225" y="38" fill="#f87171" font-size="7" font-weight="600">Spike — auto-recovered</text>
           <circle cx="400" cy="104" r="3" fill="#34d399"/>
@@ -1221,12 +559,7 @@ rect[data-node]:hover{filter:brightness(1.2)}
       <div class="dash-chart">
         <div class="dash-chart-title">CPU Utilization (%) — 24h</div>
         <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="cpuGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.25"/>
-              <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
+          <defs><linearGradient id="cpuGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a78bfa" stop-opacity="0.25"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/></linearGradient></defs>
           <line x1="0" y1="30" x2="400" y2="30" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
           <line x1="0" y1="60" x2="400" y2="60" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
           <line x1="0" y1="90" x2="400" y2="90" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
@@ -1241,12 +574,7 @@ rect[data-node]:hover{filter:brightness(1.2)}
       <div class="dash-chart">
         <div class="dash-chart-title">Throughput (req/s) — 24h</div>
         <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="rpsGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.25"/>
-              <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
+          <defs><linearGradient id="rpsGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22d3ee" stop-opacity="0.25"/><stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></linearGradient></defs>
           <line x1="0" y1="30" x2="400" y2="30" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
           <line x1="0" y1="60" x2="400" y2="60" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
           <line x1="0" y1="90" x2="400" y2="90" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
@@ -1280,26 +608,15 @@ rect[data-node]:hover{filter:brightness(1.2)}
       </div>
       <div class="adr-body">
         <div class="adr-content">
-          <h4>Context</h4>
-          <p>Team of 4 engineers needs to deploy 8 containerized microservices. Must choose between ECS Fargate (serverless containers) and EKS (managed Kubernetes).</p>
+          <h4>Context</h4><p>Team of 4 engineers needs to deploy 8 containerized microservices. Must choose between ECS Fargate and EKS.</p>
           <h4>Options Considered</h4>
-          <ul>
-            <li class="chosen">ECS Fargate — serverless, no cluster management, pay-per-task</li>
-            <li>EKS — full Kubernetes, powerful but requires dedicated ops expertise</li>
-            <li>ECS on EC2 — cheaper compute but requires capacity planning</li>
-          </ul>
-          <h4>Decision</h4>
-          <p>ECS Fargate. For a small team, the operational overhead of EKS (upgrades, node groups, networking plugins) outweighs its flexibility. Fargate eliminates capacity planning and reduces on-call burden.</p>
+          <ul><li class="chosen">ECS Fargate — serverless, no cluster management, pay-per-task</li><li>EKS — full Kubernetes, powerful but requires dedicated ops expertise</li><li>ECS on EC2 — cheaper compute but requires capacity planning</li></ul>
+          <h4>Decision</h4><p>ECS Fargate. For a small team, the operational overhead of EKS outweighs its flexibility.</p>
           <h4>Consequences</h4>
-          <ul>
-            <li>No cluster management — team focuses on application code</li>
-            <li>~20% higher per-task cost vs EC2, offset by reduced ops hours</li>
-            <li>Limited to ECS ecosystem; migration to EKS possible later if needed</li>
-          </ul>
+          <ul><li>No cluster management — team focuses on application code</li><li>~20% higher per-task cost vs EC2, offset by reduced ops hours</li></ul>
         </div>
       </div>
     </div>
-
     <div class="adr-card">
       <div class="adr-header" onclick="this.parentElement.classList.toggle('open')">
         <h3>ADR-002: Adopt Terraform over CloudFormation for IaC</h3>
@@ -1311,29 +628,18 @@ rect[data-node]:hover{filter:brightness(1.2)}
       </div>
       <div class="adr-body">
         <div class="adr-content">
-          <h4>Context</h4>
-          <p>Infrastructure spans AWS primarily, with some Cloudflare DNS and GitHub Actions. Need a consistent IaC tool that handles multi-provider resources.</p>
+          <h4>Context</h4><p>Infrastructure spans AWS, Cloudflare DNS, and GitHub Actions. Need a consistent IaC tool for multi-provider resources.</p>
           <h4>Options Considered</h4>
-          <ul>
-            <li class="chosen">Terraform — multi-provider, large ecosystem, state management</li>
-            <li>CloudFormation — AWS-native, no state file to manage, but AWS-only</li>
-            <li>Pulumi — code-first IaC, but smaller community and learning curve for team</li>
-          </ul>
-          <h4>Decision</h4>
-          <p>Terraform with S3 + DynamoDB backend for state. HCL is declarative and team-friendly. The multi-provider support means one tool for AWS, Cloudflare, and GitHub resources.</p>
+          <ul><li class="chosen">Terraform — multi-provider, large ecosystem, state management</li><li>CloudFormation — AWS-native, no state file, but AWS-only</li><li>Pulumi — code-first IaC, smaller community</li></ul>
+          <h4>Decision</h4><p>Terraform with S3 + DynamoDB backend. Multi-provider support means one tool for all infrastructure.</p>
           <h4>Consequences</h4>
-          <ul>
-            <li>State file requires careful management (remote backend, locking)</li>
-            <li>Team needs Terraform training — mitigated with modules and code review</li>
-            <li>Unified workflow for all infrastructure, not just AWS</li>
-          </ul>
+          <ul><li>State file requires careful management</li><li>Unified workflow for all infrastructure</li></ul>
         </div>
       </div>
     </div>
-
     <div class="adr-card">
       <div class="adr-header" onclick="this.parentElement.classList.toggle('open')">
-        <h3>ADR-003: Implement Blue-Green over Canary Deployments</h3>
+        <h3>ADR-003: Blue-Green over Canary Deployments</h3>
         <div class="adr-meta">
           <span class="adr-badge" style="background:rgba(52,211,153,0.1);color:var(--green)">Accepted</span>
           <span class="adr-date">2025-10-05</span>
@@ -1342,53 +648,30 @@ rect[data-node]:hover{filter:brightness(1.2)}
       </div>
       <div class="adr-body">
         <div class="adr-content">
-          <h4>Context</h4>
-          <p>Production deployments occasionally cause regressions. Need a zero-downtime strategy with instant rollback capability. Running on ECS Fargate behind ALB.</p>
-          <h4>Options Considered</h4>
-          <ul>
-            <li class="chosen">Blue-Green — ALB target group swap, instant full cutover and rollback</li>
-            <li>Canary — gradual traffic shift (1% → 5% → 25% → 100%), requires metrics-based automation</li>
-            <li>Rolling — in-place updates, simpler but slower rollback</li>
-          </ul>
-          <h4>Decision</h4>
-          <p>Blue-Green via CodeDeploy + ALB. Rollback is a single target-group switch (under 30s). Canary would be ideal but requires more sophisticated monitoring and automated rollback triggers that our current observability stack doesn't support yet.</p>
+          <h4>Context</h4><p>Production deployments occasionally cause regressions. Need zero-downtime strategy with instant rollback on ECS Fargate behind ALB.</p>
+          <h4>Decision</h4><p>Blue-Green via CodeDeploy + ALB. Rollback is a single target-group switch under 30s.</p>
           <h4>Consequences</h4>
-          <ul>
-            <li>Double the task count during deployments (brief cost increase)</li>
-            <li>Instant rollback — critical for customer-facing services</li>
-            <li>Can evolve to canary later once monitoring matures</li>
-          </ul>
+          <ul><li>Double task count during deployments (brief cost increase)</li><li>Instant rollback — critical for customer-facing services</li></ul>
         </div>
       </div>
     </div>
-
     <div class="adr-card">
       <div class="adr-header" onclick="this.parentElement.classList.toggle('open')">
-        <h3>ADR-004: PostgreSQL on RDS over DynamoDB for Primary Datastore</h3>
+        <h3>ADR-004: ServiceNow for CS Platform over Custom Build</h3>
         <div class="adr-meta">
-          <span class="adr-badge" style="background:rgba(74,158,255,0.1);color:var(--blue)">Superseded</span>
-          <span class="adr-date">2025-07-10</span>
+          <span class="adr-badge" style="background:rgba(52,211,153,0.1);color:var(--green)">Accepted</span>
+          <span class="adr-date">2022-03-10</span>
         </div>
         <svg class="adr-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="adr-body">
         <div class="adr-content">
-          <h4>Context</h4>
-          <p>Application has complex relational data (orders, users, inventory) with joins and transactions. Evaluating managed database options on AWS.</p>
+          <h4>Context</h4><p>Customer service operations handling 800+ monthly tickets across 5 European markets needed a scalable platform with AI automation capability.</p>
           <h4>Options Considered</h4>
-          <ul>
-            <li class="chosen">RDS PostgreSQL — relational, Multi-AZ, mature ecosystem</li>
-            <li>DynamoDB — serverless NoSQL, single-digit ms latency, but forces denormalized design</li>
-            <li>Aurora Serverless v2 — auto-scaling, but higher cost at steady-state</li>
-          </ul>
-          <h4>Decision</h4>
-          <p>RDS PostgreSQL Multi-AZ (db.r6g.large). Relational model fits the domain. Read replicas handle reporting queries. Superseded by ADR-007 which migrates hot-path queries to DynamoDB while keeping PostgreSQL as source of truth.</p>
+          <ul><li class="chosen">ServiceNow — enterprise CS platform with native AI chatbot integration</li><li>Custom build — full control but high engineering cost and time to market</li><li>Zendesk — simpler but limited API extensibility for automotive domain</li></ul>
+          <h4>Decision</h4><p>ServiceNow. Enterprise-grade integration capabilities enabled rapid AI chatbot deployment and multilingual automation on top of existing workflows.</p>
           <h4>Consequences</h4>
-          <ul>
-            <li>Predictable costs with reserved instances</li>
-            <li>Need to manage connection pooling (PgBouncer) at scale</li>
-            <li>Backup/restore well-understood; PITR available</li>
-          </ul>
+          <ul><li>800 → 300 monthly tickets (62% reduction)</li><li>AI chatbot serving 20,000 users/month in 5 languages</li><li>Higher licensing cost offset by ops hours saved</li></ul>
         </div>
       </div>
     </div>
@@ -1415,86 +698,23 @@ rect[data-node]:hover{filter:brightness(1.2)}
       <span>Task</span>
       <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
     </div>
-
     <div class="gantt-phase">Phase 1 — Initiation & Discovery</div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--blue)"></span>Stakeholder Interviews</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:0%;width:12%;background:var(--blue)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--blue)"></span>Current State Assessment</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:4%;width:14%;background:var(--blue)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--blue)"></span>Risk Assessment & Budget</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:10%;width:10%;background:var(--blue)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--aws)"></span>Project Charter Approved</div>
-      <div class="gantt-bar-area"><div class="gantt-milestone" style="left:20%;border-color:var(--aws);background:rgba(255,153,0,0.2)"></div></div>
-    </div>
-
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--blue)"></span>Stakeholder Interviews</div><div class="gantt-bar-area"><div class="gantt-bar" style="left:0%;width:12%;background:var(--blue)"></div></div></div>
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--blue)"></span>Current State Assessment</div><div class="gantt-bar-area"><div class="gantt-bar" style="left:4%;width:14%;background:var(--blue)"></div></div></div>
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--blue)"></span>Risk Assessment & Budget</div><div class="gantt-bar-area"><div class="gantt-bar" style="left:10%;width:10%;background:var(--blue)"></div></div></div>
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--aws)"></span>Project Charter Approved</div><div class="gantt-bar-area"><div class="gantt-milestone" style="left:20%;border-color:var(--aws);background:rgba(255,153,0,0.2)"></div></div></div>
     <div class="gantt-phase">Phase 2 — Architecture & Planning</div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--blue)"></span>Target Architecture Design</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:18%;width:14%;background:var(--blue)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--blue)"></span>IaC Module Development</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:22%;width:18%;background:var(--purple)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--blue)"></span>CI/CD Pipeline Design</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:26%;width:12%;background:var(--purple)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--aws)"></span>Architecture Review Board</div>
-      <div class="gantt-bar-area"><div class="gantt-milestone" style="left:38%;border-color:var(--aws);background:rgba(255,153,0,0.2)"></div></div>
-    </div>
-
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--blue)"></span>Target Architecture Design</div><div class="gantt-bar-area"><div class="gantt-bar" style="left:18%;width:14%;background:var(--blue)"></div></div></div>
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--blue)"></span>IaC Module Development</div><div class="gantt-bar-area"><div class="gantt-bar" style="left:22%;width:18%;background:var(--purple)"></div></div></div>
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--aws)"></span>Architecture Review Board</div><div class="gantt-bar-area"><div class="gantt-milestone" style="left:38%;border-color:var(--aws);background:rgba(255,153,0,0.2)"></div></div></div>
     <div class="gantt-phase">Phase 3 — Build & Migrate</div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--purple)"></span>VPC & Networking Setup</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:36%;width:10%;background:var(--purple)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--purple)"></span>Database Migration (DMS)</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:42%;width:16%;background:var(--purple)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--purple)"></span>Application Containerization</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:40%;width:20%;background:var(--purple)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--purple)"></span>Integration Testing</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:56%;width:10%;background:var(--purple)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--aws)"></span>UAT Sign-off</div>
-      <div class="gantt-bar-area"><div class="gantt-milestone" style="left:66%;border-color:var(--aws);background:rgba(255,153,0,0.2)"></div></div>
-    </div>
-
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--purple)"></span>Database Migration (DMS)</div><div class="gantt-bar-area"><div class="gantt-bar" style="left:42%;width:16%;background:var(--purple)"></div></div></div>
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--purple)"></span>Application Containerization</div><div class="gantt-bar-area"><div class="gantt-bar" style="left:40%;width:20%;background:var(--purple)"></div></div></div>
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--aws)"></span>UAT Sign-off</div><div class="gantt-bar-area"><div class="gantt-milestone" style="left:66%;border-color:var(--aws);background:rgba(255,153,0,0.2)"></div></div></div>
     <div class="gantt-phase">Phase 4 — Deploy & Handoff</div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--green)"></span>Blue-Green Cutover</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:66%;width:8%;background:var(--green)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--green)"></span>Monitoring & Alerting Setup</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:70%;width:10%;background:var(--green)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--green)"></span>Runbook & Documentation</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:74%;width:10%;background:var(--green)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--green)"></span>Team Training & Handoff</div>
-      <div class="gantt-bar-area"><div class="gantt-bar" style="left:78%;width:10%;background:var(--green)"></div></div>
-    </div>
-    <div class="gantt-row">
-      <div class="gantt-task"><span class="task-icon" style="background:var(--aws)"></span>Project Closure</div>
-      <div class="gantt-bar-area"><div class="gantt-milestone" style="left:88%;border-color:var(--aws);background:rgba(255,153,0,0.2)"></div></div>
-    </div>
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--green)"></span>Blue-Green Cutover</div><div class="gantt-bar-area"><div class="gantt-bar" style="left:66%;width:8%;background:var(--green)"></div></div></div>
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--green)"></span>Monitoring & Alerting Setup</div><div class="gantt-bar-area"><div class="gantt-bar" style="left:70%;width:10%;background:var(--green)"></div></div></div>
+    <div class="gantt-row"><div class="gantt-task"><span class="task-icon" style="background:var(--aws)"></span>Project Closure</div><div class="gantt-bar-area"><div class="gantt-milestone" style="left:88%;border-color:var(--aws);background:rgba(255,153,0,0.2)"></div></div></div>
   </div>
 </section>
 
@@ -1508,115 +728,20 @@ rect[data-node]:hover{filter:brightness(1.2)}
     <div style="padding:1.5rem 1.5rem 0;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted)">Probability &times; Impact Matrix</div>
     <div class="risk-matrix">
       <div class="axis-label"></div>
-      <div class="axis-label">Very Low</div>
-      <div class="axis-label">Low</div>
-      <div class="axis-label">Medium</div>
-      <div class="axis-label">High</div>
-      <div class="axis-label">Very High</div>
-
-      <div class="axis-label">Very High</div>
-      <div class="risk-cell med">5</div>
-      <div class="risk-cell med">10</div>
-      <div class="risk-cell high">15</div>
-      <div class="risk-cell crit">20</div>
-      <div class="risk-cell crit">25</div>
-
-      <div class="axis-label">High</div>
-      <div class="risk-cell low">4</div>
-      <div class="risk-cell med">8</div>
-      <div class="risk-cell med">12</div>
-      <div class="risk-cell high">16</div>
-      <div class="risk-cell crit">20</div>
-
-      <div class="axis-label">Medium</div>
-      <div class="risk-cell low">3</div>
-      <div class="risk-cell med">6</div>
-      <div class="risk-cell med">9</div>
-      <div class="risk-cell high">12</div>
-      <div class="risk-cell high">15</div>
-
-      <div class="axis-label">Low</div>
-      <div class="risk-cell low">2</div>
-      <div class="risk-cell low">4</div>
-      <div class="risk-cell med">6</div>
-      <div class="risk-cell med">8</div>
-      <div class="risk-cell med">10</div>
-
-      <div class="axis-label">Very Low</div>
-      <div class="risk-cell low">1</div>
-      <div class="risk-cell low">2</div>
-      <div class="risk-cell low">3</div>
-      <div class="risk-cell low">4</div>
-      <div class="risk-cell med">5</div>
+      <div class="axis-label">Very Low</div><div class="axis-label">Low</div><div class="axis-label">Medium</div><div class="axis-label">High</div><div class="axis-label">Very High</div>
+      <div class="axis-label">Very High</div><div class="risk-cell med">5</div><div class="risk-cell med">10</div><div class="risk-cell high">15</div><div class="risk-cell crit">20</div><div class="risk-cell crit">25</div>
+      <div class="axis-label">High</div><div class="risk-cell low">4</div><div class="risk-cell med">8</div><div class="risk-cell med">12</div><div class="risk-cell high">16</div><div class="risk-cell crit">20</div>
+      <div class="axis-label">Medium</div><div class="risk-cell low">3</div><div class="risk-cell med">6</div><div class="risk-cell med">9</div><div class="risk-cell high">12</div><div class="risk-cell high">15</div>
+      <div class="axis-label">Low</div><div class="risk-cell low">2</div><div class="risk-cell low">4</div><div class="risk-cell med">6</div><div class="risk-cell med">8</div><div class="risk-cell med">10</div>
+      <div class="axis-label">Very Low</div><div class="risk-cell low">1</div><div class="risk-cell low">2</div><div class="risk-cell low">3</div><div class="risk-cell low">4</div><div class="risk-cell med">5</div>
     </div>
-
     <table class="risk-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Risk</th>
-          <th>Probability</th>
-          <th>Impact</th>
-          <th>Score</th>
-          <th>Mitigation</th>
-          <th>Status</th>
-        </tr>
-      </thead>
+      <thead><tr><th>ID</th><th>Risk</th><th>Probability</th><th>Impact</th><th>Score</th><th>Mitigation</th><th>Status</th></tr></thead>
       <tbody>
-        <tr>
-          <td style="color:var(--text);font-weight:600">R-001</td>
-          <td style="color:var(--text)">Database migration data loss during DMS cutover</td>
-          <td>Medium</td>
-          <td>Very High</td>
-          <td><span class="risk-badge" style="background:rgba(248,113,113,0.1);color:var(--red)">15 — High</span></td>
-          <td>Parallel run for 2 weeks; automated checksum validation; point-in-time recovery enabled</td>
-          <td><span class="risk-badge" style="background:rgba(52,211,153,0.1);color:var(--green)">Mitigated</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);font-weight:600">R-002</td>
-          <td style="color:var(--text)">Vendor lock-in with proprietary AWS services</td>
-          <td>High</td>
-          <td>Medium</td>
-          <td><span class="risk-badge" style="background:rgba(248,113,113,0.1);color:var(--red)">12 — High</span></td>
-          <td>Abstract cloud services behind Terraform modules; use portable alternatives where feasible</td>
-          <td><span class="risk-badge" style="background:rgba(251,146,60,0.1);color:var(--orange)">Monitoring</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);font-weight:600">R-003</td>
-          <td style="color:var(--text)">Key engineer leaves mid-migration</td>
-          <td>Medium</td>
-          <td>High</td>
-          <td><span class="risk-badge" style="background:rgba(248,113,113,0.1);color:var(--red)">12 — High</span></td>
-          <td>Cross-training, pair programming, documented runbooks for all critical paths</td>
-          <td><span class="risk-badge" style="background:rgba(52,211,153,0.1);color:var(--green)">Mitigated</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);font-weight:600">R-004</td>
-          <td style="color:var(--text)">Network latency spikes after VPC migration</td>
-          <td>Low</td>
-          <td>High</td>
-          <td><span class="risk-badge" style="background:rgba(251,146,60,0.1);color:var(--orange)">8 — Med</span></td>
-          <td>VPC peering pre-tested; synthetic monitoring in staging; rollback plan for DNS cutover</td>
-          <td><span class="risk-badge" style="background:rgba(52,211,153,0.1);color:var(--green)">Mitigated</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);font-weight:600">R-005</td>
-          <td style="color:var(--text)">Budget overrun due to scope creep</td>
-          <td>High</td>
-          <td>Medium</td>
-          <td><span class="risk-badge" style="background:rgba(248,113,113,0.1);color:var(--red)">12 — High</span></td>
-          <td>Formal change control process; weekly budget reviews; scope locked after Phase 2</td>
-          <td><span class="risk-badge" style="background:rgba(251,146,60,0.1);color:var(--orange)">Monitoring</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--text);font-weight:600">R-006</td>
-          <td style="color:var(--text)">Compliance gap (SOC2/HIPAA) in new environment</td>
-          <td>Low</td>
-          <td>Very High</td>
-          <td><span class="risk-badge" style="background:rgba(248,113,113,0.1);color:var(--red)">10 — Med</span></td>
-          <td>AWS Config rules from day 1; Security Hub enabled; pre-audit dry run in month 8</td>
-          <td><span class="risk-badge" style="background:rgba(52,211,153,0.1);color:var(--green)">Mitigated</span></td>
-        </tr>
+        <tr><td style="color:var(--text);font-weight:600">R-001</td><td style="color:var(--text)">Database migration data loss during DMS cutover</td><td>Medium</td><td>Very High</td><td><span class="risk-badge" style="background:rgba(248,113,113,0.1);color:var(--red)">15 — High</span></td><td>Parallel run 2 weeks; checksum validation; PITR enabled</td><td><span class="risk-badge" style="background:rgba(52,211,153,0.1);color:var(--green)">Mitigated</span></td></tr>
+        <tr><td style="color:var(--text);font-weight:600">R-002</td><td style="color:var(--text)">Vendor lock-in with proprietary AWS services</td><td>High</td><td>Medium</td><td><span class="risk-badge" style="background:rgba(248,113,113,0.1);color:var(--red)">12 — High</span></td><td>Abstract behind Terraform modules; portable alternatives where feasible</td><td><span class="risk-badge" style="background:rgba(251,146,60,0.1);color:var(--orange)">Monitoring</span></td></tr>
+        <tr><td style="color:var(--text);font-weight:600">R-003</td><td style="color:var(--text)">Key engineer leaves mid-migration</td><td>Medium</td><td>High</td><td><span class="risk-badge" style="background:rgba(248,113,113,0.1);color:var(--red)">12 — High</span></td><td>Cross-training, pair programming, documented runbooks</td><td><span class="risk-badge" style="background:rgba(52,211,153,0.1);color:var(--green)">Mitigated</span></td></tr>
+        <tr><td style="color:var(--text);font-weight:600">R-004</td><td style="color:var(--text)">Budget overrun due to scope creep</td><td>High</td><td>Medium</td><td><span class="risk-badge" style="background:rgba(248,113,113,0.1);color:var(--red)">12 — High</span></td><td>Formal change control; weekly budget reviews; scope locked after Phase 2</td><td><span class="risk-badge" style="background:rgba(251,146,60,0.1);color:var(--orange)">Monitoring</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -1629,54 +754,12 @@ rect[data-node]:hover{filter:brightness(1.2)}
   <p class="sub reveal">Quantified delivery outcomes across the last 4 quarters.</p>
 
   <div class="del-metrics reveal">
-    <div class="del-card">
-      <div class="del-val" style="color:var(--green)">94%</div>
-      <div class="del-label">On-Time Delivery Rate</div>
-      <div class="del-trend" style="color:var(--green)">+8% from Q1</div>
-      <div class="del-sparkline">
-        <svg viewBox="0 0 120 32" fill="none"><path d="M0,28 L30,22 L60,18 L90,12 L120,6" stroke="var(--green)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="6" r="2.5" fill="var(--green)"/></svg>
-      </div>
-    </div>
-    <div class="del-card">
-      <div class="del-val" style="color:var(--blue)">38</div>
-      <div class="del-label">Sprint Velocity (avg pts)</div>
-      <div class="del-trend" style="color:var(--green)">+5 from Q1</div>
-      <div class="del-sparkline">
-        <svg viewBox="0 0 120 32" fill="none"><path d="M0,26 L30,24 L60,18 L90,14 L120,8" stroke="var(--blue)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="8" r="2.5" fill="var(--blue)"/></svg>
-      </div>
-    </div>
-    <div class="del-card">
-      <div class="del-val" style="color:var(--purple)">-2.1%</div>
-      <div class="del-label">Budget Variance</div>
-      <div class="del-trend" style="color:var(--green)">Under budget</div>
-      <div class="del-sparkline">
-        <svg viewBox="0 0 120 32" fill="none"><path d="M0,10 L30,14 L60,12 L90,16 L120,15" stroke="var(--purple)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="15" r="2.5" fill="var(--purple)"/></svg>
-      </div>
-    </div>
-    <div class="del-card">
-      <div class="del-val" style="color:var(--aws)">7%</div>
-      <div class="del-label">Scope Change Rate</div>
-      <div class="del-trend" style="color:var(--green)">Within threshold</div>
-      <div class="del-sparkline">
-        <svg viewBox="0 0 120 32" fill="none"><path d="M0,20 L30,18 L60,22 L90,16 L120,14" stroke="var(--aws)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="14" r="2.5" fill="var(--aws)"/></svg>
-      </div>
-    </div>
-    <div class="del-card">
-      <div class="del-val" style="color:var(--cyan)">1.8 days</div>
-      <div class="del-label">Avg Lead Time</div>
-      <div class="del-trend" style="color:var(--green)">-0.6 days from Q1</div>
-      <div class="del-sparkline">
-        <svg viewBox="0 0 120 32" fill="none"><path d="M0,8 L30,12 L60,10 L90,16 L120,22" stroke="var(--cyan)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="22" r="2.5" fill="var(--cyan)"/></svg>
-      </div>
-    </div>
-    <div class="del-card">
-      <div class="del-val" style="color:var(--red)">0</div>
-      <div class="del-label">Missed Deadlines (Q4)</div>
-      <div class="del-trend" style="color:var(--green)">Down from 3 in Q1</div>
-      <div class="del-sparkline">
-        <svg viewBox="0 0 120 32" fill="none"><path d="M0,8 L30,14 L60,18 L90,24 L120,28" stroke="var(--red)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="28" r="2.5" fill="var(--red)"/></svg>
-      </div>
-    </div>
+    <div class="del-card"><div class="del-val" style="color:var(--green)">94%</div><div class="del-label">On-Time Delivery Rate</div><div class="del-trend" style="color:var(--green)">+8% from Q1</div><div class="del-sparkline"><svg viewBox="0 0 120 32" fill="none"><path d="M0,28 L30,22 L60,18 L90,12 L120,6" stroke="var(--green)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="6" r="2.5" fill="var(--green)"/></svg></div></div>
+    <div class="del-card"><div class="del-val" style="color:var(--blue)">38</div><div class="del-label">Sprint Velocity (avg pts)</div><div class="del-trend" style="color:var(--green)">+5 from Q1</div><div class="del-sparkline"><svg viewBox="0 0 120 32" fill="none"><path d="M0,26 L30,24 L60,18 L90,14 L120,8" stroke="var(--blue)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="8" r="2.5" fill="var(--blue)"/></svg></div></div>
+    <div class="del-card"><div class="del-val" style="color:var(--purple)">-2.1%</div><div class="del-label">Budget Variance</div><div class="del-trend" style="color:var(--green)">Under budget</div><div class="del-sparkline"><svg viewBox="0 0 120 32" fill="none"><path d="M0,10 L30,14 L60,12 L90,16 L120,15" stroke="var(--purple)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="15" r="2.5" fill="var(--purple)"/></svg></div></div>
+    <div class="del-card"><div class="del-val" style="color:var(--cyan)">1.8 days</div><div class="del-label">Avg Lead Time</div><div class="del-trend" style="color:var(--green)">-0.6 days from Q1</div><div class="del-sparkline"><svg viewBox="0 0 120 32" fill="none"><path d="M0,8 L30,12 L60,10 L90,16 L120,22" stroke="var(--cyan)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="22" r="2.5" fill="var(--cyan)"/></svg></div></div>
+    <div class="del-card"><div class="del-val" style="color:var(--red)">0</div><div class="del-label">Missed Deadlines (Q4)</div><div class="del-trend" style="color:var(--green)">Down from 3 in Q1</div><div class="del-sparkline"><svg viewBox="0 0 120 32" fill="none"><path d="M0,8 L30,14 L60,18 L90,24 L120,28" stroke="var(--red)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="28" r="2.5" fill="var(--red)"/></svg></div></div>
+    <div class="del-card"><div class="del-val" style="color:var(--aws)">7%</div><div class="del-label">Scope Change Rate</div><div class="del-trend" style="color:var(--green)">Within threshold</div><div class="del-sparkline"><svg viewBox="0 0 120 32" fill="none"><path d="M0,20 L30,18 L60,22 L90,16 L120,14" stroke="var(--aws)" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="120" cy="14" r="2.5" fill="var(--aws)"/></svg></div></div>
   </div>
 </section>
 
@@ -1688,79 +771,53 @@ rect[data-node]:hover{filter:brightness(1.2)}
 
   <div class="topo-wrap reveal">
     <svg viewBox="0 0 960 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Title -->
       <text x="480" y="30" text-anchor="middle" fill="var(--muted)" font-size="9" font-weight="700" letter-spacing="0.12em">TEAM TOPOLOGY — CLOUD MIGRATION PROGRAM</text>
-
-      <!-- Stream-Aligned Teams -->
       <rect x="40" y="70" width="400" height="200" rx="16" fill="rgba(74,158,255,0.04)" stroke="rgba(74,158,255,0.15)" stroke-width="1.5"/>
       <text x="60" y="95" fill="var(--blue)" font-size="9" font-weight="700" letter-spacing="0.1em">STREAM-ALIGNED TEAMS</text>
       <text x="60" y="110" fill="var(--muted)" font-size="7">Aligned to business value streams — own full delivery lifecycle</text>
-
-      <!-- Team 1 -->
       <rect x="60" y="125" width="170" height="60" rx="10" fill="var(--card)" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
       <text x="145" y="150" text-anchor="middle" fill="var(--blue)" font-size="10" font-weight="600">Checkout Team</text>
       <text x="145" y="165" text-anchor="middle" fill="var(--muted)" font-size="7">4 engineers &bull; 1 PM</text>
-      <!-- Team 2 -->
       <rect x="250" y="125" width="170" height="60" rx="10" fill="var(--card)" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
       <text x="335" y="150" text-anchor="middle" fill="var(--blue)" font-size="10" font-weight="600">Catalog Team</text>
       <text x="335" y="165" text-anchor="middle" fill="var(--muted)" font-size="7">3 engineers &bull; 1 PM</text>
-      <!-- Team 3 -->
       <rect x="60" y="200" width="170" height="60" rx="10" fill="var(--card)" stroke="rgba(74,158,255,0.3)" stroke-width="1.5"/>
       <text x="145" y="225" text-anchor="middle" fill="var(--blue)" font-size="10" font-weight="600">User Auth Team</text>
       <text x="145" y="240" text-anchor="middle" fill="var(--muted)" font-size="7">3 engineers &bull; 1 PM</text>
-
-      <!-- Platform Team -->
       <rect x="520" y="70" width="400" height="120" rx="16" fill="rgba(167,139,250,0.04)" stroke="rgba(167,139,250,0.15)" stroke-width="1.5"/>
       <text x="540" y="95" fill="var(--purple)" font-size="9" font-weight="700" letter-spacing="0.1em">PLATFORM TEAM</text>
       <text x="540" y="110" fill="var(--muted)" font-size="7">Provides self-service infrastructure — reduces cognitive load on stream teams</text>
-
       <rect x="540" y="125" width="160" height="50" rx="10" fill="var(--card)" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
       <text x="620" y="148" text-anchor="middle" fill="var(--purple)" font-size="10" font-weight="600">Infra Platform</text>
       <text x="620" y="162" text-anchor="middle" fill="var(--muted)" font-size="7">Terraform, CI/CD, K8s</text>
-
       <rect x="720" y="125" width="180" height="50" rx="10" fill="var(--card)" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
       <text x="810" y="148" text-anchor="middle" fill="var(--purple)" font-size="10" font-weight="600">Observability Platform</text>
       <text x="810" y="162" text-anchor="middle" fill="var(--muted)" font-size="7">Monitoring, Logging, Alerts</text>
-
-      <!-- Enabling Team -->
       <rect x="520" y="220" width="400" height="100" rx="16" fill="rgba(52,211,153,0.04)" stroke="rgba(52,211,153,0.15)" stroke-width="1.5"/>
       <text x="540" y="245" fill="var(--green)" font-size="9" font-weight="700" letter-spacing="0.1em">ENABLING TEAM</text>
       <text x="540" y="260" fill="var(--muted)" font-size="7">Temporary coaching &amp; upskilling — helps stream teams adopt new tech</text>
-
       <rect x="540" y="275" width="160" height="30" rx="8" fill="var(--card)" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
       <text x="620" y="294" text-anchor="middle" fill="var(--green)" font-size="9" font-weight="600">Security Coaching</text>
-
       <rect x="720" y="275" width="180" height="30" rx="8" fill="var(--card)" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
       <text x="810" y="294" text-anchor="middle" fill="var(--green)" font-size="9" font-weight="600">Cloud Migration Coaching</text>
-
-      <!-- Interaction arrows -->
-      <!-- Platform → Stream (X-as-a-Service) -->
       <line x1="520" y1="155" x2="440" y2="155" stroke="var(--purple)" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.5"/>
       <text x="470" y="145" text-anchor="middle" fill="var(--purple)" font-size="6" font-weight="600" opacity="0.7">X-as-a-Service</text>
-
-      <!-- Enabling → Stream (Facilitation) -->
       <path d="M520,270 Q470,270 440,235" stroke="var(--green)" stroke-width="1.5" stroke-dasharray="6,3" fill="none" opacity="0.5"/>
       <text x="465" y="260" text-anchor="middle" fill="var(--green)" font-size="6" font-weight="600" opacity="0.7">Facilitation</text>
-
-      <!-- TDL / Me -->
       <rect x="280" y="360" width="400" height="100" rx="16" fill="rgba(255,153,0,0.04)" stroke="rgba(255,153,0,0.2)" stroke-width="1.5"/>
-      <text x="480" y="390" text-anchor="middle" fill="var(--aws)" font-size="11" font-weight="700">Technical Delivery Lead</text>
+      <text x="480" y="390" text-anchor="middle" fill="var(--aws)" font-size="11" font-weight="700">Technical Product Manager</text>
       <text x="480" y="410" text-anchor="middle" fill="var(--muted)" font-size="8">Cross-team coordination &bull; Risk management &bull; Stakeholder communication</text>
       <text x="480" y="428" text-anchor="middle" fill="var(--muted)" font-size="8">Sprint planning &bull; Dependency resolution &bull; Delivery cadence</text>
-      <text x="480" y="446" text-anchor="middle" fill="var(--muted)" font-size="7" font-style="italic">&mdash; Stefan Laza</text>
-
-      <!-- Lines from TDL to teams -->
+      <text x="480" y="446" text-anchor="middle" fill="var(--muted)" font-size="7" font-style="italic">&mdash; Stefan Lazarevic</text>
       <line x1="380" y1="360" x2="240" y2="270" stroke="var(--aws)" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
       <line x1="430" y1="360" x2="335" y2="270" stroke="var(--aws)" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
       <line x1="530" y1="360" x2="620" y2="190" stroke="var(--aws)" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
       <line x1="580" y1="360" x2="720" y2="320" stroke="var(--aws)" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
-
-      <!-- Key -->
       <text x="40" y="500" fill="var(--muted)" font-size="7" font-weight="600" letter-spacing="0.06em">INTERACTION MODES:</text>
       <line x1="170" y1="497" x2="200" y2="497" stroke="var(--purple)" stroke-width="1.5" stroke-dasharray="6,3"/>
-      <text x="205" y="500" fill="var(--muted)" font-size="7">X-as-a-Service (platform provides, teams consume)</text>
-      <line x1="480" y1="497" x2="510" y2="497" stroke="var(--green)" stroke-width="1.5" stroke-dasharray="6,3"/>
-      <text x="515" y="500" fill="var(--muted)" font-size="7">Facilitation (enabling team coaches, then withdraws)</text>
+      <text x="205" y="500" fill="var(--muted)" font-size="7">X-as-a-Service</text>
+      <line x1="300" y1="497" x2="330" y2="497" stroke="var(--green)" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="335" y="500" fill="var(--muted)" font-size="7">Facilitation</text>
     </svg>
   </div>
 </section>
@@ -1776,63 +833,31 @@ rect[data-node]:hover{filter:brightness(1.2)}
       <div class="retro-sprint" style="color:var(--blue)">Sprint 14 — Migration Phase 2</div>
       <h3>Database Migration Sprint</h3>
       <div class="retro-type" style="color:var(--green)">What went well</div>
-      <ul class="retro-items went-well">
-        <li>DMS replication finished 2 days ahead of schedule</li>
-        <li>Zero data discrepancies in checksum validation</li>
-        <li>Daily standups kept stakeholders informed — no surprises</li>
-      </ul>
+      <ul class="retro-items went-well"><li>DMS replication finished 2 days ahead of schedule</li><li>Zero data discrepancies in checksum validation</li><li>Daily standups kept stakeholders informed</li></ul>
       <div class="retro-type" style="color:var(--orange)">What to improve</div>
-      <ul class="retro-items improve">
-        <li>Schema change coordination between teams was ad-hoc</li>
-        <li>Staging environment drifted from production config</li>
-      </ul>
+      <ul class="retro-items improve"><li>Schema change coordination was ad-hoc</li><li>Staging environment drifted from production config</li></ul>
       <div class="retro-type" style="color:var(--blue)">Action items</div>
-      <ul class="retro-items actions">
-        <li>Create shared schema change calendar (Owner: TDL)</li>
-        <li>Implement Terraform drift detection in CI pipeline</li>
-      </ul>
+      <ul class="retro-items actions"><li>Create shared schema change calendar</li><li>Implement Terraform drift detection in CI pipeline</li></ul>
     </div>
-
     <div class="retro-card">
       <div class="retro-sprint" style="color:var(--purple)">Sprint 18 — Migration Phase 3</div>
       <h3>Containerization Sprint</h3>
       <div class="retro-type" style="color:var(--green)">What went well</div>
-      <ul class="retro-items went-well">
-        <li>Multi-stage Docker builds reduced image size by 68%</li>
-        <li>Pair programming sessions accelerated onboarding</li>
-      </ul>
+      <ul class="retro-items went-well"><li>Multi-stage Docker builds reduced image size by 68%</li><li>Pair programming sessions accelerated onboarding</li></ul>
       <div class="retro-type" style="color:var(--orange)">What to improve</div>
-      <ul class="retro-items improve">
-        <li>Local dev environment parity with ECS was poor</li>
-        <li>Too many WIP items — team context-switching frequently</li>
-      </ul>
+      <ul class="retro-items improve"><li>Local dev environment parity with ECS was poor</li><li>Too many WIP items — context-switching frequently</li></ul>
       <div class="retro-type" style="color:var(--blue)">Action items</div>
-      <ul class="retro-items actions">
-        <li>Introduce WIP limit of 2 per engineer (enforced in Jira)</li>
-        <li>Create docker-compose setup matching ECS task definitions</li>
-        <li>Weekly "focus Friday" — no meetings, deep work only</li>
-      </ul>
+      <ul class="retro-items actions"><li>Introduce WIP limit of 2 per engineer</li><li>Weekly focus Friday — no meetings, deep work only</li></ul>
     </div>
-
     <div class="retro-card">
       <div class="retro-sprint" style="color:var(--aws)">Sprint 22 — Deploy & Handoff</div>
       <h3>Production Cutover Sprint</h3>
       <div class="retro-type" style="color:var(--green)">What went well</div>
-      <ul class="retro-items went-well">
-        <li>Blue-green cutover completed with 0 downtime</li>
-        <li>Runbooks enabled on-call team to handle first week independently</li>
-        <li>Stakeholder demo went smoothly — immediate sign-off</li>
-      </ul>
+      <ul class="retro-items went-well"><li>Blue-green cutover completed with 0 downtime</li><li>Runbooks enabled on-call team to handle first week independently</li><li>Stakeholder demo — immediate sign-off</li></ul>
       <div class="retro-type" style="color:var(--orange)">What to improve</div>
-      <ul class="retro-items improve">
-        <li>Post-cutover monitoring alerts were too noisy (400+ in first hour)</li>
-        <li>Some runbooks assumed familiarity with old system</li>
-      </ul>
+      <ul class="retro-items improve"><li>Post-cutover monitoring alerts were too noisy</li><li>Some runbooks assumed familiarity with old system</li></ul>
       <div class="retro-type" style="color:var(--blue)">Action items</div>
-      <ul class="retro-items actions">
-        <li>Tune alert thresholds based on first week baseline</li>
-        <li>Rewrite runbooks assuming zero prior context</li>
-      </ul>
+      <ul class="retro-items actions"><li>Tune alert thresholds based on first week baseline</li><li>Rewrite runbooks assuming zero prior context</li></ul>
     </div>
   </div>
 </section>
@@ -1844,116 +869,74 @@ rect[data-node]:hover{filter:brightness(1.2)}
   <p class="sub reveal">How I resolve blockers — a clear, repeatable decision flowchart for the team.</p>
 
   <div class="esc-wrap reveal">
-    <svg viewBox="0 0 960 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 960 580" fill="none" xmlns="http://www.w3.org/2000/svg">
       <text x="480" y="25" text-anchor="middle" fill="var(--muted)" font-size="9" font-weight="700" letter-spacing="0.12em">BLOCKER ESCALATION FLOWCHART</text>
-
-      <!-- Start -->
       <rect x="380" y="45" width="200" height="44" rx="22" fill="rgba(248,113,113,0.1)" stroke="var(--red)" stroke-width="1.5"/>
       <text x="480" y="72" text-anchor="middle" fill="var(--red)" font-size="11" font-weight="700">Blocker Identified</text>
-
-      <!-- Arrow down -->
       <line x1="480" y1="89" x2="480" y2="115" stroke="var(--muted)" stroke-width="1.5"/>
       <polygon points="475,112 485,112 480,120" fill="var(--muted)"/>
-
-      <!-- Decision 1: Can team resolve? -->
-      <rect x="350" y="120" width="260" height="50" rx="12" fill="var(--card)" stroke="var(--blue)" stroke-width="1.5" transform="rotate(0)"/>
+      <rect x="350" y="120" width="260" height="50" rx="12" fill="var(--card)" stroke="var(--blue)" stroke-width="1.5"/>
       <text x="480" y="142" text-anchor="middle" fill="var(--blue)" font-size="10" font-weight="600">Can the team resolve it</text>
       <text x="480" y="157" text-anchor="middle" fill="var(--blue)" font-size="10" font-weight="600">within the sprint?</text>
-
-      <!-- YES path left -->
       <line x1="350" y1="145" x2="250" y2="145" stroke="var(--green)" stroke-width="1.5"/>
       <polygon points="253,140 253,150 245,145" fill="var(--green)"/>
       <text x="300" y="138" text-anchor="middle" fill="var(--green)" font-size="8" font-weight="700">YES</text>
-
       <rect x="80" y="120" width="165" height="50" rx="12" fill="rgba(52,211,153,0.08)" stroke="var(--green)" stroke-width="1.5"/>
       <text x="162" y="142" text-anchor="middle" fill="var(--green)" font-size="9" font-weight="600">Team resolves internally</text>
       <text x="162" y="157" text-anchor="middle" fill="var(--muted)" font-size="7">Track in sprint board</text>
-
-      <!-- NO path down -->
       <line x1="480" y1="170" x2="480" y2="205" stroke="var(--red)" stroke-width="1.5"/>
       <polygon points="475,202 485,202 480,210" fill="var(--red)"/>
       <text x="495" y="192" fill="var(--red)" font-size="8" font-weight="700">NO</text>
-
-      <!-- Decision 2: Technical or organizational? -->
       <rect x="340" y="210" width="280" height="50" rx="12" fill="var(--card)" stroke="var(--purple)" stroke-width="1.5"/>
       <text x="480" y="232" text-anchor="middle" fill="var(--purple)" font-size="10" font-weight="600">Is the blocker technical</text>
       <text x="480" y="247" text-anchor="middle" fill="var(--purple)" font-size="10" font-weight="600">or organizational?</text>
-
-      <!-- Technical path left -->
       <line x1="340" y1="235" x2="250" y2="235" stroke="var(--cyan)" stroke-width="1.5"/>
       <polygon points="253,230 253,240 245,235" fill="var(--cyan)"/>
       <text x="295" y="228" text-anchor="middle" fill="var(--cyan)" font-size="8" font-weight="700">TECHNICAL</text>
-
       <rect x="50" y="210" width="195" height="50" rx="12" fill="rgba(34,211,238,0.08)" stroke="var(--cyan)" stroke-width="1.5"/>
       <text x="147" y="232" text-anchor="middle" fill="var(--cyan)" font-size="9" font-weight="600">Engage Platform Team</text>
       <text x="147" y="247" text-anchor="middle" fill="var(--muted)" font-size="7">SLA: 4hr response</text>
-
-      <!-- Org path right -->
       <line x1="620" y1="235" x2="710" y2="235" stroke="var(--aws)" stroke-width="1.5"/>
       <polygon points="707,230 707,240 715,235" fill="var(--aws)"/>
       <text x="665" y="228" text-anchor="middle" fill="var(--aws)" font-size="8" font-weight="700">ORGANIZATIONAL</text>
-
       <rect x="715" y="210" width="200" height="50" rx="12" fill="rgba(255,153,0,0.08)" stroke="var(--aws)" stroke-width="1.5"/>
       <text x="815" y="232" text-anchor="middle" fill="var(--aws)" font-size="9" font-weight="600">TDL facilitates resolution</text>
       <text x="815" y="247" text-anchor="middle" fill="var(--muted)" font-size="7">Cross-team sync within 24hr</text>
-
-      <!-- Continue down from decision 2 -->
       <line x1="480" y1="260" x2="480" y2="295" stroke="var(--muted)" stroke-width="1.5"/>
       <polygon points="475,292 485,292 480,300" fill="var(--muted)"/>
-      <text x="495" y="282" fill="var(--muted)" font-size="7">UNRESOLVED</text>
-
-      <!-- Decision 3: >48 hours? -->
       <rect x="350" y="300" width="260" height="50" rx="12" fill="var(--card)" stroke="var(--orange)" stroke-width="1.5"/>
       <text x="480" y="322" text-anchor="middle" fill="var(--orange)" font-size="10" font-weight="600">Still blocked after 48 hours?</text>
-
-      <!-- NO right -->
       <line x1="610" y1="325" x2="710" y2="325" stroke="var(--green)" stroke-width="1.5"/>
       <polygon points="707,320 707,330 715,325" fill="var(--green)"/>
       <text x="660" y="318" text-anchor="middle" fill="var(--green)" font-size="8" font-weight="700">NO</text>
-
       <rect x="715" y="300" width="200" height="50" rx="12" fill="rgba(52,211,153,0.08)" stroke="var(--green)" stroke-width="1.5"/>
       <text x="815" y="322" text-anchor="middle" fill="var(--green)" font-size="9" font-weight="600">Resolved at team level</text>
       <text x="815" y="337" text-anchor="middle" fill="var(--muted)" font-size="7">Document in retro</text>
-
-      <!-- YES down -->
       <line x1="480" y1="350" x2="480" y2="385" stroke="var(--red)" stroke-width="1.5"/>
       <polygon points="475,382 485,382 480,390" fill="var(--red)"/>
       <text x="495" y="372" fill="var(--red)" font-size="8" font-weight="700">YES</text>
-
-      <!-- Escalate to management -->
       <rect x="330" y="390" width="300" height="55" rx="12" fill="rgba(248,113,113,0.08)" stroke="var(--red)" stroke-width="1.5"/>
       <text x="480" y="412" text-anchor="middle" fill="var(--red)" font-size="10" font-weight="700">Escalate to Management</text>
       <text x="480" y="428" text-anchor="middle" fill="var(--muted)" font-size="7">Written brief: impact, options, recommendation</text>
       <text x="480" y="440" text-anchor="middle" fill="var(--muted)" font-size="7">SLA: Decision within 24hr</text>
-
-      <!-- Arrow down -->
       <line x1="480" y1="445" x2="480" y2="475" stroke="var(--muted)" stroke-width="1.5"/>
       <polygon points="475,472 485,472 480,480" fill="var(--muted)"/>
-
-      <!-- Outcomes -->
       <rect x="180" y="480" width="180" height="45" rx="10" fill="rgba(52,211,153,0.06)" stroke="var(--green)" stroke-width="1"/>
       <text x="270" y="500" text-anchor="middle" fill="var(--green)" font-size="9" font-weight="600">Re-prioritize Backlog</text>
       <text x="270" y="514" text-anchor="middle" fill="var(--muted)" font-size="7">Adjust scope/timeline</text>
-
       <rect x="390" y="480" width="180" height="45" rx="10" fill="rgba(74,158,255,0.06)" stroke="var(--blue)" stroke-width="1"/>
       <text x="480" y="500" text-anchor="middle" fill="var(--blue)" font-size="9" font-weight="600">Add Resources</text>
       <text x="480" y="514" text-anchor="middle" fill="var(--muted)" font-size="7">Staff or vendor support</text>
-
       <rect x="600" y="480" width="180" height="45" rx="10" fill="rgba(167,139,250,0.06)" stroke="var(--purple)" stroke-width="1"/>
       <text x="690" y="500" text-anchor="middle" fill="var(--purple)" font-size="9" font-weight="600">Accept &amp; Communicate</text>
       <text x="690" y="514" text-anchor="middle" fill="var(--muted)" font-size="7">Update stakeholders on delay</text>
-
       <line x1="480" y1="480" x2="270" y2="480" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4,3"/>
       <line x1="480" y1="480" x2="690" y2="480" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4,3"/>
-
-      <!-- Footer note -->
-      <text x="480" y="555" text-anchor="middle" fill="var(--muted)" font-size="7" font-weight="600" letter-spacing="0.06em">ALL ESCALATIONS ARE LOGGED &bull; REVIEWED IN WEEKLY RISK MEETING &bull; TRACKED TO CLOSURE</text>
-
-      <!-- Timing legend -->
-      <rect x="300" y="575" width="360" height="30" rx="8" fill="rgba(255,255,255,0.02)" stroke="var(--border)" stroke-width="1"/>
-      <text x="320" y="594" fill="var(--green)" font-size="7" font-weight="700">L1 Team: &lt;4hr</text>
-      <text x="420" y="594" fill="var(--cyan)" font-size="7" font-weight="700">L2 Platform/TDL: &lt;24hr</text>
-      <text x="550" y="594" fill="var(--red)" font-size="7" font-weight="700">L3 Management: &lt;48hr</text>
+      <text x="480" y="548" text-anchor="middle" fill="var(--muted)" font-size="7" font-weight="600" letter-spacing="0.06em">ALL ESCALATIONS LOGGED &bull; REVIEWED WEEKLY &bull; TRACKED TO CLOSURE</text>
+      <rect x="300" y="558" width="360" height="28" rx="8" fill="rgba(255,255,255,0.02)" stroke="var(--border)" stroke-width="1"/>
+      <text x="320" y="576" fill="var(--green)" font-size="7" font-weight="700">L1 Team: &lt;4hr</text>
+      <text x="420" y="576" fill="var(--cyan)" font-size="7" font-weight="700">L2 Platform/TDL: &lt;24hr</text>
+      <text x="550" y="576" fill="var(--red)" font-size="7" font-weight="700">L3 Management: &lt;48hr</text>
     </svg>
   </div>
 </section>
@@ -1962,7 +945,7 @@ rect[data-node]:hover{filter:brightness(1.2)}
 <section id="contact">
   <div class="tag reveal" style="color:var(--cyan)">Get in touch</div>
   <h2 class="reveal">Let's build something.</h2>
-  <p class="sub reveal">Looking for a Technical Delivery Lead? I'm available for freelance and full-time roles.</p>
+  <p class="sub reveal">Senior TPM available for US remote or hybrid roles. Green Card holder, no sponsorship required.</p>
   <div class="contact-links reveal">
     <a href="https://github.com/stefanlaza" target="_blank">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -1980,7 +963,7 @@ rect[data-node]:hover{filter:brightness(1.2)}
 </section>
 
 <footer>
-  <p>Stefan Laza &mdash; Technical Delivery Lead &mdash; 2026</p>
+  <p>Stefan Lazarevic &mdash; Technical Product Manager &mdash; 2026</p>
 </footer>
 
 <script>
@@ -1993,25 +976,21 @@ document.addEventListener('DOMContentLoaded',()=>{
     els.forEach(el=>obs.observe(el));
   }else{els.forEach(el=>el.classList.add('visible'))}
 
-  /* Dashboard live number animation */
   const dashEls={uptime:document.getElementById('dash-uptime'),latency:document.getElementById('dash-latency'),rps:document.getElementById('dash-rps'),errors:document.getElementById('dash-errors')};
   if(dashEls.uptime){
     setInterval(()=>{
-      const bases={uptime:[99.95,99.99],latency:[38,52],rps:[1.0,1.4],errors:[0.01,0.04]};
       const r=(min,max)=>(Math.random()*(max-min)+min);
-      dashEls.uptime.textContent=r(...bases.uptime).toFixed(2)+'%';
-      dashEls.latency.textContent=Math.round(r(...bases.latency))+'ms';
-      dashEls.rps.textContent=r(...bases.rps).toFixed(1)+'K';
-      dashEls.errors.textContent=r(...bases.errors).toFixed(2)+'%';
+      dashEls.uptime.textContent=r(99.95,99.99).toFixed(2)+'%';
+      dashEls.latency.textContent=Math.round(r(38,52))+'ms';
+      dashEls.rps.textContent=r(1.0,1.4).toFixed(1)+'K';
+      dashEls.errors.textContent=r(0.01,0.04).toFixed(2)+'%';
     },3000);
   }
 
-  /* Click-to-highlight: click a node to highlight its connections */
   document.querySelectorAll('.diagram svg').forEach(svg=>{
     svg.addEventListener('click',e=>{
       const node=e.target.closest('rect[data-node]');
       if(!node){
-        /* Clicked empty space — reset */
         svg.removeAttribute('data-active');
         svg.closest('.diagram').classList.remove('active');
         svg.querySelectorAll('.hl').forEach(el=>el.classList.remove('hl'));
@@ -2020,22 +999,14 @@ document.addEventListener('DOMContentLoaded',()=>{
       const id=node.dataset.node;
       svg.setAttribute('data-active',id);
       svg.closest('.diagram').classList.add('active');
-
-      /* Clear previous highlights */
       svg.querySelectorAll('.hl').forEach(el=>el.classList.remove('hl'));
-
-      /* Highlight clicked node */
       node.classList.add('hl');
-      /* Highlight its text labels (next sibling text elements) */
       let sib=node.nextElementSibling;
       while(sib&&sib.tagName==='text'){sib.classList.add('hl');sib=sib.nextElementSibling}
-
-      /* Find all paths and packets connected to this node */
       svg.querySelectorAll('[data-path-nodes]').forEach(el=>{
         const nodes=el.dataset.pathNodes.split(' ');
         if(nodes.includes(id)){
           el.classList.add('hl');
-          /* Also highlight the connected node on the other end */
           const otherId=nodes.find(n=>n!==id)||nodes[0];
           const otherRect=svg.querySelector('rect[data-node="'+otherId+'"]');
           if(otherRect){
